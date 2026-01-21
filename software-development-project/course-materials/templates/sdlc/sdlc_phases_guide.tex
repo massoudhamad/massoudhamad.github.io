@@ -1,0 +1,245 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{tikz}
+\usetikzlibrary{shapes.geometric, arrows, positioning}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{secondary}{RGB}{248, 113, 113}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{SDLC Phases Guide}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Software Development Life Cycle (SDLC)}\\[0.5cm]\large A Comprehensive Guide for Students}
+\author{State University of Zanzibar (SUZA)}
+\date{BSc Computer Science}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction to SDLC}
+
+The Software Development Life Cycle (SDLC) is a structured process that enables the production of high-quality software in a systematic and efficient manner. It provides a framework for planning, creating, testing, and deploying software systems.
+
+\subsection{Why SDLC Matters}
+
+\begin{itemize}
+    \item Provides a structured approach to software development
+    \item Ensures quality and reduces risks
+    \item Facilitates better project management
+    \item Improves communication among team members
+    \item Helps meet deadlines and budget constraints
+\end{itemize}
+
+\section{SDLC Phases}
+
+\subsection{Phase 1: Planning}
+
+\textbf{Objective:} Define project goals, scope, and feasibility.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Identify project objectives
+    \item Conduct feasibility study (technical, economic, operational)
+    \item Define project scope and boundaries
+    \item Create project timeline and milestones
+    \item Allocate resources and budget
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item Project Charter
+    \item Feasibility Study Report
+    \item Project Plan
+\end{itemize}
+
+\subsection{Phase 2: Requirements Analysis}
+
+\textbf{Objective:} Gather and document what the software should do.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Stakeholder interviews and workshops
+    \item Document functional requirements
+    \item Document non-functional requirements
+    \item Create user stories and use cases
+    \item Prioritize requirements
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item Software Requirements Specification (SRS)
+    \item User Stories
+    \item Use Case Diagrams
+\end{itemize}
+
+\subsection{Phase 3: Design}
+
+\textbf{Objective:} Plan how the software will be built.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Create system architecture
+    \item Design database schema
+    \item Design user interface mockups
+    \item Define API specifications
+    \item Select technology stack
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item System Design Document
+    \item Database Design
+    \item UI/UX Mockups
+    \item API Documentation
+\end{itemize}
+
+\subsection{Phase 4: Implementation (Coding)}
+
+\textbf{Objective:} Write the actual code.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Set up development environment
+    \item Write code following coding standards
+    \item Conduct code reviews
+    \item Version control with Git
+    \item Unit testing
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item Source Code
+    \item Code Documentation
+    \item Unit Tests
+\end{itemize}
+
+\subsection{Phase 5: Testing}
+
+\textbf{Objective:} Verify the software works correctly.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Create test plans and test cases
+    \item Perform integration testing
+    \item Conduct system testing
+    \item User acceptance testing (UAT)
+    \item Bug tracking and fixing
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item Test Plan
+    \item Test Cases
+    \item Bug Reports
+    \item Test Summary Report
+\end{itemize}
+
+\subsection{Phase 6: Deployment}
+
+\textbf{Objective:} Release the software to users.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Prepare deployment environment
+    \item Create deployment scripts
+    \item Deploy to production
+    \item User training
+    \item Documentation handover
+\end{enumerate}
+
+\textbf{Deliverables:}
+\begin{itemize}
+    \item Deployed Application
+    \item User Manual
+    \item Training Materials
+\end{itemize}
+
+\subsection{Phase 7: Maintenance}
+
+\textbf{Objective:} Keep the software running and improve it.
+
+\textbf{Key Activities:}
+\begin{enumerate}
+    \item Monitor system performance
+    \item Fix bugs and issues
+    \item Implement enhancements
+    \item Security updates
+    \item Performance optimization
+\end{enumerate}
+
+\section{SDLC Models}
+
+\subsection{Waterfall Model}
+Sequential phases, each must complete before the next begins.
+\begin{itemize}
+    \item Best for: Well-defined requirements
+    \item Drawback: Inflexible to changes
+\end{itemize}
+
+\subsection{Agile Model}
+Iterative development with frequent deliveries.
+\begin{itemize}
+    \item Best for: Projects with evolving requirements
+    \item Popular frameworks: Scrum, Kanban
+\end{itemize}
+
+\subsection{V-Model}
+Testing phase for each development phase.
+\begin{itemize}
+    \item Best for: Projects requiring high reliability
+    \item Emphasis on verification and validation
+\end{itemize}
+
+\subsection{Spiral Model}
+Risk-driven iterative development.
+\begin{itemize}
+    \item Best for: Large, complex projects
+    \item Focus on risk assessment
+\end{itemize}
+
+\section{Best Practices}
+
+\begin{enumerate}
+    \item \textbf{Documentation:} Keep all phases well-documented
+    \item \textbf{Communication:} Regular team meetings and updates
+    \item \textbf{Version Control:} Use Git for all code and documents
+    \item \textbf{Testing:} Test early and test often
+    \item \textbf{Review:} Conduct regular code and design reviews
+    \item \textbf{Feedback:} Incorporate stakeholder feedback continuously
+\end{enumerate}
+
+\section{Student Project Checklist}
+
+\begin{itemize}
+    \item[$\square$] Project Charter completed
+    \item[$\square$] Requirements documented
+    \item[$\square$] Design documents created
+    \item[$\square$] Code repository set up
+    \item[$\square$] Regular commits and pull requests
+    \item[$\square$] Test cases written and executed
+    \item[$\square$] Application deployed
+    \item[$\square$] User documentation completed
+    \item[$\square$] Final presentation prepared
+\end{itemize}
+
+\end{document}

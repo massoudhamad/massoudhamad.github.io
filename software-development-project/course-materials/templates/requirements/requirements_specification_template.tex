@@ -1,0 +1,244 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{longtable}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{secondary}{RGB}{248, 113, 113}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{Requirements Specification}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Software Requirements Specification (SRS)}\\[0.5cm]\large Template Document}
+\author{State University of Zanzibar (SUZA)}
+\date{BSc Computer Science}
+
+\begin{document}
+
+\maketitle
+
+\section*{Document Information}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Project Name} & [Enter Project Name] \\
+\hline
+\textbf{Version} & 1.0 \\
+\hline
+\textbf{Date} & [Enter Date] \\
+\hline
+\textbf{Author(s)} & [Team Members] \\
+\hline
+\textbf{Status} & Draft / Review / Approved \\
+\hline
+\end{tabular}
+
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+\subsection{Purpose}
+[Describe the purpose of this document and the intended audience.]
+
+\subsection{Project Scope}
+[Provide a brief description of the software being specified and its purpose.]
+
+\subsection{Definitions and Acronyms}
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Term} & \textbf{Definition} \\
+\hline
+SRS & Software Requirements Specification \\
+\hline
+UI & User Interface \\
+\hline
+API & Application Programming Interface \\
+\hline
+[Add more] & [Definition] \\
+\hline
+\end{tabular}
+
+\subsection{References}
+[List any documents or resources referenced.]
+
+\section{Overall Description}
+
+\subsection{Product Perspective}
+[Describe how the software fits into the larger system or environment.]
+
+\subsection{Product Features}
+[Summarize the major features of the software.]
+
+\subsection{User Classes and Characteristics}
+[Describe the different types of users who will use this software.]
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{User Class} & \textbf{Description} & \textbf{Technical Level} \\
+\hline
+Administrator & System manager & High \\
+\hline
+End User & Regular user & Low to Medium \\
+\hline
+[Add more] & [Description] & [Level] \\
+\hline
+\end{tabular}
+
+\subsection{Operating Environment}
+[Describe the environment in which the software will operate.]
+\begin{itemize}
+    \item Operating System:
+    \item Browser Requirements:
+    \item Hardware Requirements:
+    \item Network Requirements:
+\end{itemize}
+
+\subsection{Design and Implementation Constraints}
+[List any constraints that will affect the design or implementation.]
+
+\subsection{Assumptions and Dependencies}
+[List any assumptions made and external dependencies.]
+
+\section{Functional Requirements}
+
+\subsection{Feature 1: [Feature Name]}
+
+\textbf{FR-001: [Requirement Title]}
+\begin{itemize}
+    \item \textbf{Description:} [Detailed description of the requirement]
+    \item \textbf{Priority:} High / Medium / Low
+    \item \textbf{Input:} [What input is required]
+    \item \textbf{Processing:} [What processing occurs]
+    \item \textbf{Output:} [What output is expected]
+    \item \textbf{Acceptance Criteria:} [How to verify this requirement is met]
+\end{itemize}
+
+\textbf{FR-002: [Requirement Title]}
+\begin{itemize}
+    \item \textbf{Description:} [Detailed description]
+    \item \textbf{Priority:} High / Medium / Low
+    \item \textbf{Input:} [Input]
+    \item \textbf{Processing:} [Processing]
+    \item \textbf{Output:} [Output]
+    \item \textbf{Acceptance Criteria:} [Criteria]
+\end{itemize}
+
+\subsection{Feature 2: [Feature Name]}
+[Repeat the format above for each feature]
+
+\section{Non-Functional Requirements}
+
+\subsection{Performance Requirements}
+\begin{itemize}
+    \item \textbf{NFR-P01:} The system shall respond to user requests within 3 seconds.
+    \item \textbf{NFR-P02:} The system shall support at least 100 concurrent users.
+    \item [Add more performance requirements]
+\end{itemize}
+
+\subsection{Security Requirements}
+\begin{itemize}
+    \item \textbf{NFR-S01:} All passwords shall be encrypted using industry-standard encryption.
+    \item \textbf{NFR-S02:} User sessions shall timeout after 30 minutes of inactivity.
+    \item [Add more security requirements]
+\end{itemize}
+
+\subsection{Usability Requirements}
+\begin{itemize}
+    \item \textbf{NFR-U01:} The system shall be accessible on mobile devices.
+    \item \textbf{NFR-U02:} New users shall be able to complete basic tasks within 5 minutes without training.
+    \item [Add more usability requirements]
+\end{itemize}
+
+\subsection{Reliability Requirements}
+\begin{itemize}
+    \item \textbf{NFR-R01:} The system shall have 99\% uptime.
+    \item \textbf{NFR-R02:} Data shall be backed up daily.
+    \item [Add more reliability requirements]
+\end{itemize}
+
+\section{User Stories}
+
+\subsection{User Story Template}
+\textbf{As a} [type of user], \textbf{I want} [some goal] \textbf{so that} [some reason].
+
+\subsection{User Story 1}
+\textbf{As a} [user type], \textbf{I want} [action] \textbf{so that} [benefit].
+
+\textbf{Acceptance Criteria:}
+\begin{enumerate}
+    \item Given [context], when [action], then [result]
+    \item Given [context], when [action], then [result]
+\end{enumerate}
+
+\subsection{User Story 2}
+[Repeat format above]
+
+\section{Use Cases}
+
+\subsection{Use Case 1: [Use Case Name]}
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-001 \\
+\hline
+\textbf{Name} & [Use Case Name] \\
+\hline
+\textbf{Actor(s)} & [Primary Actor] \\
+\hline
+\textbf{Description} & [Brief description] \\
+\hline
+\textbf{Preconditions} & [What must be true before] \\
+\hline
+\textbf{Main Flow} &
+\begin{enumerate}
+    \item Step 1
+    \item Step 2
+    \item Step 3
+\end{enumerate} \\
+\hline
+\textbf{Alternative Flows} & [Describe alternatives] \\
+\hline
+\textbf{Postconditions} & [What is true after] \\
+\hline
+\end{tabular}
+
+\section{Requirements Traceability Matrix}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Req ID} & \textbf{User Story} & \textbf{Test Case} & \textbf{Status} \\
+\hline
+FR-001 & US-001 & TC-001 & Pending \\
+\hline
+FR-002 & US-002 & TC-002 & Pending \\
+\hline
+\end{tabular}
+
+\section{Approval}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Role} & \textbf{Name} & \textbf{Signature/Date} \\
+\hline
+Project Supervisor & & \\
+\hline
+Team Lead & & \\
+\hline
+\end{tabular}
+
+\end{document}

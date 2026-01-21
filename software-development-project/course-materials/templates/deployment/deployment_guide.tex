@@ -1,0 +1,428 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{listings}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{codebg}{RGB}{30, 30, 46}
+\definecolor{codetext}{RGB}{205, 214, 244}
+\definecolor{comment}{RGB}{108, 112, 134}
+\definecolor{keyword}{RGB}{203, 166, 247}
+\definecolor{string}{RGB}{166, 227, 161}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{codetext},
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{codebg},
+    commentstyle=\color{comment},
+    keywordstyle=\color{keyword},
+    stringstyle=\color{string}
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{Deployment Guide}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Deployment Guide}\\[0.5cm]\large DevOps Best Practices for Students}
+\author{State University of Zanzibar (SUZA)}
+\date{BSc Computer Science}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction}
+
+This guide covers deployment strategies and DevOps practices for student software development projects. It includes instructions for various hosting platforms and deployment methods.
+
+\section{Pre-Deployment Checklist}
+
+\subsection{Code Preparation}
+\begin{itemize}
+    \item[$\square$] All features are implemented and tested
+    \item[$\square$] Code has been reviewed
+    \item[$\square$] All tests pass
+    \item[$\square$] No hardcoded credentials or secrets
+    \item[$\square$] Environment variables are configured
+    \item[$\square$] README is updated
+    \item[$\square$] Dependencies are up to date
+\end{itemize}
+
+\subsection{Security Checklist}
+\begin{itemize}
+    \item[$\square$] HTTPS is configured
+    \item[$\square$] Passwords are hashed
+    \item[$\square$] SQL injection prevention
+    \item[$\square$] XSS protection enabled
+    \item[$\square$] CORS properly configured
+    \item[$\square$] Rate limiting implemented
+\end{itemize}
+
+\section{Environment Configuration}
+
+\subsection{Environment Variables}
+Store sensitive configuration in environment variables, not in code.
+
+\textbf{Example .env file:}
+\begin{lstlisting}[style=terminal]
+# Database
+DATABASE_URL=postgresql://user:pass@host:5432/db
+DB_HOST=localhost
+DB_PORT=5432
+DB_NAME=myapp
+DB_USER=admin
+DB_PASSWORD=secretpassword
+
+# Application
+NODE_ENV=production
+PORT=3000
+SECRET_KEY=your-secret-key
+
+# External APIs
+API_KEY=your-api-key
+\end{lstlisting}
+
+\textbf{Important:} Never commit .env files to Git. Add to .gitignore:
+\begin{lstlisting}[style=terminal]
+.env
+.env.local
+.env.production
+\end{lstlisting}
+
+\section{Deployment Options}
+
+\subsection{Option 1: Vercel (Frontend/Full-Stack)}
+
+Best for: React, Next.js, Vue, static sites
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item Create account at \url{https://vercel.com}
+    \item Connect GitHub repository
+    \item Configure build settings:
+\begin{lstlisting}[style=terminal]
+Build Command: npm run build
+Output Directory: dist (or build)
+Install Command: npm install
+\end{lstlisting}
+    \item Add environment variables in dashboard
+    \item Deploy
+\end{enumerate}
+
+\subsection{Option 2: Heroku (Full-Stack)}
+
+Best for: Node.js, Python, Java backends
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item Install Heroku CLI
+\begin{lstlisting}[style=terminal]
+# macOS
+brew install heroku/brew/heroku
+
+# Ubuntu
+sudo snap install heroku --classic
+\end{lstlisting}
+
+    \item Login and create app
+\begin{lstlisting}[style=terminal]
+heroku login
+heroku create your-app-name
+\end{lstlisting}
+
+    \item Add Procfile to project root
+\begin{lstlisting}[style=terminal]
+web: npm start
+# or for Python
+web: gunicorn app:app
+\end{lstlisting}
+
+    \item Configure environment variables
+\begin{lstlisting}[style=terminal]
+heroku config:set DATABASE_URL=your-db-url
+heroku config:set SECRET_KEY=your-secret
+\end{lstlisting}
+
+    \item Deploy
+\begin{lstlisting}[style=terminal]
+git push heroku main
+\end{lstlisting}
+\end{enumerate}
+
+\subsection{Option 3: Railway}
+
+Best for: Databases, backends, full-stack apps
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item Create account at \url{https://railway.app}
+    \item Create new project
+    \item Connect GitHub repository
+    \item Add database service if needed (PostgreSQL, MySQL)
+    \item Configure environment variables
+    \item Deploy automatically on push
+\end{enumerate}
+
+\subsection{Option 4: GitHub Pages (Static Sites)}
+
+Best for: HTML/CSS/JS sites, documentation
+
+\textbf{Steps:}
+\begin{enumerate}
+    \item Go to repository Settings
+    \item Navigate to Pages section
+    \item Select source branch (main or gh-pages)
+    \item Select folder (root or /docs)
+    \item Save and wait for deployment
+\end{enumerate}
+
+\textbf{For React/Vue builds:}
+\begin{lstlisting}[style=terminal]
+# Install gh-pages
+npm install gh-pages --save-dev
+
+# Add to package.json scripts
+"predeploy": "npm run build",
+"deploy": "gh-pages -d build"
+
+# Deploy
+npm run deploy
+\end{lstlisting}
+
+\section{Docker Deployment}
+
+\subsection{Creating a Dockerfile}
+
+\textbf{Node.js Example:}
+\begin{lstlisting}[style=terminal]
+# Use official Node.js image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start application
+CMD ["npm", "start"]
+\end{lstlisting}
+
+\textbf{Python Example:}
+\begin{lstlisting}[style=terminal]
+FROM python:3.11-slim
+
+WORKDIR /app
+
+COPY requirements.txt .
+RUN pip install --no-cache-dir -r requirements.txt
+
+COPY . .
+
+EXPOSE 5000
+
+CMD ["python", "app.py"]
+\end{lstlisting}
+
+\subsection{Docker Commands}
+\begin{lstlisting}[style=terminal]
+# Build image
+docker build -t myapp .
+
+# Run container
+docker run -p 3000:3000 myapp
+
+# Run with environment variables
+docker run -p 3000:3000 --env-file .env myapp
+
+# List containers
+docker ps
+
+# Stop container
+docker stop container_id
+\end{lstlisting}
+
+\subsection{Docker Compose}
+
+\textbf{docker-compose.yml:}
+\begin{lstlisting}[style=terminal]
+version: '3.8'
+services:
+  app:
+    build: .
+    ports:
+      - "3000:3000"
+    environment:
+      - DATABASE_URL=postgres://user:pass@db:5432/mydb
+    depends_on:
+      - db
+
+  db:
+    image: postgres:15
+    environment:
+      - POSTGRES_USER=user
+      - POSTGRES_PASSWORD=pass
+      - POSTGRES_DB=mydb
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
+\end{lstlisting}
+
+\begin{lstlisting}[style=terminal]
+# Start services
+docker-compose up -d
+
+# Stop services
+docker-compose down
+
+# View logs
+docker-compose logs -f
+\end{lstlisting}
+
+\section{Database Deployment}
+
+\subsection{PostgreSQL on Railway/Heroku}
+\begin{enumerate}
+    \item Add PostgreSQL addon
+    \item Get DATABASE\_URL from dashboard
+    \item Update application to use DATABASE\_URL
+\end{enumerate}
+
+\subsection{MongoDB Atlas (Free Tier)}
+\begin{enumerate}
+    \item Create account at \url{https://www.mongodb.com/atlas}
+    \item Create free cluster
+    \item Whitelist IP addresses (or 0.0.0.0/0 for development)
+    \item Create database user
+    \item Get connection string
+    \item Update MONGODB\_URI in environment
+\end{enumerate}
+
+\section{CI/CD with GitHub Actions}
+
+\subsection{Basic Workflow}
+
+Create \texttt{.github/workflows/deploy.yml}:
+\begin{lstlisting}[style=terminal]
+name: Deploy
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+      - run: npm ci
+      - run: npm test
+
+  deploy:
+    needs: test
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Deploy to Heroku
+        uses: akhileshns/heroku-deploy@v3.12.14
+        with:
+          heroku_api_key: ${{secrets.HEROKU_API_KEY}}
+          heroku_app_name: "your-app-name"
+          heroku_email: "your-email@example.com"
+\end{lstlisting}
+
+\section{Post-Deployment}
+
+\subsection{Monitoring}
+\begin{itemize}
+    \item Check application logs regularly
+    \item Set up uptime monitoring (UptimeRobot, Pingdom)
+    \item Monitor error rates
+\end{itemize}
+
+\subsection{Rollback Procedure}
+\begin{lstlisting}[style=terminal]
+# Heroku rollback
+heroku rollback v123
+
+# Git-based rollback
+git revert HEAD
+git push origin main
+\end{lstlisting}
+
+\section{Deployment Checklist Template}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Task} & \textbf{Status} & \textbf{Notes} \\
+\hline
+Code merged to main & $\square$ & \\
+\hline
+All tests passing & $\square$ & \\
+\hline
+Environment variables set & $\square$ & \\
+\hline
+Database migrated & $\square$ & \\
+\hline
+Deployment successful & $\square$ & \\
+\hline
+Application accessible & $\square$ & \\
+\hline
+Basic functionality verified & $\square$ & \\
+\hline
+Team notified & $\square$ & \\
+\hline
+\end{tabular}
+
+\section{Common Issues and Solutions}
+
+\begin{tabular}{|l|p{8cm}|}
+\hline
+\textbf{Issue} & \textbf{Solution} \\
+\hline
+Build fails & Check build logs, ensure dependencies are in package.json \\
+\hline
+App crashes on start & Check for missing environment variables \\
+\hline
+Database connection fails & Verify DATABASE\_URL and network access \\
+\hline
+Port already in use & Use process.env.PORT for dynamic port \\
+\hline
+CORS errors & Configure CORS middleware properly \\
+\hline
+\end{tabular}
+
+\end{document}
