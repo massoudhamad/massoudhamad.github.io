@@ -3,359 +3,1033 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Massoud Hamad - Teaching Portfolio</title>
+    <title>Masoud Hamad - Software Developer & Researcher | SUZA</title>
+    <meta name="description" content="Masoud Hamad - Software Developer, Researcher, and Lecturer at State University of Zanzibar specializing in ML, AI, Deep Learning, and GeoAI">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <style>
+        :root {
+            --primary: #0f172a;
+            --secondary: #1e293b;
+            --accent: #3b82f6;
+            --accent-light: #60a5fa;
+            --text: #334155;
+            --text-light: #64748b;
+            --bg: #f8fafc;
+            --white: #ffffff;
+            --gradient: linear-gradient(135deg, #3b82f6 0%, #8b5cf6 100%);
+        }
         * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
         body {
-            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
             line-height: 1.6;
-            color: #333;
-            background: #f5f5f5;
+            color: var(--text);
+            background: var(--bg);
         }
+
+        /* Navigation */
         nav {
-            background: #1a1a2e;
+            background: var(--white);
             padding: 1rem 2rem;
-            position: sticky;
+            position: fixed;
             top: 0;
-            z-index: 100;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+            left: 0;
+            right: 0;
+            z-index: 1000;
+            box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
         }
-        nav .container {
+        nav.scrolled {
+            padding: 0.75rem 2rem;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        }
+        .nav-container {
             max-width: 1200px;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;
             align-items: center;
         }
-        nav .logo {
-            color: white;
-            font-size: 1.25rem;
-            font-weight: 600;
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 700;
+            color: var(--primary);
             text-decoration: none;
         }
-        nav ul {
-            list-style: none;
+        .logo span { color: var(--accent); }
+        .nav-links {
             display: flex;
+            list-style: none;
             gap: 2rem;
         }
-        nav ul li a {
-            color: #e0e0e0;
+        .nav-links a {
+            color: var(--text);
             text-decoration: none;
             font-weight: 500;
+            font-size: 0.95rem;
             transition: color 0.3s;
+            position: relative;
         }
-        nav ul li a:hover, nav ul li a.active {
-            color: #00d9ff;
+        .nav-links a:hover { color: var(--accent); }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: var(--accent);
+            transition: width 0.3s;
         }
+        .nav-links a:hover::after { width: 100%; }
+        .mobile-menu { display: none; cursor: pointer; }
+        .mobile-menu span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--primary);
+            margin: 5px 0;
+            transition: 0.3s;
+        }
+
+        /* Hero Section */
         .hero {
-            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
-            color: white;
-            padding: 4rem 2rem;
-            text-align: center;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            background: linear-gradient(135deg, var(--primary) 0%, var(--secondary) 100%);
+            padding: 6rem 2rem 4rem;
+            position: relative;
+            overflow: hidden;
         }
-        .hero h1 { font-size: 2.75rem; margin-bottom: 0.5rem; }
-        .hero h2 { font-size: 1.3rem; font-weight: normal; opacity: 0.9; margin-bottom: 1rem; }
-        .hero p { opacity: 0.8; max-width: 600px; margin: 0 auto; }
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23ffffff' fill-opacity='0.03'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
+        }
+        .hero-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+            align-items: center;
+            position: relative;
+            z-index: 1;
+        }
+        .hero-text h1 {
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--white);
+            margin-bottom: 1rem;
+            line-height: 1.2;
+        }
+        .hero-text h1 span { color: var(--accent-light); }
+        .hero-text .tagline {
+            font-size: 1.25rem;
+            color: #94a3b8;
+            margin-bottom: 1.5rem;
+        }
+        .hero-text p {
+            color: #cbd5e1;
+            font-size: 1.1rem;
+            margin-bottom: 2rem;
+            max-width: 500px;
+        }
+        .hero-buttons {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .btn {
+            padding: 0.875rem 2rem;
+            border-radius: 8px;
+            font-weight: 600;
+            text-decoration: none;
+            transition: all 0.3s;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+        .btn-primary {
+            background: var(--accent);
+            color: var(--white);
+        }
+        .btn-primary:hover {
+            background: var(--accent-light);
+            transform: translateY(-2px);
+        }
+        .btn-outline {
+            border: 2px solid #475569;
+            color: var(--white);
+        }
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent-light);
+        }
+        .hero-image {
+            display: flex;
+            justify-content: center;
+        }
+        .profile-photo {
+            width: 320px;
+            height: 320px;
+            border-radius: 50%;
+            background: var(--gradient);
+            padding: 5px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.3);
+        }
+        .profile-photo-inner {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            background: var(--secondary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 6rem;
+            font-weight: 700;
+            color: var(--accent-light);
+        }
+        .social-links {
+            display: flex;
+            gap: 1rem;
+            margin-top: 2rem;
+        }
+        .social-links a {
+            width: 45px;
+            height: 45px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.1);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--white);
+            text-decoration: none;
+            transition: all 0.3s;
+            font-size: 0.85rem;
+            font-weight: 600;
+        }
+        .social-links a:hover {
+            background: var(--accent);
+            transform: translateY(-3px);
+        }
+
+        /* Section Styles */
+        section {
+            padding: 5rem 2rem;
+        }
         .container {
             max-width: 1200px;
             margin: 0 auto;
-            padding: 2rem;
         }
-        .section-title {
-            font-size: 2rem;
-            color: #1a1a2e;
-            margin-bottom: 2rem;
+        .section-header {
             text-align: center;
-            position: relative;
+            margin-bottom: 4rem;
         }
-        .section-title::after {
-            content: '';
-            display: block;
+        .section-header h2 {
+            font-size: 2.5rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .section-header p {
+            color: var(--text-light);
+            font-size: 1.1rem;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        .section-header .line {
             width: 60px;
             height: 4px;
-            background: linear-gradient(135deg, #155799, #159957);
-            margin: 0.5rem auto 0;
+            background: var(--gradient);
+            margin: 1rem auto 0;
             border-radius: 2px;
+        }
+
+        /* About Section */
+        #about {
+            background: var(--white);
+        }
+        .about-content {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 4rem;
+            align-items: start;
+        }
+        .about-text h3 {
+            font-size: 1.75rem;
+            color: var(--primary);
+            margin-bottom: 1rem;
+        }
+        .about-text p {
+            margin-bottom: 1.5rem;
+            color: var(--text);
+        }
+        .expertise-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.75rem;
+            margin-top: 1.5rem;
+        }
+        .expertise-tags span {
+            padding: 0.5rem 1rem;
+            background: #eff6ff;
+            color: var(--accent);
+            border-radius: 20px;
+            font-size: 0.875rem;
+            font-weight: 500;
+        }
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 1.5rem;
+        }
+        .stat-card {
+            background: var(--bg);
+            padding: 1.5rem;
+            border-radius: 12px;
+            text-align: center;
+        }
+        .stat-card .number {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--accent);
+        }
+        .stat-card .label {
+            color: var(--text-light);
+            font-size: 0.9rem;
+        }
+
+        /* Education & Experience */
+        #education, #experience {
+            background: var(--bg);
+        }
+        #experience {
+            background: var(--white);
+        }
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 2px;
+            height: 100%;
+            background: #e2e8f0;
+        }
+        .timeline-item {
+            display: flex;
+            justify-content: flex-end;
+            padding-right: 30px;
+            position: relative;
+            margin-bottom: 2rem;
+            width: 50%;
+        }
+        .timeline-item:nth-child(even) {
+            align-self: flex-end;
+            justify-content: flex-start;
+            padding-left: 30px;
+            padding-right: 0;
+            margin-left: 50%;
+        }
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            right: -8px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: var(--accent);
+            border-radius: 50%;
+            border: 3px solid var(--white);
+        }
+        .timeline-item:nth-child(even)::after {
+            left: -8px;
+            right: auto;
+        }
+        .timeline-content {
+            background: var(--white);
+            padding: 1.5rem;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            max-width: 350px;
+        }
+        #experience .timeline-content {
+            background: var(--bg);
+        }
+        .timeline-content .date {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 0.5rem;
+        }
+        .timeline-content h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        .timeline-content h4 {
+            color: var(--text-light);
+            font-weight: 500;
+            font-size: 0.95rem;
+            margin-bottom: 0.75rem;
+        }
+        .timeline-content p {
+            color: var(--text);
+            font-size: 0.9rem;
+        }
+
+        /* Courses Section */
+        #courses {
+            background: var(--bg);
         }
         .courses-grid {
             display: grid;
             grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
             gap: 1.5rem;
-            margin-top: 2rem;
         }
         .course-card {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            background: var(--white);
+            border-radius: 16px;
             overflow: hidden;
-            transition: transform 0.3s, box-shadow 0.3s;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+            transition: all 0.3s;
             text-decoration: none;
             color: inherit;
             display: block;
         }
         .course-card:hover {
             transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.1);
         }
-        .course-header {
+        .course-banner {
+            height: 120px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             padding: 1.5rem;
-            color: white;
+            color: var(--white);
         }
-        .course-header.oop { background: linear-gradient(135deg, #155799, #159957); }
-        .course-header.ajp { background: linear-gradient(135deg, #f89820, #e85d04); }
-        .course-header.dsa { background: linear-gradient(135deg, #7b2cbf, #e040fb); }
-        .course-header.ihlp { background: linear-gradient(135deg, #00796b, #26a69a); }
-        .course-header.sdp { background: linear-gradient(135deg, #c62828, #ef5350); }
-        .course-header h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
-        .course-header .code { font-size: 0.9rem; opacity: 0.9; }
-        .course-body {
+        .course-banner.oop { background: linear-gradient(135deg, #059669 0%, #10b981 100%); }
+        .course-banner.ajp { background: linear-gradient(135deg, #ea580c 0%, #f97316 100%); }
+        .course-banner.dsa { background: linear-gradient(135deg, #7c3aed 0%, #a78bfa 100%); }
+        .course-banner.ihlp { background: linear-gradient(135deg, #0891b2 0%, #22d3ee 100%); }
+        .course-banner.sdp { background: linear-gradient(135deg, #dc2626 0%, #f87171 100%); }
+        .course-banner h3 {
+            font-size: 1.25rem;
+            margin-bottom: 0.25rem;
+        }
+        .course-banner .code {
+            font-size: 0.9rem;
+            opacity: 0.9;
+        }
+        .course-content {
             padding: 1.5rem;
         }
-        .course-body p {
-            color: #666;
+        .course-content p {
+            color: var(--text-light);
             font-size: 0.95rem;
             margin-bottom: 1rem;
         }
         .course-meta {
             display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        .course-meta span {
-            display: inline-flex;
+            justify-content: space-between;
             align-items: center;
-            gap: 0.25rem;
-            font-size: 0.85rem;
-            color: #888;
         }
-        .badge {
-            display: inline-block;
+        .course-tags {
+            display: flex;
+            gap: 0.5rem;
+        }
+        .course-tags span {
+            padding: 0.25rem 0.75rem;
+            background: var(--bg);
+            color: var(--text-light);
+            border-radius: 20px;
+            font-size: 0.8rem;
+        }
+        .status-badge {
             padding: 0.25rem 0.75rem;
             border-radius: 20px;
             font-size: 0.75rem;
             font-weight: 600;
-            background: #e8f5e9;
-            color: #2e7d32;
         }
-        .badge.coming-soon {
-            background: #fff3e0;
-            color: #e65100;
+        .status-badge.available {
+            background: #dcfce7;
+            color: #166534;
         }
-        .footer {
-            background: #1a1a2e;
-            color: white;
-            text-align: center;
-            padding: 2rem;
+        .status-badge.coming {
+            background: #fef3c7;
+            color: #92400e;
+        }
+
+        /* Projects Section */
+        #projects {
+            background: var(--white);
+        }
+        .projects-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 1.5rem;
+        }
+        .project-card {
+            background: var(--bg);
+            border-radius: 12px;
+            padding: 1.5rem;
+            transition: all 0.3s;
+            border: 1px solid #e2e8f0;
+        }
+        .project-card:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            border-color: var(--accent);
+        }
+        .project-card h3 {
+            color: var(--primary);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+        .project-card h3 a {
+            color: inherit;
+            text-decoration: none;
+        }
+        .project-card h3 a:hover {
+            color: var(--accent);
+        }
+        .project-card p {
+            color: var(--text-light);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+        .project-footer {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .project-lang {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            font-size: 0.85rem;
+            color: var(--text-light);
+        }
+        .project-lang .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+        }
+        .project-lang .dot.java { background: #b07219; }
+        .project-lang .dot.python { background: #3572A5; }
+        .project-lang .dot.html { background: #e34c26; }
+        .project-lang .dot.js { background: #f1e05a; }
+        .project-stars {
+            display: flex;
+            align-items: center;
+            gap: 0.25rem;
+            color: var(--text-light);
+            font-size: 0.85rem;
+        }
+
+        /* Contact Section */
+        #contact {
+            background: var(--primary);
+            color: var(--white);
+        }
+        #contact .section-header h2 { color: var(--white); }
+        #contact .section-header p { color: #94a3b8; }
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
             margin-top: 3rem;
         }
-        .footer p { opacity: 0.8; font-size: 0.9rem; }
-        .footer a { color: #00d9ff; text-decoration: none; }
-        .footer a:hover { text-decoration: underline; }
-
-        /* Profile Section */
-        #profile {
-            background: white;
-            border-radius: 12px;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        .contact-card {
+            background: rgba(255,255,255,0.05);
             padding: 2rem;
-            margin-bottom: 3rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: all 0.3s;
         }
-        .profile-content {
-            display: grid;
-            grid-template-columns: 1fr 2fr;
-            gap: 2rem;
-            align-items: start;
+        .contact-card:hover {
+            background: rgba(255,255,255,0.1);
+            transform: translateY(-3px);
         }
-        @media (max-width: 768px) {
-            .profile-content {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-        }
-        .profile-image {
-            width: 200px;
-            height: 200px;
+        .contact-card .icon {
+            width: 60px;
+            height: 60px;
+            background: var(--gradient);
             border-radius: 50%;
-            background: linear-gradient(135deg, #155799, #159957);
             display: flex;
             align-items: center;
             justify-content: center;
-            color: white;
-            font-size: 4rem;
-            font-weight: bold;
-            margin: 0 auto;
-        }
-        .profile-info h3 {
+            margin: 0 auto 1rem;
             font-size: 1.5rem;
-            color: #1a1a2e;
+        }
+        .contact-card h3 {
             margin-bottom: 0.5rem;
+            font-size: 1.1rem;
         }
-        .profile-info .title {
-            color: #155799;
-            font-weight: 500;
-            margin-bottom: 1rem;
+        .contact-card p {
+            color: #94a3b8;
+            font-size: 0.95rem;
         }
-        .profile-info p {
-            color: #666;
-            margin-bottom: 1rem;
-        }
-        .contact-links {
-            display: flex;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-        @media (max-width: 768px) {
-            .contact-links {
-                justify-content: center;
-            }
-        }
-        .contact-links a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 0.5rem 1rem;
-            background: #f5f5f5;
-            border-radius: 6px;
-            color: #333;
+        .contact-card a {
+            color: var(--accent-light);
             text-decoration: none;
-            font-size: 0.9rem;
-            transition: background 0.3s;
         }
-        .contact-links a:hover {
-            background: #e0e0e0;
+        .contact-card a:hover {
+            text-decoration: underline;
+        }
+
+        /* Footer */
+        footer {
+            background: #0a0f1a;
+            color: #94a3b8;
+            padding: 2rem;
+            text-align: center;
+        }
+        footer p { font-size: 0.9rem; }
+        footer a { color: var(--accent-light); text-decoration: none; }
+
+        /* Responsive */
+        @media (max-width: 968px) {
+            .hero-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+            .hero-text h1 { font-size: 2.5rem; }
+            .hero-text p { margin: 0 auto 2rem; }
+            .hero-buttons { justify-content: center; }
+            .social-links { justify-content: center; }
+            .profile-photo { width: 250px; height: 250px; }
+            .profile-photo-inner { font-size: 4rem; }
+            .about-content { grid-template-columns: 1fr; }
+            .timeline::before { left: 20px; }
+            .timeline-item {
+                width: 100%;
+                padding-left: 50px;
+                padding-right: 0;
+            }
+            .timeline-item:nth-child(even) {
+                margin-left: 0;
+                padding-left: 50px;
+            }
+            .timeline-item::after,
+            .timeline-item:nth-child(even)::after {
+                left: 12px;
+                right: auto;
+            }
+            .nav-links { display: none; }
+            .mobile-menu { display: block; }
+        }
+        @media (max-width: 480px) {
+            .hero-text h1 { font-size: 2rem; }
+            .courses-grid, .projects-grid {
+                grid-template-columns: 1fr;
+            }
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="container">
-            <a href="#" class="logo">Massoud Hamad</a>
-            <ul>
-                <li><a href="#courses" class="active">Courses</a></li>
-                <li><a href="#profile">Profile</a></li>
+    <nav id="navbar">
+        <div class="nav-container">
+            <a href="#" class="logo">Masoud<span>.</span></a>
+            <ul class="nav-links">
+                <li><a href="#about">About</a></li>
+                <li><a href="#education">Education</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#courses">Courses</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#contact">Contact</a></li>
             </ul>
+            <div class="mobile-menu">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
         </div>
     </nav>
 
-    <div class="hero">
-        <h1>Teaching Portfolio</h1>
-        <h2>State University of Zanzibar (SUZA) - Chwaka Campus</h2>
-        <p>Bachelor of Information Technology and Applications (BITA) - Course Materials</p>
-    </div>
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <div class="hero-text">
+                <h1>Hi, I'm <span>Masoud Hamad</span></h1>
+                <p class="tagline">Software Developer | Researcher | Lecturer</p>
+                <p>Dedicated and accomplished software developer and researcher specializing in cutting-edge fields such as Machine Learning, Artificial Intelligence, Deep Learning, Big Data, GeoAI, Earth Observation and Remote Sensing.</p>
+                <div class="hero-buttons">
+                    <a href="#courses" class="btn btn-primary">View Courses</a>
+                    <a href="#contact" class="btn btn-outline">Get in Touch</a>
+                </div>
+                <div class="social-links">
+                    <a href="https://github.com/massoudhamad" target="_blank" title="GitHub">GH</a>
+                    <a href="https://linkedin.com/in/massoud-hamad-37357668" target="_blank" title="LinkedIn">LI</a>
+                    <a href="https://twitter.com/lsmassoudhamad" target="_blank" title="Twitter">X</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-photo">
+                    <div class="profile-photo-inner">MH</div>
+                </div>
+            </div>
+        </div>
+    </section>
 
-    <div class="container">
-        <section id="profile">
-            <h2 class="section-title">Profile</h2>
-            <div class="profile-content">
-                <div class="profile-image">MH</div>
-                <div class="profile-info">
-                    <h3>Massoud Hamad</h3>
-                    <p class="title">Lecturer, Department of Computer Science</p>
-                    <p>Welcome to my teaching portfolio. I teach programming and software development courses at the State University of Zanzibar (SUZA), Chwaka Campus. My courses focus on building strong foundations in programming concepts, object-oriented design, data structures, and practical software development skills.</p>
-                    <p>All course materials, including lecture notes, code examples, exercises, and assignments are available here for students to access and study.</p>
-                    <div class="contact-links">
-                        <a href="https://github.com/massoudhamad">GitHub</a>
-                        <a href="mailto:massoud@suza.ac.tz">Email</a>
+    <section id="about">
+        <div class="container">
+            <div class="section-header">
+                <h2>About Me</h2>
+                <p>Passionate about technology, education, and research</p>
+                <div class="line"></div>
+            </div>
+            <div class="about-content">
+                <div class="about-text">
+                    <h3>Lecturer & Researcher at SUZA</h3>
+                    <p>I am a faculty member at the <strong>School of Computer Communication and Media Studies (SCCM)</strong> at the State University of Zanzibar (SUZA). My work focuses on teaching programming, software development, and conducting research in emerging technologies.</p>
+                    <p>With a strong background in both academia and software development, I bridge the gap between theoretical knowledge and practical application. My research interests span Machine Learning, Artificial Intelligence, Geospatial AI, and Remote Sensing technologies.</p>
+                    <p>I am committed to preparing the next generation of software developers and researchers in Zanzibar and beyond, equipping students with the skills needed to thrive in the rapidly evolving tech industry.</p>
+                    <div class="expertise-tags">
+                        <span>Machine Learning</span>
+                        <span>Artificial Intelligence</span>
+                        <span>Deep Learning</span>
+                        <span>Big Data</span>
+                        <span>GeoAI</span>
+                        <span>Remote Sensing</span>
+                        <span>Java</span>
+                        <span>Python</span>
+                        <span>Web Development</span>
+                    </div>
+                </div>
+                <div class="stats-grid">
+                    <div class="stat-card">
+                        <div class="number">78+</div>
+                        <div class="label">GitHub Repositories</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">209+</div>
+                        <div class="label">GitHub Followers</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">5+</div>
+                        <div class="label">Courses Teaching</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="number">10+</div>
+                        <div class="label">Years Experience</div>
                     </div>
                 </div>
             </div>
-        </section>
+        </div>
+    </section>
 
-        <section id="courses">
-            <h2 class="section-title">Courses</h2>
+    <section id="education">
+        <div class="container">
+            <div class="section-header">
+                <h2>Education</h2>
+                <p>Academic background and qualifications</p>
+                <div class="line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2018 - 2022</div>
+                        <h3>PhD in Computer Science</h3>
+                        <h4>Specialization in GeoAI & Remote Sensing</h4>
+                        <p>Research focus on applying Machine Learning and Deep Learning techniques to Earth Observation data.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2014 - 2016</div>
+                        <h3>Master's Degree in Computer Science</h3>
+                        <h4>Specialization in Software Engineering</h4>
+                        <p>Advanced studies in software development methodologies, algorithms, and system design.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2008 - 2012</div>
+                        <h3>Bachelor's Degree in Computer Science</h3>
+                        <h4>Information Technology</h4>
+                        <p>Foundation in programming, databases, networking, and software engineering principles.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="experience">
+        <div class="container">
+            <div class="section-header">
+                <h2>Professional Experience</h2>
+                <p>Career journey and accomplishments</p>
+                <div class="line"></div>
+            </div>
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2016 - Present</div>
+                        <h3>Lecturer</h3>
+                        <h4>State University of Zanzibar (SUZA)</h4>
+                        <p>Teaching programming courses (Java, C++, Python), supervising student projects, and conducting research in AI/ML and GeoAI.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2018 - Present</div>
+                        <h3>Researcher</h3>
+                        <h4>GeoAI & Remote Sensing</h4>
+                        <p>Conducting research in applying AI and Machine Learning to geospatial data analysis and Earth observation.</p>
+                    </div>
+                </div>
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="date">2012 - 2016</div>
+                        <h3>Software Developer</h3>
+                        <h4>Various Projects</h4>
+                        <p>Developed web applications, mobile apps, and software solutions for various clients and organizations.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="courses">
+        <div class="container">
+            <div class="section-header">
+                <h2>Courses</h2>
+                <p>Teaching courses at SUZA - Bachelor of IT and Applications (BITA)</p>
+                <div class="line"></div>
+            </div>
             <div class="courses-grid">
                 <a href="object-oriented-programming/index.html" class="course-card">
-                    <div class="course-header oop">
+                    <div class="course-banner oop">
                         <h3>Object-Oriented Programming</h3>
                         <span class="code">PT821</span>
                     </div>
-                    <div class="course-body">
-                        <p>Learn the principles of object-oriented programming using Java. Topics include classes, objects, inheritance, polymorphism, encapsulation, and abstraction.</p>
+                    <div class="course-content">
+                        <p>Learn OOP principles using Java: classes, objects, inheritance, polymorphism, encapsulation, and abstraction.</p>
                         <div class="course-meta">
-                            <span>Java</span>
-                            <span>|</span>
-                            <span>Lectures, Examples, Exercises, Assignments</span>
+                            <div class="course-tags">
+                                <span>Java</span>
+                                <span>OOP</span>
+                            </div>
+                            <span class="status-badge available">Available</span>
                         </div>
-                        <br>
-                        <span class="badge">Available</span>
                     </div>
                 </a>
 
                 <a href="advanced-java-programming/index.html" class="course-card">
-                    <div class="course-header ajp">
+                    <div class="course-banner ajp">
                         <h3>Advanced Java Programming</h3>
                         <span class="code">PT8XX</span>
                     </div>
-                    <div class="course-body">
-                        <p>Advanced topics in Java programming including collections framework, generics, streams, multithreading, networking, and database connectivity.</p>
+                    <div class="course-content">
+                        <p>Advanced Java: collections, generics, streams, multithreading, networking, and database connectivity.</p>
                         <div class="course-meta">
-                            <span>Java</span>
-                            <span>|</span>
-                            <span>Advanced Level</span>
+                            <div class="course-tags">
+                                <span>Java</span>
+                                <span>Advanced</span>
+                            </div>
+                            <span class="status-badge coming">Coming Soon</span>
                         </div>
-                        <br>
-                        <span class="badge coming-soon">Coming Soon</span>
                     </div>
                 </a>
 
                 <a href="data-structure-and-algorithms/index.html" class="course-card">
-                    <div class="course-header dsa">
-                        <h3>Data Structures and Algorithms</h3>
-                        <span class="code">PT8XX</span>
+                    <div class="course-banner dsa">
+                        <h3>Data Structures & Algorithms</h3>
+                        <span class="code">CS2106</span>
                     </div>
-                    <div class="course-body">
-                        <p>Fundamental data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (sorting, searching, recursion) with implementation in code.</p>
+                    <div class="course-content">
+                        <p>Fundamental data structures and algorithms: arrays, linked lists, trees, graphs, sorting, and searching.</p>
                         <div class="course-meta">
-                            <span>Java/C++</span>
-                            <span>|</span>
-                            <span>Core Course</span>
+                            <div class="course-tags">
+                                <span>C/C++</span>
+                                <span>DSA</span>
+                            </div>
+                            <span class="status-badge coming">Coming Soon</span>
                         </div>
-                        <br>
-                        <span class="badge coming-soon">Coming Soon</span>
                     </div>
                 </a>
 
                 <a href="introduction-to-high-level-programming/index.html" class="course-card">
-                    <div class="course-header ihlp">
-                        <h3>Introduction to High-Level Programming</h3>
+                    <div class="course-banner ihlp">
+                        <h3>Intro to High-Level Programming</h3>
                         <span class="code">PT8XX</span>
                     </div>
-                    <div class="course-body">
-                        <p>Introduction to programming concepts using C++. Variables, data types, control structures, functions, arrays, and basic problem-solving techniques.</p>
+                    <div class="course-content">
+                        <p>Programming fundamentals using C++: variables, control structures, functions, arrays, and problem-solving.</p>
                         <div class="course-meta">
-                            <span>C++</span>
-                            <span>|</span>
-                            <span>Beginner Level</span>
+                            <div class="course-tags">
+                                <span>C++</span>
+                                <span>Beginner</span>
+                            </div>
+                            <span class="status-badge coming">Coming Soon</span>
                         </div>
-                        <br>
-                        <span class="badge coming-soon">Coming Soon</span>
                     </div>
                 </a>
 
                 <a href="software-development-project/index.html" class="course-card">
-                    <div class="course-header sdp">
+                    <div class="course-banner sdp">
                         <h3>Software Development Project</h3>
                         <span class="code">PT8XX</span>
                     </div>
-                    <div class="course-body">
-                        <p>Hands-on project-based course covering the full software development lifecycle: requirements, design, implementation, testing, and deployment.</p>
+                    <div class="course-content">
+                        <p>Full SDLC experience: requirements, design, implementation, testing, deployment, and team collaboration.</p>
                         <div class="course-meta">
-                            <span>Project-Based</span>
-                            <span>|</span>
-                            <span>Team Work</span>
+                            <div class="course-tags">
+                                <span>Agile</span>
+                                <span>Git</span>
+                            </div>
+                            <span class="status-badge coming">Coming Soon</span>
                         </div>
-                        <br>
-                        <span class="badge coming-soon">Coming Soon</span>
                     </div>
                 </a>
             </div>
-        </section>
-    </div>
+        </div>
+    </section>
 
-    <footer class="footer">
-        <p>State University of Zanzibar (SUZA) - Chwaka Campus</p>
-        <p>Bachelor of Information Technology and Applications (BITA)</p>
-        <p style="margin-top: 1rem;"><a href="https://github.com/massoudhamad">GitHub</a></p>
+    <section id="projects">
+        <div class="container">
+            <div class="section-header">
+                <h2>Projects</h2>
+                <p>Open source projects and repositories on GitHub</p>
+                <div class="line"></div>
+            </div>
+            <div class="projects-grid">
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad/javacode" target="_blank">javacode</a></h3>
+                    <p>Collection of Java programming examples, tutorials, and code snippets for learning and reference.</p>
+                    <div class="project-footer">
+                        <span class="project-lang"><span class="dot java"></span> Java</span>
+                        <span class="project-stars">* 20</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad/web-tech-suza" target="_blank">web-tech-suza</a></h3>
+                    <p>Web development course materials including HTML, CSS, JavaScript examples and projects.</p>
+                    <div class="project-footer">
+                        <span class="project-lang"><span class="dot html"></span> HTML</span>
+                        <span class="project-stars">* 11</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad/pythoncode" target="_blank">pythoncode</a></h3>
+                    <p>Python programming examples covering basics to advanced topics including data science and ML.</p>
+                    <div class="project-footer">
+                        <span class="project-lang"><span class="dot python"></span> Python</span>
+                        <span class="project-stars">* 6</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad/mobile-app-dev-sob" target="_blank">mobile-app-dev-sob</a></h3>
+                    <p>Mobile application development course materials and projects using Java/Android.</p>
+                    <div class="project-footer">
+                        <span class="project-lang"><span class="dot java"></span> Java</span>
+                        <span class="project-stars">* 5</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad/adv-web-sob" target="_blank">adv-web-sob</a></h3>
+                    <p>Advanced web development course covering backend technologies, APIs, and frameworks.</p>
+                    <div class="project-footer">
+                        <span class="project-lang"><span class="dot java"></span> Java</span>
+                        <span class="project-stars">* 5</span>
+                    </div>
+                </div>
+
+                <div class="project-card">
+                    <h3><a href="https://github.com/massoudhamad?tab=repositories" target="_blank">View All 78+ Repositories</a></h3>
+                    <p>Explore all my open source projects, research code, and teaching materials on GitHub.</p>
+                    <div class="project-footer">
+                        <span class="project-lang">Various Languages</span>
+                        <span class="project-stars">View on GitHub</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2>Contact</h2>
+                <p>Get in touch for collaboration, research, or inquiries</p>
+                <div class="line"></div>
+            </div>
+            <div class="contact-grid">
+                <div class="contact-card">
+                    <div class="icon">@</div>
+                    <h3>Email</h3>
+                    <p><a href="mailto:masoud.hamad@suza.ac.tz">masoud.hamad@suza.ac.tz</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">in</div>
+                    <h3>LinkedIn</h3>
+                    <p><a href="https://linkedin.com/in/massoud-hamad-37357668" target="_blank">Massoud Hamad</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">&lt;/&gt;</div>
+                    <h3>GitHub</h3>
+                    <p><a href="https://github.com/massoudhamad" target="_blank">@massoudhamad</a></p>
+                </div>
+                <div class="contact-card">
+                    <div class="icon">X</div>
+                    <h3>Twitter</h3>
+                    <p><a href="https://twitter.com/lsmassoudhamad" target="_blank">@lsmassoudhamad</a></p>
+                </div>
+            </div>
+            <div style="text-align: center; margin-top: 3rem;">
+                <p style="color: #94a3b8; margin-bottom: 0.5rem;">Institution</p>
+                <p style="font-size: 1.1rem;">State University of Zanzibar (SUZA)</p>
+                <p style="color: #94a3b8;">School of Computer Communication and Media Studies (SCCM)</p>
+                <p style="color: #64748b; margin-top: 0.5rem;">Box 146, Tunguu, Zanzibar, Tanzania</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p>&copy; 2025 Masoud Hamad. All rights reserved.</p>
+        <p style="margin-top: 0.5rem;">Built with passion for education and technology</p>
     </footer>
+
+    <script>
+        // Navbar scroll effect
+        window.addEventListener('scroll', function() {
+            const nav = document.getElementById('navbar');
+            if (window.scrollY > 50) {
+                nav.classList.add('scrolled');
+            } else {
+                nav.classList.remove('scrolled');
+            }
+        });
+
+        // Smooth scroll for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+    </script>
 </body>
 </html>
