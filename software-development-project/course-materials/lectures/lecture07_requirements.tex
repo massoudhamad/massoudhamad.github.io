@@ -1,0 +1,437 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{codebg}{RGB}{248, 249, 250}
+
+\lstset{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{Lecture 7: Requirements}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Lecture 7: Requirements Gathering and Analysis}\\[0.5cm]\large From User Needs to Software Specifications}
+\author{State University of Zanzibar (SUZA)\\BSc Computer Science}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction to Requirements Engineering}
+
+\subsection{What are Requirements?}
+Requirements are statements that describe what a software system must do and how it must perform. They form the foundation of any software project.
+
+\textbf{Why Requirements Matter:}
+\begin{itemize}
+    \item 40-60\% of project failures are due to poor requirements
+    \item Fixing requirements errors late in development costs 100x more
+    \item Clear requirements lead to better estimates and planning
+    \item Requirements are the contract between developers and stakeholders
+\end{itemize}
+
+\subsection{Types of Requirements}
+
+\subsubsection{Functional Requirements}
+Describe \textbf{what} the system should do.
+
+\textbf{Examples:}
+\begin{itemize}
+    \item The system shall allow users to register with email and password
+    \item The system shall send email notifications when orders are placed
+    \item Users shall be able to search products by name or category
+    \item The admin shall be able to generate monthly sales reports
+\end{itemize}
+
+\subsubsection{Non-Functional Requirements}
+Describe \textbf{how} the system should perform.
+
+\textbf{Categories:}
+\begin{itemize}
+    \item \textbf{Performance:} Response time, throughput, capacity
+    \item \textbf{Security:} Authentication, authorization, encryption
+    \item \textbf{Usability:} Ease of use, accessibility, learning curve
+    \item \textbf{Reliability:} Uptime, fault tolerance, recovery
+    \item \textbf{Scalability:} Handle growth in users and data
+    \item \textbf{Maintainability:} Ease of updates and fixes
+\end{itemize}
+
+\textbf{Examples:}
+\begin{itemize}
+    \item The system shall respond to user requests within 3 seconds
+    \item The system shall be available 99.9\% of the time
+    \item The system shall support 1000 concurrent users
+    \item All passwords shall be encrypted using bcrypt
+\end{itemize}
+
+\section{Requirements Gathering Techniques}
+
+\subsection{1. Stakeholder Interviews}
+
+\textbf{What:} One-on-one conversations with key stakeholders
+
+\textbf{How to Conduct:}
+\begin{enumerate}
+    \item Prepare questions in advance
+    \item Start with open-ended questions
+    \item Listen actively and take notes
+    \item Ask follow-up questions
+    \item Summarize and confirm understanding
+\end{enumerate}
+
+\textbf{Sample Questions:}
+\begin{itemize}
+    \item What problem are you trying to solve?
+    \item Who will use this system?
+    \item What tasks do you do daily that this system should support?
+    \item What are your biggest pain points with the current process?
+    \item What would success look like for this project?
+\end{itemize}
+
+\subsection{2. Questionnaires and Surveys}
+
+\textbf{Best For:} Gathering input from many users
+
+\textbf{Tips:}
+\begin{itemize}
+    \item Keep questions clear and concise
+    \item Use a mix of open and closed questions
+    \item Include rating scales (1-5)
+    \item Test the survey before distributing
+\end{itemize}
+
+\subsection{3. Observation}
+
+\textbf{What:} Watch users perform their current tasks
+
+\textbf{Benefits:}
+\begin{itemize}
+    \item Understand actual workflow (not just described)
+    \item Identify pain points users don't mention
+    \item See workarounds and inefficiencies
+\end{itemize}
+
+\subsection{4. Document Analysis}
+
+\textbf{What:} Review existing documentation
+
+\textbf{Documents to Review:}
+\begin{itemize}
+    \item Current system documentation
+    \item Business process documents
+    \item Reports and forms
+    \item Competitor products
+\end{itemize}
+
+\subsection{5. Workshops and Brainstorming}
+
+\textbf{What:} Group sessions with stakeholders
+
+\textbf{Techniques:}
+\begin{itemize}
+    \item Brainstorming sessions
+    \item JAD (Joint Application Development)
+    \item Focus groups
+    \item Prototyping sessions
+\end{itemize}
+
+\section{User Stories}
+
+\subsection{What is a User Story?}
+A user story is a short, simple description of a feature from the user's perspective.
+
+\subsection{User Story Format}
+\begin{center}
+\fbox{\parbox{0.8\textwidth}{
+\textbf{As a} [type of user],\\
+\textbf{I want} [some goal/action],\\
+\textbf{So that} [benefit/reason].
+}}
+\end{center}
+
+\subsection{Examples}
+
+\textbf{E-commerce System:}
+\begin{itemize}
+    \item As a \textbf{customer}, I want to \textbf{search for products by name} so that I can \textbf{quickly find what I'm looking for}.
+    \item As a \textbf{customer}, I want to \textbf{add items to my cart} so that I can \textbf{purchase multiple items at once}.
+    \item As an \textbf{admin}, I want to \textbf{view sales reports} so that I can \textbf{track business performance}.
+\end{itemize}
+
+\textbf{Student Management System:}
+\begin{itemize}
+    \item As a \textbf{student}, I want to \textbf{view my grades online} so that I can \textbf{track my academic progress}.
+    \item As a \textbf{lecturer}, I want to \textbf{upload course materials} so that \textbf{students can access them anytime}.
+    \item As a \textbf{registrar}, I want to \textbf{generate transcripts} so that \textbf{students can apply for jobs or further studies}.
+\end{itemize}
+
+\subsection{INVEST Criteria for Good User Stories}
+
+\begin{itemize}
+    \item \textbf{I}ndependent - Can be developed separately
+    \item \textbf{N}egotiable - Details can be discussed
+    \item \textbf{V}aluable - Provides value to user
+    \item \textbf{E}stimable - Can estimate effort
+    \item \textbf{S}mall - Fits in one sprint
+    \item \textbf{T}estable - Can verify completion
+\end{itemize}
+
+\subsection{Acceptance Criteria}
+
+Each user story should have acceptance criteria that define when it's complete.
+
+\textbf{Format: Given-When-Then}
+\begin{lstlisting}
+Given [some context/precondition]
+When [action is performed]
+Then [expected result]
+\end{lstlisting}
+
+\textbf{Example:}
+\begin{lstlisting}
+User Story: As a customer, I want to login
+so that I can access my account.
+
+Acceptance Criteria:
+1. Given I am on the login page
+   When I enter valid credentials
+   Then I am redirected to my dashboard
+
+2. Given I am on the login page
+   When I enter invalid credentials
+   Then I see an error message
+
+3. Given I am logged in
+   When I am inactive for 30 minutes
+   Then I am automatically logged out
+\end{lstlisting}
+
+\section{Use Cases}
+
+\subsection{What is a Use Case?}
+A use case describes a specific interaction between a user (actor) and the system to achieve a goal.
+
+\subsection{Use Case Components}
+
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Component} & \textbf{Description} \\
+\hline
+Use Case ID & Unique identifier (e.g., UC-001) \\
+\hline
+Name & Descriptive name (e.g., "User Login") \\
+\hline
+Actor(s) & Who initiates the use case \\
+\hline
+Description & Brief summary \\
+\hline
+Preconditions & What must be true before \\
+\hline
+Main Flow & Step-by-step normal scenario \\
+\hline
+Alternative Flows & Variations from main flow \\
+\hline
+Exception Flows & Error handling \\
+\hline
+Postconditions & What is true after \\
+\hline
+\end{tabular}
+
+\subsection{Example Use Case}
+
+\begin{tabular}{|l|p{10cm}|}
+\hline
+\textbf{Use Case ID} & UC-001 \\
+\hline
+\textbf{Name} & User Registration \\
+\hline
+\textbf{Actor} & New User \\
+\hline
+\textbf{Description} & User creates a new account \\
+\hline
+\textbf{Preconditions} & User is not logged in \\
+\hline
+\textbf{Main Flow} &
+1. User clicks "Register"\\
+2. System displays registration form\\
+3. User enters name, email, password\\
+4. User clicks "Submit"\\
+5. System validates input\\
+6. System creates account\\
+7. System sends confirmation email\\
+8. System displays success message \\
+\hline
+\textbf{Alternative Flow} &
+5a. Email already exists:\\
+\quad System displays error message\\
+\quad User can try different email \\
+\hline
+\textbf{Postconditions} & User account is created and active \\
+\hline
+\end{tabular}
+
+\section{Requirements Prioritization}
+
+\subsection{MoSCoW Method}
+
+\begin{itemize}
+    \item \textbf{Must Have (M):} Critical for launch, non-negotiable
+    \item \textbf{Should Have (S):} Important but not critical
+    \item \textbf{Could Have (C):} Nice to have if time permits
+    \item \textbf{Won't Have (W):} Out of scope for current release
+\end{itemize}
+
+\subsection{Example Prioritization}
+
+\textbf{E-commerce Project:}
+\begin{itemize}
+    \item \textbf{Must Have:}
+    \begin{itemize}
+        \item User registration and login
+        \item Product listing
+        \item Shopping cart
+        \item Checkout process
+    \end{itemize}
+    \item \textbf{Should Have:}
+    \begin{itemize}
+        \item Product search
+        \item Order history
+        \item Email notifications
+    \end{itemize}
+    \item \textbf{Could Have:}
+    \begin{itemize}
+        \item Product reviews
+        \item Wishlist
+        \item Social media login
+    \end{itemize}
+    \item \textbf{Won't Have:}
+    \begin{itemize}
+        \item Mobile app
+        \item AI recommendations
+    \end{itemize}
+\end{itemize}
+
+\section{Software Requirements Specification (SRS)}
+
+\subsection{SRS Document Structure}
+
+\begin{enumerate}
+    \item \textbf{Introduction}
+    \begin{itemize}
+        \item Purpose
+        \item Scope
+        \item Definitions and acronyms
+        \item References
+    \end{itemize}
+
+    \item \textbf{Overall Description}
+    \begin{itemize}
+        \item Product perspective
+        \item Product features
+        \item User classes
+        \item Operating environment
+        \item Constraints
+        \item Assumptions
+    \end{itemize}
+
+    \item \textbf{Functional Requirements}
+    \begin{itemize}
+        \item Detailed requirement descriptions
+        \item User stories
+        \item Use cases
+    \end{itemize}
+
+    \item \textbf{Non-Functional Requirements}
+    \begin{itemize}
+        \item Performance
+        \item Security
+        \item Usability
+        \item Reliability
+    \end{itemize}
+
+    \item \textbf{Appendices}
+    \begin{itemize}
+        \item Glossary
+        \item Diagrams
+        \item Mockups
+    \end{itemize}
+\end{enumerate}
+
+\section{Requirements Validation}
+
+\subsection{Validation Techniques}
+\begin{itemize}
+    \item \textbf{Reviews:} Stakeholders review requirements document
+    \item \textbf{Prototyping:} Build mockups to validate understanding
+    \item \textbf{Test Case Generation:} Write tests to verify requirements are testable
+    \item \textbf{Traceability:} Ensure all requirements are linked to tests
+\end{itemize}
+
+\subsection{Good Requirements Characteristics (SMART)}
+\begin{itemize}
+    \item \textbf{S}pecific - Clear and unambiguous
+    \item \textbf{M}easurable - Can be verified
+    \item \textbf{A}chievable - Technically feasible
+    \item \textbf{R}elevant - Aligned with project goals
+    \item \textbf{T}ime-bound - Has deadline or priority
+\end{itemize}
+
+\section{Common Mistakes to Avoid}
+
+\begin{enumerate}
+    \item \textbf{Vague requirements:} "The system should be fast" (How fast?)
+    \item \textbf{Missing stakeholders:} Not consulting all user types
+    \item \textbf{Gold plating:} Adding unnecessary features
+    \item \textbf{No prioritization:} Treating all requirements equally
+    \item \textbf{Lack of validation:} Not confirming requirements with stakeholders
+\end{enumerate}
+
+\section{Practical Exercise}
+
+For your project, complete the following:
+\begin{enumerate}
+    \item Identify all stakeholders/user types
+    \item Write at least 10 user stories
+    \item Prioritize using MoSCoW
+    \item Write 2-3 detailed use cases
+    \item Define 5 non-functional requirements
+    \item Create acceptance criteria for top 5 user stories
+\end{enumerate}
+
+\section{Summary}
+
+\begin{itemize}
+    \item Requirements are the foundation of software development
+    \item Use multiple techniques to gather requirements
+    \item User stories capture requirements from user perspective
+    \item Use cases detail system interactions
+    \item Prioritize requirements using MoSCoW
+    \item Validate requirements before starting development
+\end{itemize}
+
+\end{document}

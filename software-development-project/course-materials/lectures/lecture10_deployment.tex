@@ -1,0 +1,523 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{listings}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{codebg}{RGB}{30, 30, 46}
+\definecolor{codetext}{RGB}{205, 214, 244}
+
+\lstdefinestyle{terminal}{
+    backgroundcolor=\color{codebg},
+    basicstyle=\ttfamily\small\color{codetext},
+    breaklines=true,
+    frame=single,
+    rulecolor=\color{codebg}
+}
+
+\lstdefinestyle{code}{
+    backgroundcolor=\color{gray!10},
+    basicstyle=\ttfamily\small,
+    breaklines=true,
+    frame=single
+}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{Lecture 10: Deployment}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Lecture 10: Deployment and DevOps}\\[0.5cm]\large From Code to Production}
+\author{State University of Zanzibar (SUZA)\\BSc Computer Science}
+\date{}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Introduction to Deployment}
+
+\subsection{What is Deployment?}
+Deployment is the process of making your application available to users by moving it from your development environment to a production server.
+
+\subsection{Deployment Pipeline}
+
+\begin{center}
+Development $\rightarrow$ Testing $\rightarrow$ Staging $\rightarrow$ Production
+\end{center}
+
+\textbf{Environments:}
+\begin{itemize}
+    \item \textbf{Development:} Local machine where you code
+    \item \textbf{Testing:} Environment for running tests
+    \item \textbf{Staging:} Pre-production environment (mirrors production)
+    \item \textbf{Production:} Live environment for real users
+\end{itemize}
+
+\section{Introduction to DevOps}
+
+\subsection{What is DevOps?}
+DevOps combines Development (Dev) and Operations (Ops) to shorten the development lifecycle while delivering features, fixes, and updates frequently.
+
+\subsection{DevOps Principles}
+
+\begin{itemize}
+    \item \textbf{Automation:} Automate repetitive tasks
+    \item \textbf{Continuous Integration:} Merge code frequently
+    \item \textbf{Continuous Deployment:} Deploy automatically
+    \item \textbf{Infrastructure as Code:} Manage infrastructure with code
+    \item \textbf{Monitoring:} Track application health
+\end{itemize}
+
+\section{Continuous Integration (CI)}
+
+\subsection{What is CI?}
+Developers merge code changes frequently into a shared repository. Each merge triggers automated builds and tests.
+
+\subsection{CI Workflow}
+
+\begin{enumerate}
+    \item Developer pushes code to repository
+    \item CI server detects changes
+    \item Automated build runs
+    \item Automated tests run
+    \item Results reported (pass/fail)
+\end{enumerate}
+
+\subsection{CI Tools}
+
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Tool} & \textbf{Description} \\
+\hline
+GitHub Actions & Built into GitHub, free tier \\
+\hline
+GitLab CI & Built into GitLab \\
+\hline
+Jenkins & Self-hosted, highly customizable \\
+\hline
+CircleCI & Cloud-based CI/CD \\
+\hline
+Travis CI & Popular for open source \\
+\hline
+\end{tabular}
+
+\subsection{GitHub Actions Example}
+
+Create \texttt{.github/workflows/ci.yml}:
+
+\begin{lstlisting}[style=code]
+name: CI Pipeline
+
+on:
+  push:
+    branches: [main, develop]
+  pull_request:
+    branches: [main]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v3
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Run linter
+        run: npm run lint
+
+      - name: Run tests
+        run: npm test
+
+      - name: Build project
+        run: npm run build
+\end{lstlisting}
+
+\section{Continuous Deployment (CD)}
+
+\subsection{What is CD?}
+Automatically deploy code to production when it passes all tests.
+
+\subsection{Deployment Strategies}
+
+\textbf{1. Big Bang Deployment}
+\begin{itemize}
+    \item Replace entire application at once
+    \item Simple but risky
+    \item Downtime during deployment
+\end{itemize}
+
+\textbf{2. Rolling Deployment}
+\begin{itemize}
+    \item Update servers one at a time
+    \item No downtime
+    \item Gradual rollout
+\end{itemize}
+
+\textbf{3. Blue-Green Deployment}
+\begin{itemize}
+    \item Two identical environments (Blue and Green)
+    \item Deploy to inactive environment
+    \item Switch traffic when ready
+    \item Easy rollback
+\end{itemize}
+
+\textbf{4. Canary Deployment}
+\begin{itemize}
+    \item Deploy to small subset of users first
+    \item Monitor for issues
+    \item Gradually increase rollout
+\end{itemize}
+
+\section{Hosting Platforms}
+
+\subsection{Platform Comparison}
+
+\begin{tabular}{|l|l|l|l|}
+\hline
+\textbf{Platform} & \textbf{Best For} & \textbf{Free Tier} & \textbf{Ease} \\
+\hline
+Vercel & Frontend, Next.js & Yes & Easy \\
+\hline
+Netlify & Static sites, JAMstack & Yes & Easy \\
+\hline
+Railway & Full-stack, databases & Limited & Easy \\
+\hline
+Render & Full-stack apps & Yes & Medium \\
+\hline
+Heroku & Backend, APIs & Limited & Medium \\
+\hline
+DigitalOcean & VPS, full control & No & Hard \\
+\hline
+AWS & Enterprise, scalable & Limited & Hard \\
+\hline
+\end{tabular}
+
+\subsection{Deploying to Vercel}
+
+\begin{lstlisting}[style=terminal]
+# Install Vercel CLI
+npm install -g vercel
+
+# Login
+vercel login
+
+# Deploy
+vercel
+
+# Deploy to production
+vercel --prod
+\end{lstlisting}
+
+Or connect GitHub repository through Vercel dashboard for automatic deployments.
+
+\subsection{Deploying to Heroku}
+
+\begin{lstlisting}[style=terminal]
+# Install Heroku CLI
+brew install heroku/brew/heroku
+
+# Login
+heroku login
+
+# Create app
+heroku create my-app-name
+
+# Add Procfile
+echo "web: npm start" > Procfile
+
+# Deploy
+git push heroku main
+
+# Open app
+heroku open
+\end{lstlisting}
+
+\subsection{Deploying to Railway}
+
+\begin{enumerate}
+    \item Go to \url{https://railway.app}
+    \item Connect GitHub account
+    \item Select repository
+    \item Configure environment variables
+    \item Deploy automatically on push
+\end{enumerate}
+
+\section{Docker Basics}
+
+\subsection{What is Docker?}
+Docker packages applications with all dependencies into containers that run consistently anywhere.
+
+\subsection{Key Concepts}
+
+\begin{itemize}
+    \item \textbf{Image:} Blueprint for containers (like a class)
+    \item \textbf{Container:} Running instance of an image (like an object)
+    \item \textbf{Dockerfile:} Instructions to build an image
+    \item \textbf{Docker Hub:} Registry for sharing images
+\end{itemize}
+
+\subsection{Dockerfile Example (Node.js)}
+
+\begin{lstlisting}[style=code]
+# Use official Node.js image
+FROM node:18-alpine
+
+# Set working directory
+WORKDIR /app
+
+# Copy package files
+COPY package*.json ./
+
+# Install dependencies
+RUN npm ci --only=production
+
+# Copy source code
+COPY . .
+
+# Expose port
+EXPOSE 3000
+
+# Start application
+CMD ["npm", "start"]
+\end{lstlisting}
+
+\subsection{Docker Commands}
+
+\begin{lstlisting}[style=terminal]
+# Build image
+docker build -t myapp .
+
+# Run container
+docker run -p 3000:3000 myapp
+
+# List running containers
+docker ps
+
+# Stop container
+docker stop <container_id>
+
+# Remove container
+docker rm <container_id>
+\end{lstlisting}
+
+\section{Environment Variables}
+
+\subsection{Why Environment Variables?}
+\begin{itemize}
+    \item Keep secrets out of code
+    \item Different values for different environments
+    \item Easy to change without code changes
+\end{itemize}
+
+\subsection{Using .env Files}
+
+Create \texttt{.env} file:
+\begin{lstlisting}[style=code]
+# Database
+DATABASE_URL=postgresql://user:pass@localhost:5432/mydb
+
+# Application
+PORT=3000
+NODE_ENV=development
+
+# Secrets
+JWT_SECRET=your-secret-key
+API_KEY=external-api-key
+\end{lstlisting}
+
+\textbf{IMPORTANT:} Add \texttt{.env} to \texttt{.gitignore}!
+
+\subsection{Accessing in Code}
+
+\textbf{Node.js:}
+\begin{lstlisting}[style=code]
+require('dotenv').config();
+
+const port = process.env.PORT || 3000;
+const dbUrl = process.env.DATABASE_URL;
+\end{lstlisting}
+
+\textbf{Python:}
+\begin{lstlisting}[style=code]
+import os
+from dotenv import load_dotenv
+
+load_dotenv()
+
+port = os.getenv('PORT', 3000)
+db_url = os.getenv('DATABASE_URL')
+\end{lstlisting}
+
+\section{Database Deployment}
+
+\subsection{Database Options}
+
+\begin{tabular}{|l|l|l|}
+\hline
+\textbf{Service} & \textbf{Database} & \textbf{Free Tier} \\
+\hline
+Railway & PostgreSQL, MySQL & 500MB \\
+\hline
+PlanetScale & MySQL & 5GB \\
+\hline
+MongoDB Atlas & MongoDB & 512MB \\
+\hline
+Supabase & PostgreSQL & 500MB \\
+\hline
+ElephantSQL & PostgreSQL & 20MB \\
+\hline
+\end{tabular}
+
+\subsection{Database Migrations}
+
+Migrations track database schema changes.
+
+\begin{lstlisting}[style=terminal]
+# Create migration
+npx prisma migrate dev --name add_users_table
+
+# Apply migrations to production
+npx prisma migrate deploy
+\end{lstlisting}
+
+\section{Monitoring and Logging}
+
+\subsection{Why Monitor?}
+\begin{itemize}
+    \item Detect issues before users report them
+    \item Track performance metrics
+    \item Understand usage patterns
+    \item Debug production issues
+\end{itemize}
+
+\subsection{What to Monitor}
+
+\begin{itemize}
+    \item \textbf{Uptime:} Is the application running?
+    \item \textbf{Response time:} How fast are requests?
+    \item \textbf{Error rate:} How many requests fail?
+    \item \textbf{Resource usage:} CPU, memory, disk
+\end{itemize}
+
+\subsection{Monitoring Tools}
+
+\begin{tabular}{|l|l|}
+\hline
+\textbf{Tool} & \textbf{Purpose} \\
+\hline
+UptimeRobot & Uptime monitoring (free) \\
+\hline
+Sentry & Error tracking \\
+\hline
+LogRocket & Frontend monitoring \\
+\hline
+Datadog & Full observability \\
+\hline
+\end{tabular}
+
+\section{SSL/HTTPS}
+
+\subsection{Why HTTPS?}
+\begin{itemize}
+    \item Encrypts data in transit
+    \item Required for user trust
+    \item SEO ranking factor
+    \item Required for many APIs
+\end{itemize}
+
+Most hosting platforms (Vercel, Netlify, Railway) provide free SSL certificates automatically.
+
+\section{Deployment Checklist}
+
+\begin{itemize}
+    \item[$\square$] All tests passing
+    \item[$\square$] Environment variables configured
+    \item[$\square$] Database migrated
+    \item[$\square$] SSL/HTTPS enabled
+    \item[$\square$] Error tracking set up
+    \item[$\square$] Monitoring configured
+    \item[$\square$] Backup strategy in place
+    \item[$\square$] README updated
+    \item[$\square$] Team notified
+\end{itemize}
+
+\section{Rollback Procedures}
+
+\subsection{When to Rollback}
+\begin{itemize}
+    \item Critical bug discovered
+    \item Performance degradation
+    \item Security vulnerability
+\end{itemize}
+
+\subsection{How to Rollback}
+
+\textbf{Vercel/Netlify:} Click "Rollback" in dashboard
+
+\textbf{Heroku:}
+\begin{lstlisting}[style=terminal]
+# List releases
+heroku releases
+
+# Rollback to previous version
+heroku rollback v123
+\end{lstlisting}
+
+\textbf{Git-based:}
+\begin{lstlisting}[style=terminal]
+# Revert last commit
+git revert HEAD
+git push origin main
+\end{lstlisting}
+
+\section{Practical Exercise}
+
+For your project:
+
+\begin{enumerate}
+    \item Set up GitHub Actions for CI
+    \item Deploy to a hosting platform (Vercel, Railway, or Heroku)
+    \item Configure environment variables
+    \item Set up basic monitoring (UptimeRobot)
+    \item Document deployment process in README
+\end{enumerate}
+
+\section{Summary}
+
+\begin{itemize}
+    \item DevOps automates the path from code to production
+    \item CI ensures code quality through automated testing
+    \item CD enables frequent, reliable deployments
+    \item Choose hosting platform based on project needs
+    \item Docker provides consistent environments
+    \item Always use environment variables for secrets
+    \item Monitor your application in production
+    \item Have a rollback plan ready
+\end{itemize}
+
+\end{document}
