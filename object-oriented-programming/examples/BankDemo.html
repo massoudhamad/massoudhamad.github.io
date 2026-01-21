@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankDemo - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BankDemo.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="BankDemo.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * BankDemo.java - Demonstrates the BankAccount class
+ * PT821: Object-Oriented Programming
+ * Lecture 3: Classes and Objects
+ *
+ * This program demonstrates banking operations with the BankAccount class.
+ */
+public class BankDemo {
+    public static void main(String[] args) {
+        System.out.println("====================================");
+        System.out.println("   BANK ACCOUNT DEMONSTRATION");
+        System.out.println("====================================\n");
+
+        // ============================================
+        // 1. Creating Bank Accounts
+        // ============================================
+        System.out.println("--- Creating Bank Accounts ---\n");
+
+        // Create accounts using different constructors
+        BankAccount account1 = new BankAccount("Ali Hassan", 50000.00, "Savings");
+        BankAccount account2 = new BankAccount("Fatma Said", 100000.00, "Current");
+        BankAccount account3 = new BankAccount();  // Default constructor
+
+        System.out.println("Created 3 bank accounts");
+
+        // Display account information
+        System.out.println("\n--- Account Information ---\n");
+        account1.displayInfo();
+        System.out.println();
+        account2.displayInfo();
+        System.out.println();
+        account3.displayInfo();
+
+        // ============================================
+        // 2. Deposit Operations
+        // ============================================
+        System.out.println("\n--- Deposit Operations ---\n");
+
+        account1.deposit(25000.00);
+        System.out.println();
+        account2.deposit(50000.00);
+
+        // Invalid deposit
+        System.out.println("\nTrying invalid deposit (negative amount):");
+        account1.deposit(-5000.00);
+
+        // ============================================
+        // 3. Withdrawal Operations
+        // ============================================
+        System.out.println("\n--- Withdrawal Operations ---\n");
+
+        account1.withdraw(20000.00);
+        System.out.println();
+        account2.withdraw(30000.00);
+
+        // Invalid withdrawal - insufficient funds
+        System.out.println("\nTrying to withdraw more than balance:");
+        account3.withdraw(10000.00);
+
+        // Invalid withdrawal - minimum balance (savings)
+        System.out.println("\nTrying to go below minimum balance (savings):");
+        BankAccount savingsTest = new BankAccount("Test User", 2000.00, "Savings");
+        savingsTest.withdraw(1500.00);  // Would leave less than TZS 1000
+
+        // ============================================
+        // 4. Check Balance
+        // ============================================
+        System.out.println("\n--- Checking Balances ---");
+        account1.checkBalance();
+        account2.checkBalance();
+
+        // ============================================
+        // 5. Transfer Operations
+        // ============================================
+        System.out.println("\n--- Transfer Operations ---");
+
+        // Transfer from account1 to account2
+        account1.transfer(account2, 15000.00);
+
+        // Check balances after transfer
+        System.out.println("\nBalances after transfer:");
+        System.out.println(account1);
+        System.out.println(account2);
+
+        // Invalid transfer - insufficient funds
+        System.out.println("\nTrying transfer with insufficient funds:");
+        account1.transfer(account2, 500000.00);
+
+        // Invalid transfer - same account
+        System.out.println("\nTrying transfer to same account:");
+        account1.transfer(account1, 1000.00);
+
+        // ============================================
+        // 6. Account Deactivation
+        // ============================================
+        System.out.println("\n--- Account Deactivation ---\n");
+
+        // Try to deactivate account with balance
+        System.out.println("Trying to deactivate account with balance:");
+        account1.deactivate();
+
+        // Create a zero-balance account and deactivate
+        System.out.println("\nDeactivating empty account:");
+        account3.deactivate();
+
+        // Try operations on inactive account
+        System.out.println("\nTrying deposit on inactive account:");
+        account3.deposit(5000.00);
+
+        // Reactivate account
+        System.out.println("\nReactivating account:");
+        account3.activate();
+        account3.deposit(5000.00);
+
+        // ============================================
+        // 7. Final Account Status
+        // ============================================
+        System.out.println("\n--- Final Account Status ---\n");
+
+        account1.displayInfo();
+        System.out.println();
+        account2.displayInfo();
+        System.out.println();
+        account3.displayInfo();
+
+        // ============================================
+        // 8. Using toString()
+        // ============================================
+        System.out.println("\n--- Account Summary (toString) ---\n");
+
+        System.out.println(account1);
+        System.out.println(account2);
+        System.out.println(account3);
+
+        System.out.println("\n====================================");
+        System.out.println("   DEMONSTRATION COMPLETE!");
+        System.out.println("====================================");
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

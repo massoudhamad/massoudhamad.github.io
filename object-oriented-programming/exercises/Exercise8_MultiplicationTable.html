@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise8_MultiplicationTable - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Exercise8_MultiplicationTable.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Exercise8_MultiplicationTable.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">import java.util.Scanner;
+
+/**
+ * Exercise 8: Multiplication Table
+ * PT821 - Object-Oriented Programming
+ *
+ * TASK:
+ * Create a program that:
+ * 1. Asks the user for a number
+ * 2. Displays the multiplication table for that number (1-12)
+ * 3. Uses a for loop to generate the table
+ *
+ * CONCEPTS PRACTICED:
+ * - for loop
+ * - Formatted output (printf)
+ * - Multiplication operator
+ */
+public class Exercise8_MultiplicationTable {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.println("=== Multiplication Table Generator ===\n");
+
+        // Get number from user
+        System.out.print("Enter a number: ");
+        int number = scanner.nextInt();
+
+        // Generate multiplication table using for loop
+        System.out.println("\nMultiplication Table for " + number + ":");
+        System.out.println("================================");
+
+        for (int i = 1; i &lt;= 12; i++) {
+            int result = number * i;
+            System.out.printf("%d x %2d = %3d%n", number, i, result);
+        }
+
+        System.out.println("================================");
+
+        scanner.close();
+    }
+}
+
+/*
+ * SAMPLE OUTPUT:
+ * =============
+ *
+ * === Multiplication Table Generator ===
+ *
+ * Enter a number: 7
+ *
+ * Multiplication Table for 7:
+ * ================================
+ * 7 x  1 =   7
+ * 7 x  2 =  14
+ * 7 x  3 =  21
+ * 7 x  4 =  28
+ * 7 x  5 =  35
+ * 7 x  6 =  42
+ * 7 x  7 =  49
+ * 7 x  8 =  56
+ * 7 x  9 =  63
+ * 7 x 10 =  70
+ * 7 x 11 =  77
+ * 7 x 12 =  84
+ * ================================
+ *
+ * EXTENSION CHALLENGE:
+ * - Ask user for start and end range
+ * - Create a full multiplication table (1-10 x 1-10) using nested loops
+ * - Add an option to display tables for multiple numbers
+ */
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

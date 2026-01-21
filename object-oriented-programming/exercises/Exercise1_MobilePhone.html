@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise1_MobilePhone - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Exercise1_MobilePhone.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Exercise1_MobilePhone.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * EXERCISE 1: Mobile Phone Class
+ * PT821: Object-Oriented Programming - Classes and Objects
+ *
+ * TASK: Complete the MobilePhone class below
+ *
+ * Requirements:
+ * 1. Add the following private attributes:
+ *    - brand (String)
+ *    - model (String)
+ *    - price (double)
+ *    - batteryLevel (int) - percentage 0-100
+ *    - isOn (boolean)
+ *
+ * 2. Create constructors:
+ *    - Default constructor (set brand="Unknown", model="Unknown", price=0, batteryLevel=100, isOn=false)
+ *    - Parameterized constructor (brand, model, price)
+ *
+ * 3. Add getters for all attributes
+ *
+ * 4. Add setters with validation:
+ *    - price must be positive
+ *    - batteryLevel must be between 0 and 100
+ *
+ * 5. Add behavior methods:
+ *    - turnOn() - turns phone on if battery &gt; 0
+ *    - turnOff() - turns phone off
+ *    - makeCall(String contactName) - makes a call (reduces battery by 5%)
+ *    - chargeBattery(int minutes) - each minute adds 2% (max 100%)
+ *    - displayInfo() - shows all phone details
+ *
+ * 6. Test your class in the main method
+ */
+public class Exercise1_MobilePhone {
+
+    // TODO: Add private attributes here
+
+
+    // TODO: Add default constructor
+
+
+    // TODO: Add parameterized constructor
+
+
+    // TODO: Add getters
+
+
+    // TODO: Add setters with validation
+
+
+    // TODO: Add behavior methods
+
+
+    // TODO: Add displayInfo() method
+
+
+    public static void main(String[] args) {
+        System.out.println("=== Mobile Phone Exercise ===\n");
+
+        // TODO: Create a phone using default constructor
+
+
+        // TODO: Create a phone with brand="Samsung", model="Galaxy S24", price=2500000
+
+
+        // TODO: Turn on the phone
+
+
+        // TODO: Make 3 calls to different contacts
+
+
+        // TODO: Display phone info
+
+
+        // TODO: Charge the phone for 10 minutes
+
+
+        // TODO: Display phone info again
+
+
+        System.out.println("\n=== Exercise Complete ===");
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

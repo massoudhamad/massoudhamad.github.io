@@ -1,0 +1,210 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+
+\geometry{margin=2.5cm}
+
+\definecolor{primaryblue}{RGB}{0, 102, 204}
+\definecolor{lightgray}{RGB}{248, 249, 250}
+
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{fillbox}[1][]{
+    colback=lightgray,
+    colframe=primaryblue,
+    title=#1,
+    fonttitle=\bfseries,
+    breakable
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Project Charter}}
+\fancyhead[R]{CS2113 -- Software Development Project}
+\fancyfoot[C]{\thepage}
+
+\title{
+    \vspace{-1cm}
+    \textbf{Project Charter}\\
+    \large Template\\[0.5cm]
+    \normalsize CS2113 -- Software Development Project
+}
+\author{[Team Name]}
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+%============================================================
+\section{Project Overview}
+%============================================================
+
+\begin{fillbox}[Project Name]
+\vspace{1cm}
+% Enter your project name here
+\end{fillbox}
+
+\begin{fillbox}[Project Description]
+\vspace{3cm}
+% Provide a brief description of the project (2-3 paragraphs)
+% What problem does it solve? Who is it for?
+\end{fillbox}
+
+%============================================================
+\section{Team Information}
+%============================================================
+
+\begin{fillbox}[Team Members]
+\begin{tabular}{lll}
+\toprule
+\textbf{Name} & \textbf{Role} & \textbf{GitHub Username} \\
+\midrule
+ & Scrum Master (Sprint 1) & \\
+ & Developer & \\
+ & Developer & \\
+ & Developer & \\
+ & Developer & \\
+\bottomrule
+\end{tabular}
+\end{fillbox}
+
+\begin{fillbox}[Communication Platform]
+\vspace{1cm}
+% Specify your team's communication tool (Teams, Slack, Discord, etc.)
+\end{fillbox}
+
+%============================================================
+\section{Project Scope}
+%============================================================
+
+\begin{fillbox}[In Scope]
+\vspace{3cm}
+% List features and functionality that WILL be included
+\begin{itemize}
+    \item
+    \item
+    \item
+\end{itemize}
+\end{fillbox}
+
+\begin{fillbox}[Out of Scope]
+\vspace{2cm}
+% List features and functionality that will NOT be included
+\begin{itemize}
+    \item
+    \item
+\end{itemize}
+\end{fillbox}
+
+%============================================================
+\section{Technology Stack}
+%============================================================
+
+\begin{fillbox}[Backend]
+\begin{itemize}
+    \item \textbf{Language:} Java
+    \item \textbf{Framework:} Spring Boot
+    \item \textbf{Database (Dev):} H2
+    \item \textbf{Database (Prod):} PostgreSQL
+    \item \textbf{Build Tool:} Maven
+\end{itemize}
+\end{fillbox}
+
+\begin{fillbox}[Frontend]
+\begin{itemize}
+    \item \textbf{Language:} JavaScript
+    \item \textbf{Framework:} React
+    \item \textbf{Build Tool:} Vite
+    \item \textbf{Styling:} [CSS/Tailwind/Bootstrap]
+\end{itemize}
+\end{fillbox}
+
+%============================================================
+\section{Sprint Schedule}
+%============================================================
+
+\begin{fillbox}[Timeline]
+\begin{tabular}{llp{6cm}}
+\toprule
+\textbf{Sprint} & \textbf{Duration} & \textbf{Focus} \\
+\midrule
+Sprint 1 & 2 weeks & Backend setup, basic CRUD operations \\
+Sprint 2 & 2 weeks & REST APIs, Frontend development \\
+Sprint 3 & 2 weeks & Testing, Review feature, Final polish \\
+\bottomrule
+\end{tabular}
+\end{fillbox}
+
+%============================================================
+\section{Success Criteria}
+%============================================================
+
+\begin{fillbox}[Definition of Done]
+A user story is considered ``Done'' when:
+\begin{itemize}
+    \item[$\square$] Code is written and compiles without errors
+    \item[$\square$] Feature is tested (manual or automated)
+    \item[$\square$] Code is reviewed by at least one team member
+    \item[$\square$] Code is pushed to main branch
+    \item[$\square$] Feature is deployed to production
+    \item[$\square$] Documentation is updated if needed
+\end{itemize}
+\end{fillbox}
+
+%============================================================
+\section{Risks and Mitigation}
+%============================================================
+
+\begin{fillbox}[Identified Risks]
+\begin{tabular}{p{4cm}p{2cm}p{6cm}}
+\toprule
+\textbf{Risk} & \textbf{Impact} & \textbf{Mitigation Strategy} \\
+\midrule
+Team member unavailable & High & Cross-train on all parts of codebase \\
+Merge conflicts & Medium & Frequent commits, clear file ownership \\
+Scope creep & Medium & Strict adherence to Sprint backlog \\
+& & \\
+& & \\
+\bottomrule
+\end{tabular}
+\end{fillbox}
+
+%============================================================
+\section{Signatures}
+%============================================================
+
+\begin{fillbox}[Team Agreement]
+By signing below, all team members agree to:
+\begin{itemize}
+    \item Attend all scheduled meetings
+    \item Communicate proactively about progress and blockers
+    \item Complete assigned tasks on time
+    \item Respect team decisions
+    \item Follow the agreed-upon coding standards
+\end{itemize}
+
+\vspace{1cm}
+
+\begin{tabular}{p{6cm}p{6cm}}
+\hrulefill & \hrulefill \\
+Team Member 1 & Date \\[1cm]
+\hrulefill & \hrulefill \\
+Team Member 2 & Date \\[1cm]
+\hrulefill & \hrulefill \\
+Team Member 3 & Date \\[1cm]
+\hrulefill & \hrulefill \\
+Team Member 4 & Date \\
+\end{tabular}
+\end{fillbox}
+
+\end{document}

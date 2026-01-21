@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>BankAccount - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>BankAccount.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="BankAccount.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * BankAccount.java - Homework Assignment Solution
+ * PT821: Object-Oriented Programming
+ * Lecture 3: Classes and Objects
+ *
+ * This class demonstrates a practical implementation of a BankAccount
+ * with proper encapsulation, validation, and multiple behaviors.
+ */
+public class BankAccount {
+    // ============================================
+    // ATTRIBUTES
+    // ============================================
+    private String accountNumber;
+    private String ownerName;
+    private double balance;
+    private String accountType;  // "Savings" or "Current"
+    private boolean isActive;
+
+    // Static counter for generating account numbers
+    private static int accountCounter = 1000;
+
+    // ============================================
+    // CONSTRUCTORS
+    // ============================================
+
+    /**
+     * Default Constructor
+     * Creates an empty savings account
+     */
+    public BankAccount() {
+        this.accountNumber = generateAccountNumber();
+        this.ownerName = "Unknown";
+        this.balance = 0.0;
+        this.accountType = "Savings";
+        this.isActive = true;
+    }
+
+    /**
+     * Parameterized Constructor
+     * @param ownerName The name of the account owner
+     * @param initialDeposit The initial deposit amount
+     * @param accountType The type of account (Savings/Current)
+     */
+    public BankAccount(String ownerName, double initialDeposit, String accountType) {
+        this.accountNumber = generateAccountNumber();
+        this.ownerName = ownerName;
+        this.balance = (initialDeposit &gt; 0) ? initialDeposit : 0.0;
+        this.accountType = validateAccountType(accountType);
+        this.isActive = true;
+    }
+
+    /**
+     * Copy Constructor
+     * Creates a new account with same details but different account number
+     * Note: Balance is NOT copied for security reasons
+     */
+    public BankAccount(BankAccount other) {
+        this.accountNumber = generateAccountNumber();
+        this.ownerName = other.ownerName;
+        this.balance = 0.0;  // Security: don't copy balance
+        this.accountType = other.accountType;
+        this.isActive = true;
+    }
+
+    // ============================================
+    // PRIVATE HELPER METHODS
+    // ============================================
+
+    /**
+     * Generates a unique account number
+     * @return The generated account number
+     */
+    private String generateAccountNumber() {
+        accountCounter++;
+        return "ACC" + accountCounter;
+    }
+
+    /**
+     * Validates the account type
+     * @param type The account type to validate
+     * @return Valid account type or default to "Savings"
+     */
+    private String validateAccountType(String type) {
+        if (type != null &amp;&amp; (type.equalsIgnoreCase("Savings") || type.equalsIgnoreCase("Current"))) {
+            return type.substring(0, 1).toUpperCase() + type.substring(1).toLowerCase();
+        }
+        return "Savings";
+    }
+
+    // ============================================
+    // GETTERS
+    // ============================================
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public String getOwnerName() {
+        return ownerName;
+    }
+
+    public double getBalance() {
+        return balance;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public boolean isActive() {
+        return isActive;
+    }
+
+    // ============================================
+    // SETTERS with Validation
+    // ============================================
+
+    public void setOwnerName(String ownerName) {
+        if (ownerName != null &amp;&amp; !ownerName.isEmpty()) {
+            this.ownerName = ownerName;
+        } else {
+            System.out.println("Error: Owner name cannot be empty!");
+        }
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = validateAccountType(accountType);
+    }
+
+    // ============================================
+    // BANKING OPERATIONS
+    // ============================================
+
+    /**
+     * Deposits money into the account
+     * @param amount The amount to deposit
+     * @return true if deposit was successful
+     */
+    public boolean deposit(double amount) {
+        if (!isActive) {
+            System.out.println("Error: Account is inactive!");
+            return false;
+        }
+
+        if (amount &lt;= 0) {
+            System.out.println("Error: Deposit amount must be positive!");
+            return false;
+        }
+
+        balance += amount;
+        System.out.println("SUCCESS: Deposited TZS " + String.format("%.2f", amount));
+        System.out.println("New Balance: TZS " + String.format("%.2f", balance));
+        return true;
+    }
+
+    /**
+     * Withdraws money from the account
+     * @param amount The amount to withdraw
+     * @return true if withdrawal was successful
+     */
+    public boolean withdraw(double amount) {
+        if (!isActive) {
+            System.out.println("Error: Account is inactive!");
+            return false;
+        }
+
+        if (amount &lt;= 0) {
+            System.out.println("Error: Withdrawal amount must be positive!");
+            return false;
+        }
+
+        if (amount &gt; balance) {
+            System.out.println("Error: Insufficient funds!");
+            System.out.println("Available Balance: TZS " + String.format("%.2f", balance));
+            System.out.println("Requested Amount: TZS " + String.format("%.2f", amount));
+            return false;
+        }
+
+        // Minimum balance check for savings accounts
+        if (accountType.equals("Savings") &amp;&amp; (balance - amount) &lt; 1000) {
+            System.out.println("Error: Savings account must maintain minimum balance of TZS 1000.00");
+            return false;
+        }
+
+        balance -= amount;
+        System.out.println("SUCCESS: Withdrew TZS " + String.format("%.2f", amount));
+        System.out.println("Remaining Balance: TZS " + String.format("%.2f", balance));
+        return true;
+    }
+
+    /**
+     * Transfers money to another account
+     * @param recipient The account to transfer to
+     * @param amount The amount to transfer
+     * @return true if transfer was successful
+     */
+    public boolean transfer(BankAccount recipient, double amount) {
+        if (recipient == null) {
+            System.out.println("Error: Invalid recipient account!");
+            return false;
+        }
+
+        if (this.accountNumber.equals(recipient.accountNumber)) {
+            System.out.println("Error: Cannot transfer to the same account!");
+            return false;
+        }
+
+        if (!recipient.isActive) {
+            System.out.println("Error: Recipient account is inactive!");
+            return false;
+        }
+
+        System.out.println("\n--- Processing Transfer ---");
+        System.out.println("From: " + this.accountNumber + " (" + this.ownerName + ")");
+        System.out.println("To: " + recipient.accountNumber + " (" + recipient.ownerName + ")");
+        System.out.println("Amount: TZS " + String.format("%.2f", amount));
+
+        // Withdraw from this account
+        if (this.withdraw(amount)) {
+            // Deposit to recipient account
+            recipient.balance += amount;  // Direct access within same class
+            System.out.println("SUCCESS: Transfer completed!");
+            System.out.println("Recipient's new balance: TZS " + String.format("%.2f", recipient.balance));
+            return true;
+        }
+
+        System.out.println("FAILED: Transfer could not be completed.");
+        return false;
+    }
+
+    /**
+     * Checks the account balance
+     */
+    public void checkBalance() {
+        System.out.println("\n--- Account Balance ---");
+        System.out.println("Account: " + accountNumber);
+        System.out.println("Owner: " + ownerName);
+        System.out.println("Balance: TZS " + String.format("%.2f", balance));
+        System.out.println("Status: " + (isActive ? "Active" : "Inactive"));
+    }
+
+    /**
+     * Deactivates the account
+     */
+    public void deactivate() {
+        if (balance &gt; 0) {
+            System.out.println("Warning: Please withdraw remaining balance before deactivation.");
+            System.out.println("Current Balance: TZS " + String.format("%.2f", balance));
+            return;
+        }
+        isActive = false;
+        System.out.println("Account " + accountNumber + " has been deactivated.");
+    }
+
+    /**
+     * Reactivates the account
+     */
+    public void activate() {
+        isActive = true;
+        System.out.println("Account " + accountNumber + " has been reactivated.");
+    }
+
+    /**
+     * Displays full account information
+     */
+    public void displayInfo() {
+        System.out.println("================================");
+        System.out.println("     ACCOUNT INFORMATION       ");
+        System.out.println("================================");
+        System.out.println("Account No:  " + accountNumber);
+        System.out.println("Owner:       " + ownerName);
+        System.out.println("Type:        " + accountType);
+        System.out.println("Balance:     TZS " + String.format("%.2f", balance));
+        System.out.println("Status:      " + (isActive ? "Active" : "Inactive"));
+        System.out.println("================================");
+    }
+
+    /**
+     * String representation of the account
+     */
+    public String toString() {
+        return "BankAccount[" + accountNumber + " - " + ownerName + " - TZS " + String.format("%.2f", balance) + "]";
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

@@ -1,0 +1,51 @@
+# LaTeX source and auxiliary files
+*.tex
+*.aux
+*.log
+*.nav
+*.out
+*.snm
+*.toc
+*.vrb
+*.fdb_latexmk
+*.fls
+*.synctex.gz
+*.synctex(busy)
+*.bbl
+*.blg
+*.idx
+*.ilg
+*.ind
+*.lof
+*.lot
+*.dvi
+*.ps
+
+# Keep PDF files (lectures should be accessible)
+# Uncomment the line below if you want to exclude PDFs
+# *.pdf
+
+# Java compiled files
+*.class
+
+# BlueJ files
+*.ctxt
+package.bluej
+doc/
+
+# macOS
+.DS_Store
+.AppleDouble
+.LSOverride
+
+# IDE files
+.idea/
+*.iml
+.vscode/
+*.swp
+*.swo
+*~
+
+# Temporary files
+*.tmp
+*.temp

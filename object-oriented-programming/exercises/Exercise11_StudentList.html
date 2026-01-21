@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise11_StudentList - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Exercise11_StudentList.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Exercise11_StudentList.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">import java.util.ArrayList;
+import java.util.Scanner;
+
+/**
+ * Exercise 11: Student List Manager
+ * PT821 - Object-Oriented Programming
+ *
+ * TASK:
+ * Create a program that manages a list of students using ArrayList:
+ * 1. Add a student
+ * 2. Remove a student
+ * 3. View all students
+ * 4. Search for a student
+ * 5. Count total students
+ * 6. Exit
+ *
+ * CONCEPTS PRACTICED:
+ * - ArrayList operations (add, remove, contains, size)
+ * - do-while loop for menu
+ * - switch-case for menu selection
+ * - Methods/functions
+ */
+public class Exercise11_StudentList {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+        ArrayList&lt;String&gt; students = new ArrayList&lt;&gt;();
+        int choice;
+
+        System.out.println("=== Student List Manager ===\n");
+
+        do {
+            // Display menu
+            System.out.println("\n--- Menu ---");
+            System.out.println("1. Add a student");
+            System.out.println("2. Remove a student");
+            System.out.println("3. View all students");
+            System.out.println("4. Search for a student");
+            System.out.println("5. Count total students");
+            System.out.println("6. Exit");
+            System.out.print("\nEnter your choice (1-6): ");
+
+            choice = scanner.nextInt();
+            scanner.nextLine();  // Clear buffer
+
+            switch (choice) {
+                case 1:
+                    // Add student
+                    System.out.print("Enter student name: ");
+                    String nameToAdd = scanner.nextLine();
+                    students.add(nameToAdd);
+                    System.out.println("✓ " + nameToAdd + " added successfully!");
+                    break;
+
+                case 2:
+                    // Remove student
+                    if (students.isEmpty()) {
+                        System.out.println("No students to remove!");
+                    } else {
+                        System.out.print("Enter student name to remove: ");
+                        String nameToRemove = scanner.nextLine();
+                        if (students.remove(nameToRemove)) {
+                            System.out.println("✓ " + nameToRemove + " removed successfully!");
+                        } else {
+                            System.out.println("✗ Student not found!");
+                        }
+                    }
+                    break;
+
+                case 3:
+                    // View all students
+                    if (students.isEmpty()) {
+                        System.out.println("No students in the list.");
+                    } else {
+                        System.out.println("\n--- Student List ---");
+                        for (int i = 0; i &lt; students.size(); i++) {
+                            System.out.println((i + 1) + ". " + students.get(i));
+                        }
+                    }
+                    break;
+
+                case 4:
+                    // Search for student
+                    System.out.print("Enter student name to search: ");
+                    String searchName = scanner.nextLine();
+                    if (students.contains(searchName)) {
+                        int index = students.indexOf(searchName);
+                        System.out.println("✓ Found! " + searchName + " is at position " + (index + 1));
+                    } else {
+                        System.out.println("✗ Student not found!");
+                    }
+                    break;
+
+                case 5:
+                    // Count students
+                    System.out.println("Total students: " + students.size());
+                    break;
+
+                case 6:
+                    // Exit
+                    System.out.println("\nThank you for using Student List Manager!");
+                    System.out.println("Goodbye!");
+                    break;
+
+                default:
+                    System.out.println("Invalid choice! Please enter 1-6.");
+            }
+
+        } while (choice != 6);
+
+        scanner.close();
+    }
+}
+
+/*
+ * SAMPLE OUTPUT:
+ * =============
+ *
+ * === Student List Manager ===
+ *
+ * --- Menu ---
+ * 1. Add a student
+ * 2. Remove a student
+ * 3. View all students
+ * 4. Search for a student
+ * 5. Count total students
+ * 6. Exit
+ *
+ * Enter your choice (1-6): 1
+ * Enter student name: Ali Mohamed
+ * ✓ Ali Mohamed added successfully!
+ *
+ * --- Menu ---
+ * ...
+ * Enter your choice (1-6): 3
+ *
+ * --- Student List ---
+ * 1. Ali Mohamed
+ * 2. Fatma Hassan
+ *
+ * EXTENSION CHALLENGE:
+ * - Add student ID along with name
+ * - Save/load students from a file
+ * - Sort students alphabetically
+ * - Edit student name
+ */
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

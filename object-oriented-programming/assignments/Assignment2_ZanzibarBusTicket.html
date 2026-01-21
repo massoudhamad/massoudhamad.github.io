@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment2_ZanzibarBusTicket - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Assignment2_ZanzibarBusTicket.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Assignment2_ZanzibarBusTicket.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * ASSIGNMENT 2: Zanzibar Daladala/Bus Ticket Booking System
+ * PT821 - Object-Oriented Programming
+ * Due Date: [Set by Instructor]
+ * Total Marks: 100
+ *
+ * ============================================================
+ * ASSIGNMENT OVERVIEW:
+ * ============================================================
+ *
+ * Create a bus ticket booking system for routes YOU actually travel.
+ * This tests OOP concepts: Classes, Objects, Methods, ArrayList, and Encapsulation.
+ *
+ * YOU MUST USE REAL ROUTES YOU TRAVEL FROM HOME TO SUZA CHWAKA.
+ *
+ * ============================================================
+ * REQUIREMENTS:
+ * ============================================================
+ *
+ * PART A: Route Class (25 marks)
+ * Create a Route class with:
+ * 1. Private attributes:
+ *    - routeId (String)
+ *    - startPoint (String) - e.g., "Darajani"
+ *    - endPoint (String) - e.g., "Chwaka"
+ *    - distance (double) - in kilometers
+ *    - baseFare (double) - in TSh
+ *    - estimatedTime (int) - in minutes
+ *    - stops (ArrayList&lt;String&gt;) - intermediate stops
+ *
+ * 2. Methods:
+ *    - addStop(String stop)
+ *    - calculateFare(boolean isStudent) - students get 20% discount
+ *    - getRouteInfo() - returns formatted route details
+ *
+ * PART B: Ticket Class (25 marks)
+ * Create a Ticket class with:
+ * 1. Private attributes:
+ *    - ticketId (String) - auto-generated
+ *    - passengerName (String)
+ *    - passengerPhone (String)
+ *    - route (Route object)
+ *    - travelDate (String)
+ *    - travelTime (String)
+ *    - isStudentTicket (boolean)
+ *    - seatNumber (int)
+ *    - bookingTime (String)
+ *
+ * 2. Methods:
+ *    - generateTicketId() - format: TKT-[YYYYMMDD]-[RandomNumber]
+ *    - calculateTotalFare()
+ *    - printTicket() - displays formatted ticket
+ *
+ * PART C: BookingSystem Class (30 marks)
+ * Create the main booking system:
+ * 1. Pre-loaded routes (use YOUR actual travel routes):
+ *    - Route from your home area to Stone Town
+ *    - Route from Stone Town to Chwaka (SUZA)
+ *    - At least 3 more routes you know
+ *
+ * 2. Menu system:
+ *    a) View all available routes
+ *    b) Book a new ticket (for yourself)
+ *    c) View my bookings
+ *    d) Cancel a booking
+ *    e) Search route by destination
+ *    f) Calculate fare for a route
+ *    g) Exit
+ *
+ * 3. Store bookings in ArrayList&lt;Ticket&gt;
+ *
+ * PART D: Personal Implementation (20 marks)
+ * 1. First booking MUST be for YOUR daily route to SUZA
+ * 2. Include realistic fares (current daladala prices)
+ * 3. Include actual stops on your route
+ * 4. Program must display YOUR name and registration on tickets
+ *
+ * ============================================================
+ * EXAMPLE OUTPUT - TICKET:
+ * ============================================================
+ *
+ *    ┌─────────────────────────────────────────┐
+ *    │     ZANZIBAR BUS TICKET                 │
+ *    │     ═══════════════════                 │
+ *    ├─────────────────────────────────────────┤
+ *    │  Ticket No: TKT-20250108-4521           │
+ *    │  Passenger: [Your Name]                 │
+ *    │  Phone: 07XX XXX XXX                    │
+ *    │  Student: YES (20% Discount Applied)   │
+ *    ├─────────────────────────────────────────┤
+ *    │  FROM: [Your Home Area]                 │
+ *    │  TO: Chwaka (SUZA Campus)               │
+ *    │  VIA: [Stop1] → [Stop2] → [Stop3]       │
+ *    │                                         │
+ *    │  Date: 08/01/2025                       │
+ *    │  Time: 07:30 AM                         │
+ *    │  Seat: 12                               │
+ *    ├─────────────────────────────────────────┤
+ *    │  Base Fare: TSh 2,000                   │
+ *    │  Discount: TSh 400                      │
+ *    │  TOTAL: TSh 1,600                       │
+ *    └─────────────────────────────────────────┘
+ *
+ * ============================================================
+ * SUBMISSION:
+ * ============================================================
+ * - Route.java
+ * - Ticket.java
+ * - BookingSystem.java (main)
+ * - Screenshot showing YOUR booked ticket
+ * - List of actual routes and fares you used (verified)
+ *
+ * PLAGIARISM WARNING: Routes and fares must match your actual location.
+ * You may be asked to explain your route in class.
+ */
+
+public class Assignment2_ZanzibarBusTicket {
+    public static void main(String[] args) {
+        System.out.println("Implement the booking system in separate class files.");
+        System.out.println("Use YOUR real travel routes to SUZA Chwaka.");
+    }
+}
+
+// HINT STRUCTURES:
+
+/*
+class Route {
+    private String routeId;
+    private String startPoint;
+    private String endPoint;
+    private double distance;
+    private double baseFare;
+    private int estimatedTime;
+    private ArrayList&lt;String&gt; stops;
+
+    // Constructor, getters, setters, methods...
+}
+
+class Ticket {
+    private String ticketId;
+    private String passengerName;
+    private Route route;
+    // ... other attributes
+
+    public void printTicket() {
+        // Create the formatted ticket display
+    }
+}
+
+class BookingSystem {
+    private ArrayList&lt;Route&gt; routes;
+    private ArrayList&lt;Ticket&gt; bookings;
+    private Scanner scanner;
+
+    public void displayMenu() {
+        // Show menu options
+    }
+
+    public void bookTicket() {
+        // Booking logic
+    }
+}
+*/
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

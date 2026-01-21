@@ -1,0 +1,237 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+
+\geometry{margin=2cm}
+
+\definecolor{primaryblue}{RGB}{0, 102, 204}
+\definecolor{successgreen}{RGB}{40, 167, 69}
+\definecolor{warningyellow}{RGB}{255, 193, 7}
+\definecolor{dangerred}{RGB}{220, 53, 69}
+\definecolor{lightgray}{RGB}{248, 249, 250}
+
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{sectionbox}[1][]{
+    colback=white,
+    colframe=primaryblue,
+    title=#1,
+    fonttitle=\bfseries,
+    breakable
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{Sprint Planning Document}}
+\fancyhead[R]{CS2113}
+\fancyfoot[C]{\thepage}
+
+\title{
+    \textbf{Sprint Planning Document}\\
+    \large Template\\[0.5cm]
+    \normalsize CS2113 -- Software Development Project
+}
+\author{[Team Name]}
+\date{Sprint \_\_\_ | \today}
+
+\begin{document}
+
+\maketitle
+
+%============================================================
+\section{Sprint Information}
+%============================================================
+
+\begin{tabular}{ll}
+\toprule
+\textbf{Sprint Number:} & \\
+\textbf{Start Date:} & \\
+\textbf{End Date:} & \\
+\textbf{Sprint Duration:} & 2 weeks \\
+\textbf{Scrum Master:} & \\
+\bottomrule
+\end{tabular}
+
+%============================================================
+\section{Sprint Goal}
+%============================================================
+
+\begin{sectionbox}[Sprint Goal]
+\vspace{1cm}
+% What is the main objective for this sprint?
+% What value will be delivered to the user?
+\vspace{1cm}
+\end{sectionbox}
+
+%============================================================
+\section{Selected User Stories}
+%============================================================
+
+\begin{sectionbox}[User Stories for this Sprint]
+\begin{longtable}{clcp{5cm}}
+\toprule
+\textbf{ID} & \textbf{Title} & \textbf{Points} & \textbf{Acceptance Criteria} \\
+\midrule
+\endhead
+US-1 & & & \\[1cm]
+\hline
+US-2 & & & \\[1cm]
+\hline
+US-3 & & & \\[1cm]
+\hline
+US-4 & & & \\[1cm]
+\hline
+US-5 & & & \\[1cm]
+\bottomrule
+\end{longtable}
+
+\textbf{Total Story Points:} \_\_\_\_
+\end{sectionbox}
+
+%============================================================
+\section{Task Breakdown}
+%============================================================
+
+\begin{sectionbox}[Sprint Backlog Tasks]
+\begin{longtable}{clllc}
+\toprule
+\textbf{ID} & \textbf{Task} & \textbf{Story} & \textbf{Assigned} & \textbf{Hours} \\
+\midrule
+\endhead
+T-1 & & & & \\
+\hline
+T-2 & & & & \\
+\hline
+T-3 & & & & \\
+\hline
+T-4 & & & & \\
+\hline
+T-5 & & & & \\
+\hline
+T-6 & & & & \\
+\hline
+T-7 & & & & \\
+\hline
+T-8 & & & & \\
+\hline
+T-9 & & & & \\
+\hline
+T-10 & & & & \\
+\bottomrule
+\end{longtable}
+
+\textbf{Total Estimated Hours:} \_\_\_\_
+\end{sectionbox}
+
+%============================================================
+\section{Team Capacity}
+%============================================================
+
+\begin{sectionbox}[Team Availability]
+\begin{tabular}{lcc}
+\toprule
+\textbf{Team Member} & \textbf{Available Hours} & \textbf{Notes} \\
+\midrule
+ & & \\
+ & & \\
+ & & \\
+ & & \\
+ & & \\
+\midrule
+\textbf{Total} & & \\
+\bottomrule
+\end{tabular}
+\end{sectionbox}
+
+%============================================================
+\section{Dependencies and Risks}
+%============================================================
+
+\begin{sectionbox}[Dependencies]
+\begin{itemize}
+    \item
+    \item
+    \item
+\end{itemize}
+\end{sectionbox}
+
+\begin{sectionbox}[Risks]
+\begin{tabular}{p{4cm}p{2cm}p{5cm}}
+\toprule
+\textbf{Risk} & \textbf{Impact} & \textbf{Mitigation} \\
+\midrule
+ & & \\[0.5cm]
+ & & \\[0.5cm]
+ & & \\[0.5cm]
+\bottomrule
+\end{tabular}
+\end{sectionbox}
+
+%============================================================
+\section{Definition of Done}
+%============================================================
+
+\begin{sectionbox}[Checklist]
+For each user story to be considered ``Done'':
+\begin{itemize}
+    \item[$\square$] Code compiles without errors
+    \item[$\square$] All acceptance criteria met
+    \item[$\square$] Unit/integration tests written
+    \item[$\square$] Code reviewed by team member
+    \item[$\square$] Merged to main branch
+    \item[$\square$] Deployed to production
+    \item[$\square$] Documentation updated
+\end{itemize}
+\end{sectionbox}
+
+%============================================================
+\section{Meeting Schedule}
+%============================================================
+
+\begin{sectionbox}[Daily Scrums]
+\begin{tabular}{ll}
+\textbf{Time:} & \\
+\textbf{Location/Platform:} & \\
+\textbf{Duration:} & 15 minutes \\
+\end{tabular}
+\end{sectionbox}
+
+%============================================================
+\section{Notes}
+%============================================================
+
+\begin{sectionbox}[Planning Meeting Notes]
+\vspace{3cm}
+% Record any important decisions or discussions from the planning meeting
+\end{sectionbox}
+
+%============================================================
+\section{Team Agreement}
+%============================================================
+
+\begin{sectionbox}[Commitment]
+We commit to delivering the selected user stories by the end of this sprint.
+
+\vspace{0.5cm}
+
+\begin{tabular}{p{5cm}p{5cm}}
+\hrulefill & \hrulefill \\
+Scrum Master & Date \\[0.7cm]
+\hrulefill & \hrulefill \\
+Team Member & Date \\[0.7cm]
+\hrulefill & \hrulefill \\
+Team Member & Date \\[0.7cm]
+\hrulefill & \hrulefill \\
+Team Member & Date \\
+\end{tabular}
+\end{sectionbox}
+
+\end{document}

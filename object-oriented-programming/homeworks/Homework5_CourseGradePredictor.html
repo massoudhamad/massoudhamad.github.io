@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework5_CourseGradePredictor - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Homework5_CourseGradePredictor.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Homework5_CourseGradePredictor.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * HOMEWORK 5: Course Grade Predictor
+ * PT821 - Object-Oriented Programming
+ * Due Date: [Set by Instructor]
+ *
+ * ============================================================
+ * INSTRUCTIONS (READ CAREFULLY):
+ * ============================================================
+ *
+ * Create a grade predictor using YOUR REAL academic scores.
+ * This homework CANNOT be copied because it uses YOUR grades.
+ *
+ * REQUIREMENTS:
+ * 1. Use YOUR real courses from THIS SEMESTER
+ * 2. Include at least 5 courses you are currently taking
+ * 3. Use real test/quiz scores you have received so far
+ * 4. Use SUZA grading scale (A, B+, B, C, D, E, F)
+ *
+ * TASK:
+ * Create a program that:
+ * a) Stores your current courses and their weights:
+ *    - Coursework: 40% (Tests, Quizzes, Assignments)
+ *    - Final Exam: 60%
+ * b) For each course, input your current coursework marks
+ * c) Calculates what final exam score you need for each grade
+ * d) Predicts your final grade based on current performance
+ * e) Shows which courses need more attention
+ *
+ * SUZA GRADING SCALE:
+ * A:  70-100
+ * B+: 60-69
+ * B:  50-59
+ * C:  40-49
+ * D:  35-39
+ * E:  30-34
+ * F:  0-29
+ *
+ * EXAMPLE OUTPUT FORMAT:
+ * ================================================
+ * SEMESTER GRADE PREDICTION REPORT
+ * Student: [Your Name]
+ * Registration: [Your Reg Number]
+ * Semester: [Current Semester]
+ * ================================================
+ *
+ * COURSE: PT821 - Object-Oriented Programming
+ * Current Coursework: XX/40 marks
+ * Coursework Percentage: XX%
+ *
+ * To achieve grade A (70+): Need XX/60 in final exam
+ * To achieve grade B+ (60+): Need XX/60 in final exam
+ * To achieve grade B (50+): Need XX/60 in final exam
+ *
+ * Prediction: Based on coursework, likely grade is [X]
+ * Status: [SAFE / AT RISK / NEEDS IMPROVEMENT]
+ *
+ * [Repeat for all courses...]
+ *
+ * ------------------------------------------------
+ * OVERALL SEMESTER OUTLOOK:
+ * Courses on track for A: X
+ * Courses on track for B+: X
+ * Courses needing attention: X
+ *
+ * Priority Focus: [Course with lowest prediction]
+ * ================================================
+ *
+ * GRADING CRITERIA:
+ * - Correct grade calculation logic (25%)
+ * - Proper use of methods (20%)
+ * - Accurate predictions (20%)
+ * - Clear status indicators (5%)
+ * - Use of YOUR real academic data (30%)
+ *
+ * WARNING: Academic records will be cross-checked.
+ * Use only courses you are actually enrolled in.
+ */
+
+public class Homework5_CourseGradePredictor {
+    public static void main(String[] args) {
+        // TODO: Implement your solution here
+
+        // Step 1: Define your courses
+        // String[] courses = {"PT821", "PT822", ...};
+        // String[] courseNames = {"Object-Oriented Programming", ...};
+
+        // Step 2: Enter your current coursework scores (out of 40)
+        // double[] courseworkScores = {XX, XX, ...};
+
+        // Step 3: Calculate required final exam scores for each grade
+
+        // Step 4: Predict likely grade based on coursework performance
+
+        // Step 5: Identify courses needing attention
+
+        // Step 6: Display comprehensive report
+
+        System.out.println("// DELETE THIS LINE AND IMPLEMENT YOUR SOLUTION");
+    }
+
+    // Method to calculate required exam score for target grade
+    public static double requiredExamScore(double coursework, double targetTotal) {
+        // Formula: coursework + examScore = targetTotal
+        // examScore = targetTotal - coursework
+        // But examScore max is 60
+        return Math.min(60, Math.max(0, targetTotal - coursework));
+    }
+
+    // Method to predict grade from coursework
+    public static String predictGrade(double coursework) {
+        // If coursework is X/40, assume similar performance in exam
+        // TODO: Implement prediction logic
+        return "?";
+    }
+
+    // Method to get grade letter from total marks
+    public static String getGrade(double total) {
+        if (total &gt;= 70) return "A";
+        else if (total &gt;= 60) return "B+";
+        else if (total &gt;= 50) return "B";
+        else if (total &gt;= 40) return "C";
+        else if (total &gt;= 35) return "D";
+        else if (total &gt;= 30) return "E";
+        else return "F";
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

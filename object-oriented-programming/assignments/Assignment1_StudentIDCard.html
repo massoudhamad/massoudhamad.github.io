@@ -1,0 +1,244 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Assignment1_StudentIDCard - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Assignment1_StudentIDCard.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Assignment1_StudentIDCard.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * ASSIGNMENT 1: Digital Student ID Card System
+ * PT821 - Object-Oriented Programming
+ * Due Date: [Set by Instructor]
+ * Total Marks: 100
+ *
+ * ============================================================
+ * ASSIGNMENT OVERVIEW:
+ * ============================================================
+ *
+ * Create a complete Student ID Card management system using OOP principles.
+ * This assignment tests your understanding of Classes, Objects, Encapsulation,
+ * and Methods.
+ *
+ * YOU MUST USE YOUR REAL STUDENT INFORMATION.
+ *
+ * ============================================================
+ * REQUIREMENTS:
+ * ============================================================
+ *
+ * PART A: Student Class (40 marks)
+ * Create a Student class with:
+ * 1. Private attributes:
+ *    - registrationNumber (String)
+ *    - fullName (String)
+ *    - program (String) - e.g., "BITA"
+ *    - yearOfStudy (int)
+ *    - dateOfBirth (String)
+ *    - gender (String)
+ *    - nationality (String)
+ *    - phoneNumber (String)
+ *    - emailAddress (String)
+ *    - photoPath (String) - path to photo file
+ *
+ * 2. Constructor that initializes all attributes
+ *
+ * 3. Getter and Setter methods for ALL attributes
+ *
+ * 4. A method generateIDNumber() that creates a unique ID:
+ *    Format: SUZA-[Program]-[Year]-[Last4DigitsOfReg]
+ *    Example: SUZA-BITA-2-0045
+ *
+ * 5. A method calculateExpiryDate() that returns:
+ *    - 4 years from enrollment for undergraduate
+ *    - 2 years from enrollment for diploma
+ *
+ * 6. A toString() method that returns formatted ID card info
+ *
+ * PART B: IDCardPrinter Class (30 marks)
+ * Create a class that:
+ * 1. Takes a Student object
+ * 2. Generates a text-based ID card display:
+ *
+ *    ╔══════════════════════════════════════════╗
+ *    ║     STATE UNIVERSITY OF ZANZIBAR         ║
+ *    ║            STUDENT ID CARD               ║
+ *    ╠══════════════════════════════════════════╣
+ *    ║  [PHOTO]   Name: [Full Name]             ║
+ *    ║            Reg: [Registration Number]    ║
+ *    ║            Program: [Program Name]       ║
+ *    ║            Year: [Year of Study]         ║
+ *    ║            ID: [Generated ID]            ║
+ *    ╠══════════════════════════════════════════╣
+ *    ║  Valid Until: [Expiry Date]              ║
+ *    ╚══════════════════════════════════════════╝
+ *
+ * 3. Validates that all required fields are filled
+ * 4. Checks if the student is still active (not expired)
+ *
+ * PART C: Main Application (30 marks)
+ * Create a main class that:
+ * 1. Creates YOUR Student object with YOUR real information
+ * 2. Creates at least 2 more students (classmates - get their permission)
+ * 3. Stores all students in an ArrayList
+ * 4. Provides a menu:
+ *    a) Display all ID cards
+ *    b) Search student by registration number
+ *    c) Search student by name
+ *    d) Display expired/active status
+ *    e) Exit
+ *
+ * ============================================================
+ * SUBMISSION REQUIREMENTS:
+ * ============================================================
+ * - Student.java (the class file)
+ * - IDCardPrinter.java (the printer class)
+ * - StudentIDSystem.java (main application)
+ * - Screenshot of program running with YOUR information
+ * - Brief report explaining your design decisions (1 page max)
+ *
+ * ============================================================
+ * GRADING RUBRIC:
+ * ============================================================
+ * - Correct class design and encapsulation: 25 marks
+ * - Working getter/setter methods: 15 marks
+ * - ID generation and expiry calculation: 15 marks
+ * - ID card display formatting: 15 marks
+ * - Menu functionality and ArrayList usage: 15 marks
+ * - Use of YOUR real information: 15 marks
+ *
+ * PLAGIARISM WARNING: Each student's output will be unique.
+ * Copied code with different names will be flagged automatically.
+ */
+
+public class Assignment1_StudentIDCard {
+    public static void main(String[] args) {
+        System.out.println("Create separate files as specified in the requirements.");
+        System.out.println("This file is just for instructions.");
+
+        // Your implementation should be in separate class files:
+        // 1. Student.java
+        // 2. IDCardPrinter.java
+        // 3. StudentIDSystem.java (main)
+    }
+}
+
+// HINT: Start with this Student class structure
+/*
+class Student {
+    // Private attributes
+    private String registrationNumber;
+    private String fullName;
+    // ... add all other attributes
+
+    // Constructor
+    public Student(String regNumber, String name, ...) {
+        this.registrationNumber = regNumber;
+        this.fullName = name;
+        // ... initialize all attributes
+    }
+
+    // Getters and Setters
+    public String getRegistrationNumber() {
+        return registrationNumber;
+    }
+
+    public void setRegistrationNumber(String regNumber) {
+        this.registrationNumber = regNumber;
+    }
+
+    // ... add getters/setters for all attributes
+
+    // Generate unique ID
+    public String generateIDNumber() {
+        // Extract program, year, and last 4 digits
+        // Return formatted ID
+    }
+
+    // Calculate expiry date
+    public String calculateExpiryDate() {
+        // Calculate based on program type
+    }
+
+    @Override
+    public String toString() {
+        // Return formatted string
+    }
+}
+*/
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

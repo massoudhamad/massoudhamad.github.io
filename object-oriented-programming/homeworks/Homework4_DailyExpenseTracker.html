@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Homework4_DailyExpenseTracker - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Homework4_DailyExpenseTracker.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Homework4_DailyExpenseTracker.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * HOMEWORK 4: Daily Expense Tracker (7-Day Analysis)
+ * PT821 - Object-Oriented Programming
+ * Due Date: [Set by Instructor]
+ *
+ * ============================================================
+ * INSTRUCTIONS (READ CAREFULLY):
+ * ============================================================
+ *
+ * Track YOUR REAL expenses for the PAST 7 DAYS.
+ * This homework CANNOT be copied because it uses YOUR spending data.
+ *
+ * REQUIREMENTS:
+ * 1. Track REAL expenses for 7 consecutive days (before submission)
+ * 2. Include at least 3 expense categories per day
+ * 3. Use realistic Tanzanian Shilling amounts
+ * 4. Categories: Food, Transport, Airtime, Entertainment, Stationery, Other
+ * 5. Include dates for each day tracked
+ *
+ * TASK:
+ * Create a program that:
+ * a) Stores 7 days of expense data using 2D arrays or ArrayList
+ * b) Each day must have: date, category, amount, description
+ * c) Calculates total spending per category
+ * d) Calculates daily spending totals
+ * e) Finds your highest spending day and category
+ * f) Calculates daily average spending
+ * g) Provides spending advice based on your patterns
+ *
+ * EXAMPLE OUTPUT FORMAT:
+ * ================================================
+ * 7-DAY EXPENSE REPORT
+ * Student: [Your Name] - [Your Reg Number]
+ * Period: [Start Date] to [End Date]
+ * ================================================
+ *
+ * DAY 1 - [Date]:
+ *   Food: TSh X,XXX (breakfast, lunch, etc.)
+ *   Transport: TSh X,XXX (daladala, bajaji)
+ *   ...
+ *   Daily Total: TSh X,XXX
+ *
+ * [Continue for all 7 days...]
+ *
+ * ------------------------------------------------
+ * CATEGORY SUMMARY:
+ * Food:          TSh XX,XXX (XX%)
+ * Transport:     TSh XX,XXX (XX%)
+ * Airtime:       TSh XX,XXX (XX%)
+ * Entertainment: TSh XX,XXX (XX%)
+ * Stationery:    TSh XX,XXX (XX%)
+ * Other:         TSh XX,XXX (XX%)
+ * ------------------------------------------------
+ * TOTAL 7-DAY SPENDING: TSh XX,XXX
+ * Daily Average: TSh X,XXX
+ * Highest Day: [Day] - TSh X,XXX
+ * Highest Category: [Category] - TSh XX,XXX
+ *
+ * ADVICE: [Based on spending pattern]
+ * ================================================
+ *
+ * GRADING CRITERIA:
+ * - Correct 2D array/ArrayList usage (20%)
+ * - Accurate calculations (25%)
+ * - Proper percentage calculations (15%)
+ * - Meaningful advice generation (10%)
+ * - Use of YOUR real expense data (30%)
+ *
+ * WARNING: Unrealistic amounts or patterns will result in ZERO marks.
+ * Be prepared to explain your spending in class.
+ */
+
+public class Homework4_DailyExpenseTracker {
+    public static void main(String[] args) {
+        // TODO: Implement your solution here
+
+        // Step 1: Define expense categories
+        String[] categories = {"Food", "Transport", "Airtime", "Entertainment", "Stationery", "Other"};
+
+        // Step 2: Create 2D array for 7 days x 6 categories
+        // double[][] expenses = new double[7][6];
+        // String[] dates = new String[7];
+
+        // Step 3: Fill in YOUR real expense data
+        // dates[0] = "01/01/2025";
+        // expenses[0][0] = 5000; // Day 1, Food
+        // expenses[0][1] = 2000; // Day 1, Transport
+        // ... continue for all days
+
+        // Step 4: Calculate totals per category
+
+        // Step 5: Calculate daily totals
+
+        // Step 6: Find highest day and category
+
+        // Step 7: Generate advice based on spending
+
+        // Step 8: Display formatted report
+
+        System.out.println("// DELETE THIS LINE AND IMPLEMENT YOUR SOLUTION");
+    }
+
+    // Method to generate spending advice
+    public static String getAdvice(double[] categoryTotals, String[] categories) {
+        // TODO: Analyze spending and return advice
+        // Example: If food &gt; 50% of total, suggest budgeting
+        return "Advice here";
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

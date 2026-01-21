@@ -1,0 +1,224 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operators - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Operators.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Operators.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * Java Basics: Operators
+ * PT821 - Object-Oriented Programming
+ *
+ * This example demonstrates:
+ * - Arithmetic operators (+, -, *, /, %)
+ * - Assignment operators (=, +=, -=, *=, /=)
+ * - Comparison operators (==, !=, &gt;, &lt;, &gt;=, &lt;=)
+ * - Logical operators (&amp;&amp;, ||, !)
+ * - Increment/Decrement operators (++, --)
+ */
+public class Operators {
+    public static void main(String[] args) {
+
+        // ============================================
+        // 1. ARITHMETIC OPERATORS
+        // ============================================
+        System.out.println("=== Arithmetic Operators ===");
+
+        int a = 20;
+        int b = 7;
+
+        System.out.println("a = " + a + ", b = " + b);
+        System.out.println("Addition (a + b): " + (a + b));        // 27
+        System.out.println("Subtraction (a - b): " + (a - b));     // 13
+        System.out.println("Multiplication (a * b): " + (a * b));  // 140
+        System.out.println("Division (a / b): " + (a / b));        // 2 (integer division)
+        System.out.println("Modulus (a % b): " + (a % b));         // 6 (remainder)
+
+        // Division with decimals
+        double x = 20.0;
+        double y = 7.0;
+        System.out.println("Double division (20.0 / 7.0): " + (x / y));
+
+        // ============================================
+        // 2. ASSIGNMENT OPERATORS
+        // ============================================
+        System.out.println("\n=== Assignment Operators ===");
+
+        int num = 10;
+        System.out.println("Initial value: num = " + num);
+
+        num += 5;  // Same as: num = num + 5
+        System.out.println("After num += 5: " + num);   // 15
+
+        num -= 3;  // Same as: num = num - 3
+        System.out.println("After num -= 3: " + num);   // 12
+
+        num *= 2;  // Same as: num = num * 2
+        System.out.println("After num *= 2: " + num);   // 24
+
+        num /= 4;  // Same as: num = num / 4
+        System.out.println("After num /= 4: " + num);   // 6
+
+        num %= 4;  // Same as: num = num % 4
+        System.out.println("After num %= 4: " + num);   // 2
+
+        // ============================================
+        // 3. COMPARISON OPERATORS
+        // ============================================
+        System.out.println("\n=== Comparison Operators ===");
+
+        int p = 10;
+        int q = 20;
+
+        System.out.println("p = " + p + ", q = " + q);
+        System.out.println("p == q: " + (p == q));   // false (equal to)
+        System.out.println("p != q: " + (p != q));   // true (not equal to)
+        System.out.println("p &gt; q: " + (p &gt; q));     // false (greater than)
+        System.out.println("p &lt; q: " + (p &lt; q));     // true (less than)
+        System.out.println("p &gt;= q: " + (p &gt;= q));   // false (greater or equal)
+        System.out.println("p &lt;= q: " + (p &lt;= q));   // true (less or equal)
+
+        // ============================================
+        // 4. LOGICAL OPERATORS
+        // ============================================
+        System.out.println("\n=== Logical Operators ===");
+
+        boolean sunny = true;
+        boolean warm = false;
+
+        System.out.println("sunny = " + sunny + ", warm = " + warm);
+
+        // AND operator (&amp;&amp;) - both must be true
+        System.out.println("sunny &amp;&amp; warm: " + (sunny &amp;&amp; warm));  // false
+
+        // OR operator (||) - at least one must be true
+        System.out.println("sunny || warm: " + (sunny || warm));  // true
+
+        // NOT operator (!) - reverses the value
+        System.out.println("!sunny: " + (!sunny));  // false
+        System.out.println("!warm: " + (!warm));    // true
+
+        // Combining conditions
+        int age = 25;
+        boolean hasLicense = true;
+
+        boolean canDrive = (age &gt;= 18) &amp;&amp; hasLicense;
+        System.out.println("\nCan drive (age &gt;= 18 &amp;&amp; hasLicense): " + canDrive);
+
+        // ============================================
+        // 5. INCREMENT AND DECREMENT OPERATORS
+        // ============================================
+        System.out.println("\n=== Increment/Decrement Operators ===");
+
+        int counter = 5;
+        System.out.println("Initial counter: " + counter);
+
+        // Post-increment (uses value, then increments)
+        System.out.println("counter++: " + counter++);  // Prints 5
+        System.out.println("After post-increment: " + counter);  // Now 6
+
+        // Pre-increment (increments first, then uses value)
+        System.out.println("++counter: " + ++counter);  // Prints 7
+
+        // Post-decrement
+        System.out.println("counter--: " + counter--);  // Prints 7
+        System.out.println("After post-decrement: " + counter);  // Now 6
+
+        // Pre-decrement
+        System.out.println("--counter: " + --counter);  // Prints 5
+
+        // ============================================
+        // 6. PRACTICAL EXAMPLE
+        // ============================================
+        System.out.println("\n=== Practical Example: Calculate Grade ===");
+
+        int exam1 = 85;
+        int exam2 = 90;
+        int exam3 = 78;
+
+        double average = (exam1 + exam2 + exam3) / 3.0;
+        boolean passed = average &gt;= 50;
+
+        System.out.println("Exam scores: " + exam1 + ", " + exam2 + ", " + exam3);
+        System.out.println("Average: " + average);
+        System.out.println("Passed: " + passed);
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

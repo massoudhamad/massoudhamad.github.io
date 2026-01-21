@@ -1,0 +1,361 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Massoud Hamad - Teaching Portfolio</title>
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        nav {
+            background: #1a1a2e;
+            padding: 1rem 2rem;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+        }
+        nav .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        nav .logo {
+            color: white;
+            font-size: 1.25rem;
+            font-weight: 600;
+            text-decoration: none;
+        }
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+        }
+        nav ul li a {
+            color: #e0e0e0;
+            text-decoration: none;
+            font-weight: 500;
+            transition: color 0.3s;
+        }
+        nav ul li a:hover, nav ul li a.active {
+            color: #00d9ff;
+        }
+        .hero {
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: white;
+            padding: 4rem 2rem;
+            text-align: center;
+        }
+        .hero h1 { font-size: 2.75rem; margin-bottom: 0.5rem; }
+        .hero h2 { font-size: 1.3rem; font-weight: normal; opacity: 0.9; margin-bottom: 1rem; }
+        .hero p { opacity: 0.8; max-width: 600px; margin: 0 auto; }
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+        .section-title {
+            font-size: 2rem;
+            color: #1a1a2e;
+            margin-bottom: 2rem;
+            text-align: center;
+            position: relative;
+        }
+        .section-title::after {
+            content: '';
+            display: block;
+            width: 60px;
+            height: 4px;
+            background: linear-gradient(135deg, #155799, #159957);
+            margin: 0.5rem auto 0;
+            border-radius: 2px;
+        }
+        .courses-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 1.5rem;
+            margin-top: 2rem;
+        }
+        .course-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+            transition: transform 0.3s, box-shadow 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .course-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+        }
+        .course-header {
+            padding: 1.5rem;
+            color: white;
+        }
+        .course-header.oop { background: linear-gradient(135deg, #155799, #159957); }
+        .course-header.ajp { background: linear-gradient(135deg, #f89820, #e85d04); }
+        .course-header.dsa { background: linear-gradient(135deg, #7b2cbf, #e040fb); }
+        .course-header.ihlp { background: linear-gradient(135deg, #00796b, #26a69a); }
+        .course-header.sdp { background: linear-gradient(135deg, #c62828, #ef5350); }
+        .course-header h3 { font-size: 1.25rem; margin-bottom: 0.25rem; }
+        .course-header .code { font-size: 0.9rem; opacity: 0.9; }
+        .course-body {
+            padding: 1.5rem;
+        }
+        .course-body p {
+            color: #666;
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+        }
+        .course-meta {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        .course-meta span {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.25rem;
+            font-size: 0.85rem;
+            color: #888;
+        }
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            border-radius: 20px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            background: #e8f5e9;
+            color: #2e7d32;
+        }
+        .badge.coming-soon {
+            background: #fff3e0;
+            color: #e65100;
+        }
+        .footer {
+            background: #1a1a2e;
+            color: white;
+            text-align: center;
+            padding: 2rem;
+            margin-top: 3rem;
+        }
+        .footer p { opacity: 0.8; font-size: 0.9rem; }
+        .footer a { color: #00d9ff; text-decoration: none; }
+        .footer a:hover { text-decoration: underline; }
+
+        /* Profile Section */
+        #profile {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            padding: 2rem;
+            margin-bottom: 3rem;
+        }
+        .profile-content {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 2rem;
+            align-items: start;
+        }
+        @media (max-width: 768px) {
+            .profile-content {
+                grid-template-columns: 1fr;
+                text-align: center;
+            }
+        }
+        .profile-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #155799, #159957);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-size: 4rem;
+            font-weight: bold;
+            margin: 0 auto;
+        }
+        .profile-info h3 {
+            font-size: 1.5rem;
+            color: #1a1a2e;
+            margin-bottom: 0.5rem;
+        }
+        .profile-info .title {
+            color: #155799;
+            font-weight: 500;
+            margin-bottom: 1rem;
+        }
+        .profile-info p {
+            color: #666;
+            margin-bottom: 1rem;
+        }
+        .contact-links {
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+        @media (max-width: 768px) {
+            .contact-links {
+                justify-content: center;
+            }
+        }
+        .contact-links a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            padding: 0.5rem 1rem;
+            background: #f5f5f5;
+            border-radius: 6px;
+            color: #333;
+            text-decoration: none;
+            font-size: 0.9rem;
+            transition: background 0.3s;
+        }
+        .contact-links a:hover {
+            background: #e0e0e0;
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="container">
+            <a href="#" class="logo">Massoud Hamad</a>
+            <ul>
+                <li><a href="#courses" class="active">Courses</a></li>
+                <li><a href="#profile">Profile</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <div class="hero">
+        <h1>Teaching Portfolio</h1>
+        <h2>State University of Zanzibar (SUZA) - Chwaka Campus</h2>
+        <p>Bachelor of Information Technology and Applications (BITA) - Course Materials</p>
+    </div>
+
+    <div class="container">
+        <section id="profile">
+            <h2 class="section-title">Profile</h2>
+            <div class="profile-content">
+                <div class="profile-image">MH</div>
+                <div class="profile-info">
+                    <h3>Massoud Hamad</h3>
+                    <p class="title">Lecturer, Department of Computer Science</p>
+                    <p>Welcome to my teaching portfolio. I teach programming and software development courses at the State University of Zanzibar (SUZA), Chwaka Campus. My courses focus on building strong foundations in programming concepts, object-oriented design, data structures, and practical software development skills.</p>
+                    <p>All course materials, including lecture notes, code examples, exercises, and assignments are available here for students to access and study.</p>
+                    <div class="contact-links">
+                        <a href="https://github.com/massoudhamad">GitHub</a>
+                        <a href="mailto:massoud@suza.ac.tz">Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="courses">
+            <h2 class="section-title">Courses</h2>
+            <div class="courses-grid">
+                <a href="object-oriented-programming/index.html" class="course-card">
+                    <div class="course-header oop">
+                        <h3>Object-Oriented Programming</h3>
+                        <span class="code">PT821</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Learn the principles of object-oriented programming using Java. Topics include classes, objects, inheritance, polymorphism, encapsulation, and abstraction.</p>
+                        <div class="course-meta">
+                            <span>Java</span>
+                            <span>|</span>
+                            <span>Lectures, Examples, Exercises, Assignments</span>
+                        </div>
+                        <br>
+                        <span class="badge">Available</span>
+                    </div>
+                </a>
+
+                <a href="advanced-java-programming/index.html" class="course-card">
+                    <div class="course-header ajp">
+                        <h3>Advanced Java Programming</h3>
+                        <span class="code">PT8XX</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Advanced topics in Java programming including collections framework, generics, streams, multithreading, networking, and database connectivity.</p>
+                        <div class="course-meta">
+                            <span>Java</span>
+                            <span>|</span>
+                            <span>Advanced Level</span>
+                        </div>
+                        <br>
+                        <span class="badge coming-soon">Coming Soon</span>
+                    </div>
+                </a>
+
+                <a href="data-structure-and-algorithms/index.html" class="course-card">
+                    <div class="course-header dsa">
+                        <h3>Data Structures and Algorithms</h3>
+                        <span class="code">PT8XX</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Fundamental data structures (arrays, linked lists, stacks, queues, trees, graphs) and algorithms (sorting, searching, recursion) with implementation in code.</p>
+                        <div class="course-meta">
+                            <span>Java/C++</span>
+                            <span>|</span>
+                            <span>Core Course</span>
+                        </div>
+                        <br>
+                        <span class="badge coming-soon">Coming Soon</span>
+                    </div>
+                </a>
+
+                <a href="introduction-to-high-level-programming/index.html" class="course-card">
+                    <div class="course-header ihlp">
+                        <h3>Introduction to High-Level Programming</h3>
+                        <span class="code">PT8XX</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Introduction to programming concepts using C++. Variables, data types, control structures, functions, arrays, and basic problem-solving techniques.</p>
+                        <div class="course-meta">
+                            <span>C++</span>
+                            <span>|</span>
+                            <span>Beginner Level</span>
+                        </div>
+                        <br>
+                        <span class="badge coming-soon">Coming Soon</span>
+                    </div>
+                </a>
+
+                <a href="software-development-project/index.html" class="course-card">
+                    <div class="course-header sdp">
+                        <h3>Software Development Project</h3>
+                        <span class="code">PT8XX</span>
+                    </div>
+                    <div class="course-body">
+                        <p>Hands-on project-based course covering the full software development lifecycle: requirements, design, implementation, testing, and deployment.</p>
+                        <div class="course-meta">
+                            <span>Project-Based</span>
+                            <span>|</span>
+                            <span>Team Work</span>
+                        </div>
+                        <br>
+                        <span class="badge coming-soon">Coming Soon</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+    </div>
+
+    <footer class="footer">
+        <p>State University of Zanzibar (SUZA) - Chwaka Campus</p>
+        <p>Bachelor of Information Technology and Applications (BITA)</p>
+        <p style="margin-top: 1rem;"><a href="https://github.com/massoudhamad">GitHub</a></p>
+    </footer>
+</body>
+</html>

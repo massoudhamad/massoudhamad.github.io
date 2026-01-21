@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Exercise4_Course - PT821</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/styles/github.min.css">
+    <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+            line-height: 1.6;
+            color: #333;
+            background: #f5f5f5;
+        }
+        .header {
+            background: linear-gradient(135deg, #155799, #159957);
+            color: white;
+            padding: 1.5rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .header h1 { font-size: 1.5rem; }
+        .header a {
+            color: white;
+            text-decoration: none;
+            background: rgba(255,255,255,0.2);
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            transition: background 0.3s;
+        }
+        .header a:hover { background: rgba(255,255,255,0.3); }
+        .content {
+            max-width: 1000px;
+            margin: 2rem auto;
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+        .file-info {
+            background: #f8f9fa;
+            padding: 1rem 1.5rem;
+            border-bottom: 1px solid #e9ecef;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        .file-info span { color: #666; }
+        .download-btn {
+            background: #155799;
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 5px;
+            text-decoration: none;
+            font-size: 0.9rem;
+        }
+        .download-btn:hover { background: #0d3d6e; }
+        pre {
+            margin: 0;
+            padding: 1.5rem;
+            overflow-x: auto;
+            font-size: 0.9rem;
+        }
+        code { font-family: 'Fira Code', 'Monaco', 'Consolas', monospace; }
+    </style>
+</head>
+<body>
+    <div class="header">
+        <h1>Exercise4_Course.java</h1>
+        <a href="../index.html">&larr; Back to Course</a>
+    </div>
+    <div class="content">
+        <div class="file-info">
+            <span>Java Source File</span>
+            <a href="Exercise4_Course.java" download class="download-btn">Download</a>
+        </div>
+        <pre><code class="language-java">/**
+ * EXERCISE 4: University Course Class
+ * PT821: Object-Oriented Programming - Classes and Objects
+ *
+ * TASK: Complete the Course class for a university registration system
+ *
+ * Requirements:
+ * 1. Add the following private attributes:
+ *    - courseCode (String)
+ *    - courseName (String)
+ *    - instructorName (String)
+ *    - creditHours (int)
+ *    - maxCapacity (int)
+ *    - enrolledStudents (int)
+ *    - isActive (boolean)
+ *
+ * 2. Create constructors:
+ *    - Default constructor
+ *    - Parameterized constructor (courseCode, courseName, creditHours, maxCapacity)
+ *    - Set enrolledStudents to 0 and isActive to true
+ *
+ * 3. Add getters for all attributes
+ *
+ * 4. Add setters with validation:
+ *    - creditHours must be between 1 and 6
+ *    - maxCapacity must be &gt; 0
+ *
+ * 5. Add behavior methods:
+ *    - assignInstructor(String name) - assigns instructor
+ *    - enrollStudent() - enrolls a student if space available, returns true/false
+ *    - dropStudent() - removes a student if any enrolled
+ *    - getAvailableSeats() - returns remaining capacity
+ *    - isFull() - returns true if course is at capacity
+ *    - cancelCourse() - sets isActive to false if no students enrolled
+ *    - displayCourseInfo() - shows all course details
+ *
+ * 6. Test your class with at least 2 courses
+ */
+public class Exercise4_Course {
+
+    // TODO: Add private attributes here
+
+
+    // TODO: Add default constructor
+
+
+    // TODO: Add parameterized constructor
+
+
+    // TODO: Add getters
+
+
+    // TODO: Add setters with validation
+
+
+    // TODO: Add assignInstructor() method
+
+
+    // TODO: Add enrollStudent() method
+
+
+    // TODO: Add dropStudent() method
+
+
+    // TODO: Add getAvailableSeats() method
+
+
+    // TODO: Add isFull() method
+
+
+    // TODO: Add cancelCourse() method
+
+
+    // TODO: Add displayCourseInfo() method
+
+
+    public static void main(String[] args) {
+        System.out.println("=== University Course Exercise ===\n");
+
+        // TODO: Create course1 - "PT821", "Object-Oriented Programming", 3, 40
+
+
+        // TODO: Create course2 - "PT822", "Database Systems", 3, 35
+
+
+        // TODO: Assign instructors to both courses
+
+
+        // TODO: Enroll 38 students in course1 (use a loop)
+
+
+        // TODO: Display course1 info
+
+
+        // TODO: Check available seats in course1
+
+
+        // TODO: Try to enroll 5 more students in course1
+
+
+        // TODO: Check if course1 is full
+
+
+        // TODO: Drop 3 students from course1
+
+
+        // TODO: Display final info for both courses
+
+
+        System.out.println("\n=== Exercise Complete ===");
+    }
+}
+</code></pre>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/highlight.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/11.9.0/languages/java.min.js"></script>
+    <script>hljs.highlightAll();</script>
+</body>
+</html>

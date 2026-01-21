@@ -1,0 +1,242 @@
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{geometry}
+\usepackage{xcolor}
+\usepackage{booktabs}
+\usepackage{enumitem}
+\usepackage{tcolorbox}
+\usepackage{fancyhdr}
+
+\geometry{margin=2cm}
+
+\definecolor{primaryblue}{RGB}{0, 102, 204}
+\definecolor{successgreen}{RGB}{40, 167, 69}
+\definecolor{lightgray}{RGB}{248, 249, 250}
+
+\tcbuselibrary{skins, breakable}
+
+\newtcolorbox{storycard}[1][]{
+    colback=white,
+    colframe=primaryblue,
+    title=#1,
+    fonttitle=\bfseries,
+    breakable,
+    boxrule=1pt
+}
+
+\newtcolorbox{taskcard}{
+    colback=lightgray,
+    colframe=gray,
+    breakable,
+    boxrule=0.5pt
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{\textbf{User Story Template}}
+\fancyhead[R]{CS2113}
+\fancyfoot[C]{\thepage}
+
+\title{
+    \textbf{User Story Template}\\
+    \large CS2113 -- Software Development Project
+}
+\author{}
+\date{}
+
+\begin{document}
+
+\maketitle
+
+%============================================================
+\section*{User Story Card Template}
+%============================================================
+
+\begin{storycard}[User Story \#\_\_\_]
+
+\textbf{Title:} \hrulefill
+
+\vspace{0.5cm}
+
+\textbf{Story:}\\[0.3cm]
+\fbox{\parbox{0.95\textwidth}{
+\vspace{0.5cm}
+As a \underline{\hspace{4cm}}, \\[0.3cm]
+I want \underline{\hspace{8cm}} \\[0.3cm]
+so that \underline{\hspace{7cm}}.
+\vspace{0.5cm}
+}}
+
+\vspace{0.5cm}
+
+\textbf{Priority:} $\square$ High \quad $\square$ Medium \quad $\square$ Low
+
+\textbf{Sprint:} $\square$ 1 \quad $\square$ 2 \quad $\square$ 3
+
+\textbf{Story Points:} \_\_\_
+
+\vspace{0.5cm}
+
+\textbf{Acceptance Criteria:}
+\begin{itemize}
+    \item[$\square$]
+    \item[$\square$]
+    \item[$\square$]
+    \item[$\square$]
+\end{itemize}
+
+\vspace{0.5cm}
+
+\textbf{Notes:}\\
+\hrulefill\\
+\hrulefill\\
+\hrulefill
+
+\end{storycard}
+
+\vspace{1cm}
+
+%============================================================
+\section*{INVEST Checklist}
+%============================================================
+
+Before finalizing a user story, verify it meets INVEST criteria:
+
+\begin{tabular}{clc}
+\toprule
+& \textbf{Criterion} & \textbf{Check} \\
+\midrule
+\textbf{I} & \textbf{Independent:} Can be developed/tested alone & $\square$ \\
+\textbf{N} & \textbf{Negotiable:} Details can be discussed with team & $\square$ \\
+\textbf{V} & \textbf{Valuable:} Provides clear benefit to end user & $\square$ \\
+\textbf{E} & \textbf{Estimable:} Team can estimate the effort & $\square$ \\
+\textbf{S} & \textbf{Small:} Can be completed in one sprint & $\square$ \\
+\textbf{T} & \textbf{Testable:} Has clear acceptance criteria & $\square$ \\
+\bottomrule
+\end{tabular}
+
+\newpage
+
+%============================================================
+\section*{Task Breakdown Template}
+%============================================================
+
+For each user story, break it down into technical tasks:
+
+\begin{storycard}[User Story: \_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_\_]
+
+\vspace{0.3cm}
+
+\begin{taskcard}
+\textbf{Task 1:} \hrulefill\\[0.3cm]
+\textbf{Assigned to:} \hrulefill \quad \textbf{Est. Hours:} \_\_\_\\[0.3cm]
+\textbf{Label:} $\square$ Backend \quad $\square$ Frontend \quad $\square$ Database\\[0.3cm]
+\textbf{Status:} $\square$ To Do \quad $\square$ In Progress \quad $\square$ Done
+\end{taskcard}
+
+\vspace{0.3cm}
+
+\begin{taskcard}
+\textbf{Task 2:} \hrulefill\\[0.3cm]
+\textbf{Assigned to:} \hrulefill \quad \textbf{Est. Hours:} \_\_\_\\[0.3cm]
+\textbf{Label:} $\square$ Backend \quad $\square$ Frontend \quad $\square$ Database\\[0.3cm]
+\textbf{Status:} $\square$ To Do \quad $\square$ In Progress \quad $\square$ Done
+\end{taskcard}
+
+\vspace{0.3cm}
+
+\begin{taskcard}
+\textbf{Task 3:} \hrulefill\\[0.3cm]
+\textbf{Assigned to:} \hrulefill \quad \textbf{Est. Hours:} \_\_\_\\[0.3cm]
+\textbf{Label:} $\square$ Backend \quad $\square$ Frontend \quad $\square$ Database\\[0.3cm]
+\textbf{Status:} $\square$ To Do \quad $\square$ In Progress \quad $\square$ Done
+\end{taskcard}
+
+\vspace{0.3cm}
+
+\begin{taskcard}
+\textbf{Task 4:} \hrulefill\\[0.3cm]
+\textbf{Assigned to:} \hrulefill \quad \textbf{Est. Hours:} \_\_\_\\[0.3cm]
+\textbf{Label:} $\square$ Backend \quad $\square$ Frontend \quad $\square$ Database\\[0.3cm]
+\textbf{Status:} $\square$ To Do \quad $\square$ In Progress \quad $\square$ Done
+\end{taskcard}
+
+\end{storycard}
+
+\newpage
+
+%============================================================
+\section*{Example User Stories}
+%============================================================
+
+\begin{storycard}[User Story \#1 - Example]
+
+\textbf{Title:} Add a Quiz
+
+\vspace{0.3cm}
+
+\textbf{Story:}\\
+As a \textbf{teacher}, I want to \textbf{add a quiz with name, description, and course code} so that \textbf{I can create quizzes for my students}.
+
+\vspace{0.3cm}
+
+\textbf{Priority:} $\blacksquare$ High \quad $\square$ Medium \quad $\square$ Low
+
+\textbf{Sprint:} $\blacksquare$ 1 \quad $\square$ 2 \quad $\square$ 3
+
+\textbf{Story Points:} 5
+
+\vspace{0.3cm}
+
+\textbf{Acceptance Criteria:}
+\begin{itemize}
+    \item[$\blacksquare$] Form with fields for name, description, course code
+    \item[$\blacksquare$] Validation: name is required
+    \item[$\blacksquare$] Quiz is saved to database on submit
+    \item[$\blacksquare$] Success message displayed after saving
+\end{itemize}
+
+\textbf{Tasks:}
+\begin{enumerate}
+    \item Create Quiz entity class with JPA annotations
+    \item Create QuizRepository interface
+    \item Create QuizController with POST endpoint
+    \item Create add quiz form in UI
+    \item Add form validation
+\end{enumerate}
+
+\end{storycard}
+
+\vspace{0.5cm}
+
+\begin{storycard}[User Story \#2 - Example]
+
+\textbf{Title:} View Quiz List
+
+\vspace{0.3cm}
+
+\textbf{Story:}\\
+As a \textbf{teacher}, I want to \textbf{see a list of all quizzes I have created} so that \textbf{I know which quizzes exist}.
+
+\vspace{0.3cm}
+
+\textbf{Priority:} $\blacksquare$ High \quad $\square$ Medium \quad $\square$ Low
+
+\textbf{Sprint:} $\blacksquare$ 1 \quad $\square$ 2 \quad $\square$ 3
+
+\textbf{Story Points:} 3
+
+\vspace{0.3cm}
+
+\textbf{Acceptance Criteria:}
+\begin{itemize}
+    \item[$\blacksquare$] Page displays all quizzes in a table/list
+    \item[$\blacksquare$] Shows quiz name, description, course code, created date
+    \item[$\blacksquare$] Quizzes ordered by creation date (newest first)
+\end{itemize}
+
+\end{storycard}
+
+\end{document}
