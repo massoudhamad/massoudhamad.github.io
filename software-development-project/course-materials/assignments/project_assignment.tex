@@ -1,0 +1,513 @@
+\documentclass[12pt,a4paper]{article}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[margin=2.5cm]{geometry}
+\usepackage{graphicx}
+\usepackage{hyperref}
+\usepackage{enumitem}
+\usepackage{xcolor}
+\usepackage{fancyhdr}
+\usepackage{titlesec}
+\usepackage{booktabs}
+\usepackage{longtable}
+\usepackage{colortbl}
+\usepackage{amssymb}
+
+\definecolor{primary}{RGB}{220, 38, 38}
+\definecolor{secondary}{RGB}{248, 113, 113}
+\definecolor{headerblue}{RGB}{41, 128, 185}
+\definecolor{lightgray}{RGB}{245, 245, 245}
+
+\hypersetup{
+    colorlinks=true,
+    linkcolor=primary,
+    urlcolor=primary
+}
+
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[L]{Software Development Project}
+\fancyhead[R]{Project Assignment}
+\fancyfoot[C]{\thepage}
+
+\title{\textbf{Software Development Project}\\[0.3cm]\Large Group Project Assignment\\[0.5cm]\large BSc Computer Science - SUZA}
+\author{State University of Zanzibar (SUZA)\\School of Computer Communication and Media Studies}
+\date{Academic Year 2025/2026}
+
+\begin{document}
+
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Project Overview}
+
+\subsection{Introduction}
+This project assignment requires students to work in teams to develop a complete software application following industry-standard software development practices. The project spans the entire semester and covers all phases of the Software Development Life Cycle (SDLC).
+
+\subsection{Objectives}
+By completing this project, students will:
+\begin{itemize}
+    \item Apply software engineering principles in a real-world context
+    \item Practice Agile/Scrum methodology with sprint-based development
+    \item Gain hands-on experience with version control (Git/GitHub)
+    \item Develop teamwork and collaboration skills
+    \item Create professional documentation
+    \item Build a portfolio-ready software project
+\end{itemize}
+
+\subsection{Team Formation}
+\begin{itemize}
+    \item Team size: \textbf{4-5 members}
+    \item Each team must assign roles: Product Owner, Scrum Master, Developers, QA Lead
+    \item Roles can rotate during the project
+    \item All team members must contribute to coding
+\end{itemize}
+
+\section{Project Requirements}
+
+\subsection{Project Scope}
+Teams must develop a \textbf{web-based application} that solves a real-world problem. Suggested project domains include:
+
+\begin{itemize}
+    \item \textbf{E-commerce:} Online store, marketplace, booking system
+    \item \textbf{Education:} Learning management, quiz platform, library system
+    \item \textbf{Healthcare:} Appointment booking, patient records, pharmacy
+    \item \textbf{Finance:} Expense tracker, budgeting app, mobile money integration
+    \item \textbf{Agriculture:} Farm management, market prices, crop advisory
+    \item \textbf{Tourism:} Hotel booking, tour packages, travel guide
+    \item \textbf{Community:} Event management, volunteer coordination, local services
+\end{itemize}
+
+\subsection{Technical Requirements}
+
+\subsubsection{Minimum Features (Must Have)}
+\begin{enumerate}
+    \item User authentication (registration, login, logout)
+    \item User roles (at least 2: e.g., admin and regular user)
+    \item CRUD operations for main entities
+    \item Search and filter functionality
+    \item Responsive design (mobile-friendly)
+    \item Form validation (client and server-side)
+    \item Database integration
+\end{enumerate}
+
+\subsubsection{Technology Stack}
+Teams may choose from the following options:
+
+\textbf{Frontend:}
+\begin{itemize}
+    \item HTML5, CSS3, JavaScript
+    \item CSS Framework: Bootstrap, Tailwind CSS, or similar
+    \item Optional: React, Vue.js, or vanilla JavaScript
+\end{itemize}
+
+\textbf{Backend:}
+\begin{itemize}
+    \item Node.js with Express.js
+    \item Python with Django or Flask
+    \item PHP with Laravel
+    \item Java with Spring Boot
+\end{itemize}
+
+\textbf{Database:}
+\begin{itemize}
+    \item MySQL, PostgreSQL, or SQLite (relational)
+    \item MongoDB (NoSQL - if appropriate)
+\end{itemize}
+
+\textbf{Version Control:}
+\begin{itemize}
+    \item Git and GitHub (mandatory)
+    \item GitHub Projects or Trello for task management
+\end{itemize}
+
+\section{Project Deliverables}
+
+The project is divided into \textbf{5 major deliverables}, each submitted at specific milestones throughout the semester.
+
+\subsection{Deliverable 1: Project Proposal and Planning}
+\textbf{Due: Week 2 | Weight: 10\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Project Charter & Project name, team members, roles, problem statement, objectives, scope \\
+\hline
+Team Agreement & Communication plan, meeting schedule, conflict resolution, tools to use \\
+\hline
+GitHub Repository & Created and shared with all members and instructor \\
+\hline
+Project Board & GitHub Projects or Trello board set up with initial backlog \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Submission:}
+\begin{itemize}
+    \item Project Charter document (PDF)
+    \item GitHub repository link
+    \item Project board link
+\end{itemize}
+
+\subsection{Deliverable 2: Requirements Specification}
+\textbf{Due: Week 4 | Weight: 15\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+User Stories & Minimum 15 user stories with acceptance criteria \\
+\hline
+Use Cases & 3-5 detailed use case descriptions \\
+\hline
+Functional Requirements & Detailed list of system features \\
+\hline
+Non-Functional Requirements & Performance, security, usability requirements \\
+\hline
+MoSCoW Prioritization & Requirements categorized by priority \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Submission:}
+\begin{itemize}
+    \item Software Requirements Specification (SRS) document (PDF)
+    \item User stories added to project board
+\end{itemize}
+
+\subsection{Deliverable 3: System Design}
+\textbf{Due: Week 6 | Weight: 15\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Architecture Diagram & High-level system architecture showing components \\
+\hline
+Database Design & Entity-Relationship Diagram (ERD) with all tables \\
+\hline
+API Design & List of endpoints with methods, parameters, responses \\
+\hline
+UI/UX Design & Wireframes or mockups for main screens (minimum 5) \\
+\hline
+Technology Justification & Explanation of technology stack choices \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Submission:}
+\begin{itemize}
+    \item System Design Document (SDD) (PDF)
+    \item Wireframes/Mockups (Figma link or images)
+    \item ERD diagram
+\end{itemize}
+
+\subsection{Deliverable 4: Implementation (3 Sprints)}
+\textbf{Due: Weeks 7-11 | Weight: 40\%}
+
+Implementation is divided into 3 sprints, each 2 weeks long.
+
+\subsubsection{Sprint 1: Core Features (Week 7-8)}
+\textbf{Weight: 15\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Project Setup & Development environment, folder structure, database \\
+\hline
+User Authentication & Registration, login, logout, password hashing \\
+\hline
+Basic UI & Navigation, layout, responsive design \\
+\hline
+Core Entity CRUD & Create, Read, Update, Delete for main entity \\
+\hline
+Sprint Documentation & Sprint planning, daily standups log, retrospective \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Sprint 2: Additional Features (Week 9-10)}
+\textbf{Weight: 15\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+User Roles & Admin panel, role-based access control \\
+\hline
+Search \& Filter & Search functionality, filtering, sorting \\
+\hline
+Additional Features & 2-3 more features from requirements \\
+\hline
+Form Validation & Client-side and server-side validation \\
+\hline
+Sprint Documentation & Sprint planning, daily standups log, retrospective \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsubsection{Sprint 3: Polish and Testing (Week 11)}
+\textbf{Weight: 10\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Bug Fixes & Address all known issues \\
+\hline
+UI Polish & Consistent styling, error messages, loading states \\
+\hline
+Testing & Unit tests (minimum 10), integration tests (minimum 3) \\
+\hline
+Documentation & Code comments, README file \\
+\hline
+Sprint Documentation & Sprint planning, retrospective, final review \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Sprint Submissions (each sprint):}
+\begin{itemize}
+    \item Working code pushed to GitHub
+    \item Sprint planning document
+    \item Sprint retrospective document
+    \item Demo video (2-3 minutes showing features)
+\end{itemize}
+
+\subsection{Deliverable 5: Final Submission and Presentation}
+\textbf{Due: Week 12 | Weight: 20\%}
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{4cm}|p{9cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Item}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Complete Application & Fully functional, deployed application \\
+\hline
+Source Code & Clean, well-commented code on GitHub \\
+\hline
+README File & Installation instructions, features, screenshots \\
+\hline
+Test Report & Test cases, coverage report, bug report \\
+\hline
+User Manual & How to use the application (PDF) \\
+\hline
+Project Report & Complete project documentation (PDF) \\
+\hline
+Presentation & 15-minute team presentation with demo \\
+\hline
+\end{tabular}
+\end{center}
+
+\textbf{Final Submission:}
+\begin{itemize}
+    \item GitHub repository (complete with all code)
+    \item Deployed application URL (Vercel, Netlify, Heroku, etc.)
+    \item Project Report (PDF)
+    \item Presentation slides (PDF)
+    \item Individual reflection (1 page per team member)
+\end{itemize}
+
+\section{Grading Criteria}
+
+\subsection{Deliverable Weights}
+
+\begin{center}
+\begin{tabular}{|l|c|c|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Deliverable}} & \textcolor{white}{\textbf{Weight}} & \textcolor{white}{\textbf{Due Date}} \\
+\hline
+Deliverable 1: Project Proposal & 10\% & Week 2 \\
+\hline
+Deliverable 2: Requirements & 15\% & Week 4 \\
+\hline
+Deliverable 3: System Design & 15\% & Week 6 \\
+\hline
+Deliverable 4: Implementation & 40\% & Weeks 7-11 \\
+\hline
+Deliverable 5: Final Submission & 20\% & Week 12 \\
+\hline
+\textbf{Total} & \textbf{100\%} & \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Evaluation Rubric}
+
+Each deliverable is evaluated based on:
+
+\begin{center}
+\rowcolors{2}{lightgray}{white}
+\begin{tabular}{|p{3cm}|p{10cm}|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Criteria}} & \textcolor{white}{\textbf{Description}} \\
+\hline
+Completeness (30\%) & All required items are present and complete \\
+\hline
+Quality (30\%) & Work is well-done, professional, and follows best practices \\
+\hline
+Functionality (20\%) & Features work correctly without major bugs \\
+\hline
+Documentation (10\%) & Clear, well-organized documentation \\
+\hline
+Teamwork (10\%) & Evidence of collaboration, equal contribution \\
+\hline
+\end{tabular}
+\end{center}
+
+\subsection{Individual Assessment}
+
+In addition to group grades, individual performance is assessed through:
+\begin{itemize}
+    \item Git commit history (quality and frequency)
+    \item Peer evaluation (team members rate each other)
+    \item Individual reflection document
+    \item Participation in presentations and demos
+\end{itemize}
+
+\section{Submission Guidelines}
+
+\subsection{Document Format}
+\begin{itemize}
+    \item All documents must be submitted as PDF
+    \item Use the provided templates where available
+    \item Include team name and member names on all documents
+    \item Follow academic writing standards
+\end{itemize}
+
+\subsection{Code Submission}
+\begin{itemize}
+    \item All code must be on GitHub
+    \item Repository must have a clear README.md
+    \item Use meaningful commit messages
+    \item Create branches for features (not all work on main)
+    \item No sensitive data (passwords, API keys) in repository
+\end{itemize}
+
+\subsection{Late Submission Policy}
+\begin{itemize}
+    \item 10\% penalty per day for late submissions
+    \item Maximum 3 days late accepted
+    \item No submissions accepted after 3 days without prior approval
+\end{itemize}
+
+\section{Academic Integrity}
+
+\begin{itemize}
+    \item All work must be original
+    \item External code/libraries must be cited
+    \item Plagiarism will result in zero marks
+    \item AI tools can be used for learning but not for direct submission
+    \item Code will be checked for similarity
+\end{itemize}
+
+\section{Support and Resources}
+
+\subsection{Office Hours}
+\begin{itemize}
+    \item Instructor office hours: [To be announced]
+    \item Lab sessions: [To be announced]
+    \item Online support via course platform
+\end{itemize}
+
+\subsection{Recommended Resources}
+\begin{itemize}
+    \item Course lecture materials
+    \item Template documents provided
+    \item GitHub documentation
+    \item Stack Overflow (for technical questions)
+    \item MDN Web Docs (for web development)
+\end{itemize}
+
+\section{Project Timeline Summary}
+
+\begin{center}
+\begin{tabular}{|c|l|l|}
+\hline
+\rowcolor{headerblue}
+\textcolor{white}{\textbf{Week}} & \textcolor{white}{\textbf{Activity}} & \textcolor{white}{\textbf{Deliverable}} \\
+\hline
+1 & Team formation, project selection & - \\
+\hline
+2 & Project planning & Deliverable 1 \\
+\hline
+3 & Requirements gathering & - \\
+\hline
+4 & Requirements analysis & Deliverable 2 \\
+\hline
+5 & System design & - \\
+\hline
+6 & Design review & Deliverable 3 \\
+\hline
+7-8 & Sprint 1 development & Sprint 1 Demo \\
+\hline
+9-10 & Sprint 2 development & Sprint 2 Demo \\
+\hline
+11 & Sprint 3 (testing \& polish) & Sprint 3 Demo \\
+\hline
+12 & Final presentation & Deliverable 5 \\
+\hline
+\end{tabular}
+\end{center}
+
+\section{Checklist for Students}
+
+\subsection{Before Starting}
+\begin{itemize}
+    \item[$\square$] Form a team of 4-5 members
+    \item[$\square$] Choose a project idea
+    \item[$\square$] Create GitHub accounts (all members)
+    \item[$\square$] Set up communication channels (WhatsApp, Discord, etc.)
+\end{itemize}
+
+\subsection{During Development}
+\begin{itemize}
+    \item[$\square$] Commit code regularly (at least daily during sprints)
+    \item[$\square$] Attend all team meetings
+    \item[$\square$] Update project board with task progress
+    \item[$\square$] Document issues and decisions
+    \item[$\square$] Test features before marking as complete
+\end{itemize}
+
+\subsection{Before Each Submission}
+\begin{itemize}
+    \item[$\square$] Review all requirements for the deliverable
+    \item[$\square$] Proofread all documents
+    \item[$\square$] Ensure code compiles and runs
+    \item[$\square$] Get all team members to review
+    \item[$\square$] Submit before deadline
+\end{itemize}
+
+\vspace{1cm}
+\hrule
+\vspace{0.5cm}
+\begin{center}
+\textit{Good luck with your project! Remember: the goal is to learn and build something you're proud of.}
+\end{center}
+
+\end{document}
