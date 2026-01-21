@@ -21,9 +21,9 @@
             text-decoration: none;
             font-weight: 500;
         }
-        nav a:hover { color: #00d9ff; }
+        nav a:hover { color: #f87171; }
         .hero {
-            background: linear-gradient(135deg, #c62828, #ef5350);
+            background: linear-gradient(135deg, #dc2626, #f87171);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -53,53 +53,91 @@
         }
         .section-header h3 {
             font-size: 1.25rem;
-            color: #c62828;
+            color: #dc2626;
+        }
+        .section-icon {
+            font-size: 1.5rem;
         }
         .section-content {
-            padding: 2rem;
-            text-align: center;
+            padding: 1.5rem;
         }
-        .coming-soon {
+        .empty-message {
             color: #666;
-            font-size: 1.1rem;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
         }
-        .coming-soon-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .topics-list {
+        th, td {
+            padding: 0.75rem 1rem;
             text-align: left;
-            max-width: 500px;
-            margin: 2rem auto;
+            border-bottom: 1px solid #e9ecef;
         }
-        .topics-list h4 {
-            color: #c62828;
-            margin-bottom: 1rem;
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
         }
-        .topics-list ul {
-            list-style: none;
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: #f8f9fa; }
+        a {
+            color: #dc2626;
+            text-decoration: none;
         }
-        .topics-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+        a:hover {
+            text-decoration: underline;
         }
-        .topics-list li:before {
-            content: ">";
-            color: #c62828;
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
+        .badge-pdf { background: #dc3545; color: white; }
+        .badge-tex { background: #008080; color: white; }
+        .badge-md { background: #083fa1; color: white; }
         .footer {
             text-align: center;
             padding: 2rem;
             color: #666;
             font-size: 0.9rem;
         }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: box-shadow 0.3s, transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .card h4 { margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: #666; }
+        .updated {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="../index.html">Back to All Courses</a>
+        <a href="../index.html">← Back to All Courses</a>
     </nav>
 
     <div class="hero">
@@ -109,36 +147,158 @@
     </div>
 
     <div class="container">
+
         <div class="section">
             <div class="section-header">
-                <span>Course Overview</span>
-                <h3>Software Development Project</h3>
+                <span class="section-icon">📚</span>
+                <h3>Lectures</h3>
             </div>
             <div class="section-content">
-                <div class="coming-soon-icon">Under Construction</div>
-                <p class="coming-soon">Course materials are being prepared and will be available soon.</p>
+                <table>
+                    <thead>
+                        <tr><th>Module</th><th>Topic</th><th>Format</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lecture 1</td>
+                            <td><a href="introduction_notes.pdf">Introduction to Software Development</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lecture 2</td>
+                            <td><a href="course-materials/lectures/lecture02_git_github.pdf">Git and GitHub</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lecture 3</td>
+                            <td><a href="course-materials/lectures/lecture03_sprint1.tex">Sprint 1</a></td>
+                            <td><span class="badge badge-tex">LaTeX</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lecture 4</td>
+                            <td><a href="course-materials/lectures/lecture04_sprint2.tex">Sprint 2</a></td>
+                            <td><span class="badge badge-tex">LaTeX</span></td>
+                        </tr>
+                        <tr>
+                            <td>Lecture 5</td>
+                            <td><a href="course-materials/lectures/lecture05_sprint3.tex">Sprint 3</a></td>
+                            <td><span class="badge badge-tex">LaTeX</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div class="topics-list">
-                    <h4>Planned Topics</h4>
-                    <ul>
-                        <li>Software Development Life Cycle (SDLC)</li>
-                        <li>Requirements Gathering and Analysis</li>
-                        <li>System Design and Architecture</li>
-                        <li>Agile and Scrum Methodologies</li>
-                        <li>Version Control with Git</li>
-                        <li>Team Collaboration</li>
-                        <li>Testing and Quality Assurance</li>
-                        <li>Documentation</li>
-                        <li>Deployment and DevOps Basics</li>
-                        <li>Project Presentation</li>
-                    </ul>
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📊</span>
+                <h3>Presentations</h3>
+            </div>
+            <div class="section-content">
+                <table>
+                    <thead>
+                        <tr><th>#</th><th>Topic</th><th>Format</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Slides 1</td>
+                            <td><a href="course-materials/presentations/lecture01_slides.tex">Introduction Slides</a></td>
+                            <td><span class="badge badge-tex">LaTeX</span></td>
+                        </tr>
+                        <tr>
+                            <td>Slides 2</td>
+                            <td><a href="course-materials/presentations/lecture02_slides.tex">Git & GitHub Slides</a></td>
+                            <td><span class="badge badge-tex">LaTeX</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📝</span>
+                <h3>Templates</h3>
+            </div>
+            <div class="section-content">
+                <div class="card-grid">
+                    <a href="course-materials/templates/project-design/project_charter_template.tex" class="card">
+                        <h4>Project Charter</h4>
+                        <p><span class="badge badge-tex">LaTeX</span> project_charter_template.tex</p>
+                    </a>
+                    <a href="course-materials/templates/project-design/user_story_template.tex" class="card">
+                        <h4>User Story Template</h4>
+                        <p><span class="badge badge-tex">LaTeX</span> user_story_template.tex</p>
+                    </a>
+                    <a href="course-materials/templates/project-design/sprint_planning_template.tex" class="card">
+                        <h4>Sprint Planning</h4>
+                        <p><span class="badge badge-tex">LaTeX</span> sprint_planning_template.tex</p>
+                    </a>
+                    <a href="course-materials/templates/project-design/retrospective_template.tex" class="card">
+                        <h4>Retrospective Template</h4>
+                        <p><span class="badge badge-tex">LaTeX</span> retrospective_template.tex</p>
+                    </a>
+                    <a href="course-materials/templates/project-design/README_template.md" class="card">
+                        <h4>README Template</h4>
+                        <p><span class="badge badge-md">Markdown</span> README_template.md</p>
+                    </a>
+                    <a href="course-materials/templates/github-projects/github_projects_setup.md" class="card">
+                        <h4>GitHub Projects Setup</h4>
+                        <p><span class="badge badge-md">Markdown</span> github_projects_setup.md</p>
+                    </a>
+                    <a href="course-materials/templates/trello/trello_board_setup.md" class="card">
+                        <h4>Trello Board Setup</h4>
+                        <p><span class="badge badge-md">Markdown</span> trello_board_setup.md</p>
+                    </a>
                 </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">✏️</span>
+                <h3>Exercises</h3>
+            </div>
+            <div class="section-content">
+                <p class="empty-message">Exercises coming soon...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h3>Assignments</h3>
+            </div>
+            <div class="section-content">
+                <p class="empty-message">Assignments coming soon...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h3>Course Topics</h3>
+            </div>
+            <div class="section-content">
+                <ul style="list-style: none; columns: 2; column-gap: 2rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Software Development Life Cycle</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Requirements Gathering</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ System Design and Architecture</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Agile and Scrum Methodologies</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Version Control with Git</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Team Collaboration</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Testing and Quality Assurance</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Documentation</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Deployment and DevOps</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Project Presentation</li>
+                </ul>
             </div>
         </div>
     </div>
 
     <div class="footer">
         <p>State University of Zanzibar (SUZA)</p>
+        <p class="updated">Last updated: January 2026</p>
     </div>
 </body>
 </html>

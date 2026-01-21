@@ -21,9 +21,9 @@
             text-decoration: none;
             font-weight: 500;
         }
-        nav a:hover { color: #00d9ff; }
+        nav a:hover { color: #a78bfa; }
         .hero {
-            background: linear-gradient(135deg, #7b2cbf, #e040fb);
+            background: linear-gradient(135deg, #7c3aed, #a78bfa);
             color: white;
             padding: 3rem 2rem;
             text-align: center;
@@ -53,53 +53,90 @@
         }
         .section-header h3 {
             font-size: 1.25rem;
-            color: #7b2cbf;
+            color: #7c3aed;
+        }
+        .section-icon {
+            font-size: 1.5rem;
         }
         .section-content {
-            padding: 2rem;
-            text-align: center;
+            padding: 1.5rem;
         }
-        .coming-soon {
+        .empty-message {
             color: #666;
-            font-size: 1.1rem;
+            font-style: italic;
+            text-align: center;
+            padding: 2rem;
         }
-        .coming-soon-icon {
-            font-size: 4rem;
-            margin-bottom: 1rem;
+        table {
+            width: 100%;
+            border-collapse: collapse;
         }
-        .topics-list {
+        th, td {
+            padding: 0.75rem 1rem;
             text-align: left;
-            max-width: 500px;
-            margin: 2rem auto;
+            border-bottom: 1px solid #e9ecef;
         }
-        .topics-list h4 {
-            color: #7b2cbf;
-            margin-bottom: 1rem;
+        th {
+            background: #f8f9fa;
+            font-weight: 600;
+            color: #555;
         }
-        .topics-list ul {
-            list-style: none;
+        tr:last-child td { border-bottom: none; }
+        tr:hover { background: #f8f9fa; }
+        a {
+            color: #7c3aed;
+            text-decoration: none;
         }
-        .topics-list li {
-            padding: 0.5rem 0;
-            border-bottom: 1px solid #eee;
+        a:hover {
+            text-decoration: underline;
         }
-        .topics-list li:before {
-            content: ">";
-            color: #7b2cbf;
-            font-weight: bold;
-            margin-right: 0.5rem;
+        .badge {
+            display: inline-block;
+            padding: 0.25rem 0.5rem;
+            border-radius: 4px;
+            font-size: 0.75rem;
+            font-weight: 600;
         }
+        .badge-pdf { background: #dc3545; color: white; }
+        .badge-c { background: #555555; color: white; }
         .footer {
             text-align: center;
             padding: 2rem;
             color: #666;
             font-size: 0.9rem;
         }
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 1rem;
+        }
+        .card {
+            border: 1px solid #e9ecef;
+            border-radius: 8px;
+            padding: 1rem;
+            transition: box-shadow 0.3s, transform 0.3s;
+            text-decoration: none;
+            color: inherit;
+            display: block;
+        }
+        .card:hover {
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+            transform: translateY(-2px);
+            text-decoration: none;
+        }
+        .card h4 { margin-bottom: 0.5rem; }
+        .card p { font-size: 0.9rem; color: #666; }
+        .updated {
+            font-size: 0.85rem;
+            color: #666;
+            margin-top: 1rem;
+            text-align: center;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="../index.html">Back to All Courses</a>
+        <a href="../index.html">← Back to All Courses</a>
     </nav>
 
     <div class="hero">
@@ -109,37 +146,145 @@
     </div>
 
     <div class="container">
+
         <div class="section">
             <div class="section-header">
-                <span>Course Overview</span>
-                <h3>Data Structures and Algorithms</h3>
+                <span class="section-icon">📚</span>
+                <h3>Lectures</h3>
             </div>
             <div class="section-content">
-                <div class="coming-soon-icon">Under Construction</div>
-                <p class="coming-soon">Course materials are being prepared and will be available soon.</p>
+                <table>
+                    <thead>
+                        <tr><th>Module</th><th>Topic</th><th>Format</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Unit I</td>
+                            <td><a href="Lecture/unit I.pdf">Introduction to Data Structures</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Unit II</td>
+                            <td><a href="Lecture/Unit II.pdf">Linear Data Structures</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Unit III</td>
+                            <td><a href="Lecture/Unit III.pdf">Non-Linear Data Structures</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
 
-                <div class="topics-list">
-                    <h4>Planned Topics</h4>
-                    <ul>
-                        <li>Arrays and Strings</li>
-                        <li>Linked Lists (Singly, Doubly, Circular)</li>
-                        <li>Stacks and Queues</li>
-                        <li>Trees and Binary Search Trees</li>
-                        <li>Heaps and Priority Queues</li>
-                        <li>Hash Tables</li>
-                        <li>Graphs and Graph Algorithms</li>
-                        <li>Sorting Algorithms</li>
-                        <li>Searching Algorithms</li>
-                        <li>Recursion and Dynamic Programming</li>
-                        <li>Algorithm Analysis (Big O Notation)</li>
-                    </ul>
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💡</span>
+                <h3>Code Examples</h3>
+            </div>
+            <div class="section-content">
+                <div class="card-grid">
+                    <a href="dsacode/lecture01.c" class="card">
+                        <h4>Lecture 01 Examples</h4>
+                        <p><span class="badge badge-c">C</span> lecture01.c</p>
+                    </a>
+                    <a href="dsacode/list_a.c" class="card">
+                        <h4>Linked List A</h4>
+                        <p><span class="badge badge-c">C</span> list_a.c</p>
+                    </a>
+                    <a href="dsacode/list_b.c" class="card">
+                        <h4>Linked List B</h4>
+                        <p><span class="badge badge-c">C</span> list_b.c</p>
+                    </a>
+                    <a href="dsacode/list_example.c" class="card">
+                        <h4>List Example</h4>
+                        <p><span class="badge badge-c">C</span> list_example.c</p>
+                    </a>
+                    <a href="dsacode/stack.c" class="card">
+                        <h4>Stack Implementation</h4>
+                        <p><span class="badge badge-c">C</span> stack.c</p>
+                    </a>
+                    <a href="dsacode/infixtopostfix.c" class="card">
+                        <h4>Infix to Postfix</h4>
+                        <p><span class="badge badge-c">C</span> infixtopostfix.c</p>
+                    </a>
+                    <a href="2025/queue.c" class="card">
+                        <h4>Queue Implementation</h4>
+                        <p><span class="badge badge-c">C</span> queue.c</p>
+                    </a>
                 </div>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">✏️</span>
+                <h3>Exercises</h3>
+            </div>
+            <div class="section-content">
+                <p class="empty-message">Exercises coming soon...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📝</span>
+                <h3>Homeworks</h3>
+            </div>
+            <div class="section-content">
+                <p class="empty-message">Homeworks coming soon...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📋</span>
+                <h3>Assignments</h3>
+            </div>
+            <div class="section-content">
+                <p class="empty-message">Assignments coming soon...</p>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📖</span>
+                <h3>Course Topics</h3>
+            </div>
+            <div class="section-content">
+                <ul style="list-style: none; columns: 2; column-gap: 2rem;">
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Arrays and Strings</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Linked Lists</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Stacks and Queues</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Trees and Binary Search Trees</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Heaps and Priority Queues</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Hash Tables</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Graphs and Graph Algorithms</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Sorting Algorithms</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Searching Algorithms</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Recursion and Dynamic Programming</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Algorithm Analysis (Big O)</li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">💻</span>
+                <h3>Getting Started</h3>
+            </div>
+            <div class="section-content">
+                <h4>Compile and Run C Programs</h4>
+                <pre style="background:#f8f9fa; padding:1rem; border-radius:4px; overflow-x:auto; margin:1rem 0;"><code>gcc dsacode/stack.c -o stack
+./stack</code></pre>
             </div>
         </div>
     </div>
 
     <div class="footer">
         <p>State University of Zanzibar (SUZA)</p>
+        <p class="updated">Last updated: January 2026</p>
     </div>
 </body>
 </html>
