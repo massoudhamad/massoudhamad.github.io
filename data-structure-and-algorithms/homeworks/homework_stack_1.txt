@@ -1,0 +1,202 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    HOMEWORK 3: STACK FUNDAMENTALS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+INSTRUCTIONS:
+- Implement solutions in C programming language
+- Use array-based stack implementation unless otherwise specified
+- Include handwritten algorithm analysis as required
+- Your code must be original - AI-generated code will receive zero marks
+
+================================================================================
+
+QUESTION 1: Text Editor Undo System                               [25 marks]
+--------------------------------------------------------------------------------
+Implement a simple text editor with undo functionality using a stack.
+
+The editor should support these operations:
+- INSERT <char>: Insert a character at the current position
+- DELETE: Delete the character at current position
+- UNDO: Undo the last operation
+
+Your implementation needs TWO stacks:
+1. Text stack: holds the current text
+2. Undo stack: holds operations that can be undone
+
+Data structure for undo stack entries:
+```c
+struct operation {
+    char type;      // 'I' for insert, 'D' for delete
+    char character; // the character involved
+};
+```
+
+Implement:
+a) void insert_char(char c) - Insert character and record for undo
+b) char delete_char() - Delete character and record for undo
+c) void undo() - Undo the last operation
+d) void display_text() - Show current text
+e) void display_undo_stack() - Show pending undo operations
+
+TEST SEQUENCE:
+1. INSERT 'H', INSERT 'E', INSERT 'L', INSERT 'L', INSERT 'O'
+   Text should be: "HELLO"
+2. DELETE, DELETE
+   Text should be: "HEL"
+3. UNDO
+   Text should be: "HELL"
+4. UNDO
+   Text should be: "HELLO"
+5. INSERT '!', INSERT '!'
+   Text should be: "HELLO!!"
+
+HANDWRITTEN ANALYSIS:
+- Draw both stacks after step 1
+- Draw both stacks after step 2
+- Trace the UNDO operation in step 3
+
+
+QUESTION 2: Balanced Symbols Checker                               [20 marks]
+--------------------------------------------------------------------------------
+Write a program to check if an expression has balanced symbols.
+Check for: ( ) [ ] { } < >
+
+Rules:
+- Every opening symbol must have a corresponding closing symbol
+- Symbols must be properly nested
+- Return the position of the first error if unbalanced
+
+Implement:
+```c
+int check_balanced(char* expression);
+// Returns: -1 if balanced, otherwise returns position of error (0-indexed)
+```
+
+TEST CASES (show output for each):
+1. "{[()]}"        Expected: -1 (balanced)
+2. "((()))"        Expected: -1 (balanced)
+3. "{[(])}"        Expected: 3 (error at position 3)
+4. "((("           Expected: 0 (error - unclosed at position 0)
+5. "()))"          Expected: 2 (error at position 2)
+6. "<div><p></p></div>"  Expected: -1 (balanced)
+7. "if(a[i]>b{j})" Expected: -1 (balanced)
+
+For unbalanced cases, print:
+"Error at position X: expected 'Y' but found 'Z'"
+or
+"Error at position X: unmatched 'Y'"
+
+HANDWRITTEN WORK:
+- Trace the stack operations for test case 3
+- Show the stack state at each character
+
+
+QUESTION 3: Decimal to Binary/Octal/Hexadecimal Converter         [15 marks]
+--------------------------------------------------------------------------------
+Use a stack to convert decimal numbers to other bases.
+
+Implement:
+a) void decimal_to_binary(int n) - Convert to binary
+b) void decimal_to_octal(int n) - Convert to octal
+c) void decimal_to_hex(int n) - Convert to hexadecimal
+
+The algorithm:
+1. Repeatedly divide by base and push remainder onto stack
+2. Pop all elements to get the result
+
+TEST VALUES:
+| Decimal | Binary    | Octal | Hexadecimal |
+|---------|-----------|-------|-------------|
+| 156     | 10011100  | 234   | 9C          |
+| 255     | 11111111  | 377   | FF          |
+| 1000    | 1111101000| 1750  | 3E8         |
+| 45      | 101101    | 55    | 2D          |
+
+HANDWRITTEN WORK:
+- Show the stack operations for converting 156 to binary
+- Draw the stack after each division step
+
+
+QUESTION 4: Expression Evaluation                                  [15 marks]
+--------------------------------------------------------------------------------
+Implement a calculator that evaluates arithmetic expressions with proper
+operator precedence using TWO stacks (operand stack and operator stack).
+
+Supported operators: + - * / ( )
+Precedence: ( ) highest, then * /, then + -
+
+Algorithm (simplified):
+1. Scan left to right
+2. If operand, push to operand stack
+3. If '(', push to operator stack
+4. If ')', pop and evaluate until '('
+5. If operator, pop and evaluate higher/equal precedence operators, then push
+6. At end, pop and evaluate remaining
+
+Implement:
+```c
+int evaluate(char* expression);
+```
+
+TEST EXPRESSIONS:
+1. "3+4*2"         Expected: 11
+2. "(3+4)*2"       Expected: 14
+3. "10+2*3-4"      Expected: 12
+4. "((2+3)*4)-5"   Expected: 15
+5. "8/4+3*2"       Expected: 8
+
+Handle errors gracefully:
+- Division by zero
+- Mismatched parentheses
+- Invalid characters
+
+HANDWRITTEN WORK:
+- Trace both stacks for expression "((2+3)*4)-5"
+- Show stack states after processing each character
+
+
+QUESTION 5: Stack Analysis Questions                               [10 marks]
+--------------------------------------------------------------------------------
+Answer these questions (handwritten):
+
+a) What is the output of the following operations?
+   push(5), push(3), pop(), push(7), push(2), pop(), pop(), push(9), pop()
+   Show the stack state after each operation.
+
+b) A stack is implemented using an array of size 5. What happens when:
+   - You try to push when the stack is full?
+   - You try to pop when the stack is empty?
+   Write the code to handle these cases properly.
+
+c) Compare array-based vs linked-list-based stack implementations:
+   | Aspect           | Array-based | Linked-list |
+   |------------------|-------------|-------------|
+   | Memory usage     |             |             |
+   | Push complexity  |             |             |
+   | Pop complexity   |             |             |
+   | Max size limit   |             |             |
+   | Memory locality  |             |             |
+
+d) Can you implement a stack using only one queue? Explain your approach.
+
+================================================================================
+SUBMISSION REQUIREMENTS:
+[ ] Source code files with comments
+[ ] Handwritten algorithm traces
+[ ] Test output screenshots
+[ ] File naming: RegNo_HW3_Stack.c
+
+GRADING CRITERIA:
+- Code correctness and functionality: 50%
+- Code style, comments, error handling: 15%
+- Handwritten analysis quality: 25%
+- Test coverage: 10%
+================================================================================

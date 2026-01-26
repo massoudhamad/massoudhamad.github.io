@@ -1,0 +1,351 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 5: QUEUE PROJECT
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+                         ORIGINALITY REQUIREMENT
+This project requires you to design and implement a complete system.
+During viva, you will be asked to:
+- Explain your design decisions
+- Modify code on the spot
+- Trace through algorithms with new inputs
+- Discuss alternative approaches
+================================================================================
+
+PROJECT: MULTI-QUEUE CUSTOMER SERVICE SIMULATION
+================================================
+
+OVERVIEW:
+---------
+Simulate a bank/service center with multiple service counters, VIP handling,
+priority queuing, and detailed statistics. This demonstrates real-world
+queue applications.
+
+SYSTEM DESIGN:
+--------------
+The service center has:
+- 3 Regular counters (serve regular customers)
+- 1 VIP counter (serves VIP customers only)
+- 1 Express counter (transactions < 5 minutes only)
+
+Customer types:
+- Regular: Standard priority
+- VIP: Highest priority, dedicated counter
+- Express: Quick transactions only
+
+
+PART 1: DATA STRUCTURES (15 marks)
+----------------------------------
+
+```c
+struct customer {
+    int id;                     // Auto-generated
+    char name[50];
+    char type;                  // 'R' = Regular, 'V' = VIP, 'E' = Express
+    int arrival_time;           // In minutes from opening (e.g., 0 = 8:00 AM)
+    int service_time;           // Expected service duration
+    int start_service_time;     // When service actually started
+    int end_service_time;       // When service completed
+    int counter_served;         // Which counter served this customer
+};
+
+struct counter {
+    int id;
+    char type;                  // 'R', 'V', 'E'
+    int is_busy;
+    struct customer current_customer;
+    int total_served;
+    int total_service_time;
+    int idle_time;
+};
+
+struct service_center {
+    struct customer regular_queue[100];
+    int regular_front, regular_rear;
+
+    struct customer vip_queue[50];
+    int vip_front, vip_rear;
+
+    struct customer express_queue[50];
+    int express_front, express_rear;
+
+    struct counter counters[5];
+    int current_time;
+};
+```
+
+Implement queue operations for each queue type.
+
+
+PART 2: CORE OPERATIONS (25 marks)
+----------------------------------
+
+1. CUSTOMER ARRIVAL (8 marks):
+   ```c
+   void customer_arrives(struct service_center *sc, char* name, char type,
+                         int arrival_time, int service_time);
+   ```
+   - Validate customer type
+   - Check service_time for Express (must be < 5 minutes)
+   - Add to appropriate queue
+   - Print arrival notification
+
+2. SERVE NEXT CUSTOMER (10 marks):
+   ```c
+   void serve_next(struct service_center *sc, int counter_id);
+   ```
+   Counter assignment rules:
+   - VIP counter (id=3): VIP queue only
+   - Express counter (id=4): Express queue only
+   - Regular counters (id=0,1,2):
+     - If VIP counter is busy AND VIP waiting, serve VIP
+     - Otherwise serve from regular queue
+     - If regular empty, can serve express customers
+
+3. COMPLETE SERVICE (7 marks):
+   ```c
+   void complete_service(struct service_center *sc, int counter_id);
+   ```
+   - Record end time
+   - Calculate wait time
+   - Update counter statistics
+   - Move to serve next customer
+
+
+PART 3: SIMULATION ENGINE (25 marks)
+------------------------------------
+
+4. TIME-BASED SIMULATION (15 marks):
+   ```c
+   void run_simulation(struct service_center *sc, struct customer arrivals[],
+                       int num_arrivals, int simulation_duration);
+   ```
+
+   Simulation loop:
+   ```
+   For each minute from 0 to simulation_duration:
+     1. Process any arrivals at current time
+     2. Check each counter:
+        - If busy and service should complete, complete it
+        - If free and customers waiting, serve next
+     3. Update statistics
+     4. If verbose mode, print current state
+   ```
+
+5. EVENT LOGGING (10 marks):
+   ```c
+   struct event {
+       int time;
+       char type[20];      // "ARRIVAL", "SERVICE_START", "SERVICE_END"
+       int customer_id;
+       int counter_id;
+       char details[100];
+   };
+
+   void log_event(struct service_center *sc, struct event *e);
+   void print_event_log(struct service_center *sc);
+   ```
+
+
+PART 4: STATISTICS AND REPORTING (20 marks)
+-------------------------------------------
+
+6. CUSTOMER STATISTICS (10 marks):
+   ```c
+   struct customer_stats {
+       int total_customers;
+       int vip_count, regular_count, express_count;
+       float avg_wait_time;
+       float avg_service_time;
+       float avg_total_time;       // wait + service
+       int max_wait_time;
+       int customers_waiting;      // currently in queues
+   };
+
+   void calculate_customer_stats(struct service_center *sc,
+                                 struct customer_stats *stats);
+   ```
+
+7. COUNTER STATISTICS (10 marks):
+   ```c
+   struct counter_stats {
+       int counter_id;
+       int customers_served;
+       float utilization;          // (busy_time / total_time) * 100
+       float avg_service_time;
+       int idle_time;
+   };
+
+   void calculate_counter_stats(struct service_center *sc,
+                                struct counter_stats stats[]);
+   void print_statistics_report(struct service_center *sc);
+   ```
+
+
+PART 5: ADVANCED FEATURES (15 marks)
+------------------------------------
+
+8. DYNAMIC QUEUE BALANCING (8 marks):
+   ```c
+   void balance_queues(struct service_center *sc);
+   ```
+   If regular queue has > 10 customers and express counter is free,
+   temporarily allow express counter to serve regular customers.
+
+9. PRIORITY AGING (7 marks):
+   ```c
+   void apply_priority_aging(struct service_center *sc);
+   ```
+   Regular customers waiting > 15 minutes get promoted to VIP queue.
+   This prevents starvation.
+
+
+SIMULATION SCENARIOS:
+---------------------
+
+SCENARIO 1 - Normal Day:
+```
+Time  Name            Type    Service Time
+0     Ali Hassan      R       8
+2     Fatma Omar      V       10
+5     John Smith      E       3
+8     Mary Jane       R       12
+10    Ahmed Salim     R       6
+12    Sarah Connor    V       8
+15    Bob Wilson      E       4
+18    Anna Brown      R       15
+22    Tom Hardy       R       7
+25    Lisa Ray        E       2
+```
+
+SCENARIO 2 - Rush Hour:
+Generate 30 customers arriving between time 0-30 with:
+- 60% Regular, 25% VIP, 15% Express
+- Service times: Regular 5-15, VIP 8-20, Express 2-4
+- Arrival gaps: 0-3 minutes
+
+Run both scenarios and compare:
+- Average wait times by customer type
+- Counter utilization
+- Maximum queue lengths
+
+
+EXPECTED OUTPUT FORMAT:
+-----------------------
+```
+============ SUZA SERVICE CENTER SIMULATION ============
+Opening Time: 8:00 AM | Closing Time: 5:00 PM
+
+--- Current Status (Time: 45 minutes / 8:45 AM) ---
+
+QUEUES:
+  VIP Queue (2): [C12-Fatma, C18-Ahmed]
+  Regular Queue (5): [C3-John, C7-Mary, C9-Tom, C14-Lisa, C19-Bob]
+  Express Queue (1): [C21-Anna]
+
+COUNTERS:
+  Counter 0 [REGULAR]: Serving C5-Ali (4 min remaining)
+  Counter 1 [REGULAR]: Serving C8-Sarah (7 min remaining)
+  Counter 2 [REGULAR]: IDLE
+  Counter 3 [VIP]: Serving C11-James (2 min remaining)
+  Counter 4 [EXPRESS]: IDLE
+
+--- Event: 8:45 AM ---
+  Customer C21-Anna assigned to Counter 4 (Express)
+
+--- Statistics So Far ---
+  Customers Served: 10 | Waiting: 8 | In Service: 3
+  Avg Wait Time: 6.5 min | Max Wait: 15 min
+============================================================
+```
+
+
+HANDWRITTEN REQUIREMENTS:
+-------------------------
+1. SYSTEM ARCHITECTURE DIAGRAM:
+   - Show all queues and counters
+   - Show data flow between components
+   - Label with data structures used
+
+2. ALGORITHM FLOWCHART:
+   - serve_next() decision process
+   - Including all priority rules
+
+3. SIMULATION TRACE:
+   - Trace first 20 minutes of Scenario 1
+   - Show queue states and counter assignments
+   - Show event log entries
+
+4. COMPLEXITY ANALYSIS:
+   | Operation           | Time Complexity |
+   |---------------------|-----------------|
+   | customer_arrives    |                 |
+   | serve_next          |                 |
+   | complete_service    |                 |
+   | balance_queues      |                 |
+   | calculate_stats     |                 |
+
+
+VIVA QUESTIONS:
+---------------
+1. Why use separate queues instead of one priority queue?
+2. How does your system handle a VIP arriving when VIP counter is serving?
+3. What happens if Express counter is always busy but Express queue is empty?
+4. How would you add a "appointment" feature where customers reserve time slots?
+5. Explain the fairness implications of priority aging.
+6. How would you modify this for multiple branches?
+
+
+BONUS CHALLENGES (20 marks):
+----------------------------
+B1. GRAPHICAL DISPLAY (5 marks):
+    Create ASCII art visualization of queues and counters.
+
+B2. OPTIMAL COUNTER ALLOCATION (5 marks):
+    Given historical data, suggest optimal number of each counter type.
+
+B3. CUSTOMER SATISFACTION SCORE (5 marks):
+    Calculate score based on wait time vs expected:
+    - Under 5 min: 5 stars
+    - 5-10 min: 4 stars
+    - 10-15 min: 3 stars
+    - 15-20 min: 2 stars
+    - Over 20 min: 1 star
+
+B4. REAL-TIME MODE (5 marks):
+    Interactive mode where user can:
+    - Add customers manually
+    - View current state
+    - Advance time step by step
+
+
+SUBMISSION:
+-----------
+[ ] Source code: RegNo_Assignment5_Queue.c
+[ ] Scenario input files
+[ ] Handwritten analysis (scanned)
+[ ] Screenshots of simulation runs
+[ ] Final statistics reports for both scenarios
+[ ] README with instructions
+
+GRADING:
+--------
+Part 1 (Data Structures): 15 marks
+Part 2 (Core Operations): 25 marks
+Part 3 (Simulation Engine): 25 marks
+Part 4 (Statistics): 20 marks
+Part 5 (Advanced Features): 15 marks
+Handwritten Analysis: 10 marks (bonus)
+Bonus Challenges: 20 marks (extra credit)
+Viva: 15 marks (bonus)
+
+TOTAL: 100 marks + 45 bonus marks
+
+================================================================================

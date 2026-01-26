@@ -1,0 +1,305 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 3: STACK PROJECT
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+                         INTEGRITY STATEMENT
+I confirm that this assignment is my own work. I have not copied code from
+any source including classmates, internet, or AI tools. I understand that
+I must be able to explain every line of my code during the viva session.
+
+Signature: _____________________     Date: _______________
+================================================================================
+
+PROJECT: COMPLETE EXPRESSION EVALUATOR AND CODE ANALYZER
+=========================================================
+
+OVERVIEW:
+---------
+Build a comprehensive expression evaluation system that handles mathematical
+expressions AND a simple code syntax analyzer. This requires multiple stacks
+working together.
+
+PART 1: EXPRESSION TOKENIZER (15 marks)
+---------------------------------------
+Before evaluating expressions, you must tokenize them properly.
+
+```c
+struct token {
+    char type;          // 'N' = number, 'O' = operator, 'P' = parenthesis, 'F' = function
+    double value;       // for numbers
+    char operator;      // for operators and parentheses
+    char function[10];  // for functions like "sin", "cos", "sqrt"
+};
+
+struct token tokens[100];
+int token_count;
+
+int tokenize(char* expression);
+```
+
+Handle:
+- Multi-digit numbers: 123, 45
+- Decimal numbers: 3.14, 0.5, .25
+- Negative numbers: -5, -3.14 (distinguish from subtraction!)
+- Operators: + - * / ^ %
+- Parentheses: ( )
+- Functions: sin, cos, tan, sqrt, log, abs
+
+Example:
+Input: "3.14 * sin(45) + sqrt(16)"
+Tokens: [3.14, N] [*, O] [sin, F] [(, P] [45, N] [), P] [+, O] [sqrt, F] [(, P] [16, N] [), P]
+
+
+PART 2: INFIX TO POSTFIX CONVERTER (20 marks)
+---------------------------------------------
+Convert tokenized infix expressions to postfix notation.
+
+```c
+int infix_to_postfix(struct token infix[], int in_count,
+                     struct token postfix[], int *out_count);
+```
+
+Handle operator precedence:
+- Highest: Functions (sin, cos, etc.)
+- Then: ^ (right associative!)
+- Then: * / %
+- Lowest: + -
+
+Handle right associativity of ^:
+- 2^3^2 should be 2^(3^2) = 2^9 = 512, NOT (2^3)^2 = 8^2 = 64
+
+Test expressions:
+1. "3 + 4 * 2" → "3 4 2 * +"
+2. "( 3 + 4 ) * 2" → "3 4 + 2 *"
+3. "2 ^ 3 ^ 2" → "2 3 2 ^ ^"
+4. "sin ( 30 ) + cos ( 60 )" → "30 sin 60 cos +"
+5. "sqrt ( 16 ) + 3 ^ 2" → "16 sqrt 3 2 ^ +"
+
+
+PART 3: POSTFIX EVALUATOR (20 marks)
+------------------------------------
+Evaluate postfix expressions with full function support.
+
+```c
+double evaluate_postfix(struct token postfix[], int count);
+```
+
+Implement these functions (angles in degrees):
+- sin(x), cos(x), tan(x)
+- sqrt(x) - error if x < 0
+- log(x) - natural log, error if x <= 0
+- abs(x) - absolute value
+- pow(x, y) - same as x^y
+
+Error handling:
+- Division by zero
+- Square root of negative number
+- Log of non-positive number
+- Tan of 90, 270 degrees
+
+Test calculations:
+1. "3 + 4 * 2" = 11
+2. "( 3 + 4 ) * 2" = 14
+3. "2 ^ 3 ^ 2" = 512
+4. "sin(30)" = 0.5
+5. "sqrt(16) + 3^2" = 4 + 9 = 13
+6. "log(2.718281828)" ≈ 1
+
+
+PART 4: EXPRESSION VALIDATOR (15 marks)
+---------------------------------------
+Before evaluation, validate the expression for errors.
+
+```c
+struct validation_result {
+    int is_valid;
+    int error_position;
+    char error_message[100];
+};
+
+struct validation_result validate_expression(char* expression);
+```
+
+Detect these errors:
+1. Unbalanced parentheses: "(3 + 4" or "3 + 4)"
+2. Empty parentheses: "()"
+3. Consecutive operators: "3 + + 4" or "3 * / 4"
+4. Missing operand: "3 +" or "* 4"
+5. Invalid characters: "3 @ 4" or "3 $ 4"
+6. Unknown function: "foo(5)"
+7. Missing function argument: "sin()" or "sqrt()"
+
+For each error, provide:
+- Position where error was detected
+- Clear error message
+
+Example outputs:
+- "(3 + 4" → Error at position 6: "Unclosed parenthesis"
+- "3 + + 4" → Error at position 4: "Consecutive operators"
+- "sin()" → Error at position 4: "Function 'sin' requires an argument"
+
+
+PART 5: CODE SYNTAX ANALYZER (20 marks)
+---------------------------------------
+Analyze C-like code for bracket matching and nesting.
+
+```c
+struct bracket_error {
+    int line_number;
+    int column;
+    char expected;
+    char found;
+    char message[100];
+};
+
+int analyze_code(char* code, struct bracket_error errors[], int *error_count);
+```
+
+Check for:
+1. Matching brackets: { } [ ] ( )
+2. Proper nesting order
+3. String literals (ignore brackets inside "strings")
+4. Character literals (ignore brackets inside 'chars')
+5. Comments (ignore brackets inside /* */ and //)
+
+Test code samples:
+
+SAMPLE 1 (Valid):
+```c
+int main() {
+    if (x > 0) {
+        arr[i] = (a + b);
+    }
+    return 0;
+}
+```
+
+SAMPLE 2 (Error - mismatched):
+```c
+int main() {
+    if (x > 0) {
+        arr[i] = (a + b];   // Error: expected ')' but found ']'
+    }
+    return 0;
+}
+```
+
+SAMPLE 3 (Error - unclosed):
+```c
+int main() {
+    while (true) {
+        printf("Hello");
+    // Missing closing brace
+```
+
+SAMPLE 4 (Valid - brackets in strings/comments are ignored):
+```c
+int main() {
+    char *s = "This { has } brackets";
+    // This ( is a comment )
+    /* This [ is also ] ignored */
+    return 0;
+}
+```
+
+
+PART 6: COMPLETE CALCULATOR INTERFACE (10 marks)
+------------------------------------------------
+Create a user-friendly calculator interface.
+
+Features:
+1. Interactive mode: Enter expressions one at a time
+2. Variable storage: x = 5, then use x in expressions
+3. History: Store last 10 calculations
+4. Help command: Show available functions and operators
+
+```
+============ SCIENTIFIC CALCULATOR ============
+Enter expression (or 'help', 'history', 'quit'):
+
+> 3 + 4 * 2
+  Postfix: 3 4 2 * +
+  Result: 11
+
+> x = 5
+  Variable x set to 5
+
+> x ^ 2 + 3 * x
+  Postfix: x 2 ^ 3 x * +
+  Substituting: 5 2 ^ 3 5 * +
+  Result: 40
+
+> sin(30) + cos(60)
+  Postfix: 30 sin 60 cos +
+  Result: 1
+
+> history
+  1. 3 + 4 * 2 = 11
+  2. x = 5
+  3. x ^ 2 + 3 * x = 40
+  4. sin(30) + cos(60) = 1
+
+> help
+  Operators: + - * / ^ %
+  Functions: sin, cos, tan, sqrt, log, abs
+  Variables: Use 'name = value' to set variables
+  Commands: help, history, clear, quit
+
+> quit
+  Goodbye!
+===============================================
+```
+
+
+VIVA PREPARATION:
+-----------------
+You MUST be able to answer:
+
+1. Why use two stacks for infix-to-postfix conversion?
+2. How do you handle right associativity of ^?
+3. Walk through evaluating "2 + 3 * 4" step by step.
+4. How does your tokenizer distinguish "-5" from "3-5"?
+5. Explain your bracket matching algorithm for code analysis.
+6. What's the time complexity of your expression evaluator?
+7. How would you add support for ternary operator (? :)?
+
+
+HANDWRITTEN REQUIREMENTS:
+-------------------------
+1. Flowchart for infix-to-postfix algorithm
+2. Trace of converting "3 + 4 * 2 ^ 5" to postfix
+3. Stack states during evaluation of "3 4 2 * +"
+4. State machine diagram for tokenizer
+5. Bracket matching algorithm trace for Sample 2
+
+
+SUBMISSION:
+-----------
+[ ] Source code: RegNo_Assignment3_Calculator.c
+[ ] Handwritten analysis (scanned)
+[ ] Test output screenshots (at least 10 different expressions)
+[ ] README with instructions
+
+GRADING:
+--------
+Part 1 (Tokenizer): 15 marks
+Part 2 (Infix to Postfix): 20 marks
+Part 3 (Postfix Evaluator): 20 marks
+Part 4 (Validator): 15 marks
+Part 5 (Code Analyzer): 20 marks
+Part 6 (Calculator Interface): 10 marks
+Code Quality: 10 marks (bonus)
+Handwritten Work: 10 marks (bonus)
+Viva: 15 marks (bonus)
+
+TOTAL: 100 marks + 35 bonus marks
+
+================================================================================

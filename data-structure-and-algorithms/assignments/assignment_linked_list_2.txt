@@ -1,0 +1,300 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 2: LINKED LIST - MEMORY SIMULATOR
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+Late Submission Penalty: 10% per day (max 3 days)
+
+================================================================================
+                         ANTI-PLAGIARISM NOTICE
+You will demonstrate this program LIVE and answer questions about:
+- Every function you wrote
+- Why you made specific design decisions
+- How you would modify the code for different scenarios
+- Time and space complexity of your algorithms
+================================================================================
+
+PROJECT: DYNAMIC MEMORY ALLOCATION SIMULATOR
+============================================
+
+OVERVIEW:
+---------
+Simulate how an operating system manages heap memory using linked lists.
+This project demonstrates memory allocation, deallocation, and fragmentation.
+
+THE MEMORY MODEL:
+-----------------
+Simulate a 1024-byte heap memory using a linked list of memory blocks.
+
+```
+struct memory_block {
+    int start_address;        // Starting byte address (0-1023)
+    int size;                 // Size in bytes
+    int is_allocated;         // 0 = free, 1 = allocated
+    int process_id;           // -1 if free, otherwise process ID
+    char process_name[20];    // Name of process using this block
+    struct memory_block *next;
+};
+```
+
+Initial state: One free block from address 0 to 1023 (size = 1024)
+
+
+PART 1: BASIC MEMORY OPERATIONS (30 marks)
+------------------------------------------
+
+1. INITIALIZE MEMORY (5 marks):
+   ```c
+   void init_memory();
+   ```
+   Create initial state: one free block of 1024 bytes.
+
+2. DISPLAY MEMORY MAP (5 marks):
+   ```c
+   void display_memory_map();
+   ```
+   Output format:
+   ```
+   ============ MEMORY MAP ============
+   | 0-99    | ALLOCATED | P1 (Browser)    | 100 bytes |
+   | 100-199 | FREE      |                 | 100 bytes |
+   | 200-399 | ALLOCATED | P2 (Editor)     | 200 bytes |
+   | 400-1023| FREE      |                 | 624 bytes |
+   =====================================
+   Total: 1024 bytes | Used: 300 | Free: 724 | Fragmented: 2 blocks
+   ```
+
+3. ALLOCATE MEMORY - FIRST FIT (10 marks):
+   ```c
+   int allocate_first_fit(int process_id, char* name, int size);
+   ```
+   - Find FIRST free block that fits
+   - Split block if larger than needed
+   - Return start address, or -1 if no fit
+
+4. ALLOCATE MEMORY - BEST FIT (10 marks):
+   ```c
+   int allocate_best_fit(int process_id, char* name, int size);
+   ```
+   - Find SMALLEST free block that fits
+   - Minimize wasted space
+
+
+PART 2: DEALLOCATION AND COMPACTION (30 marks)
+----------------------------------------------
+
+5. FREE MEMORY (10 marks):
+   ```c
+   int free_memory(int process_id);
+   ```
+   - Find block(s) allocated to process_id
+   - Mark as free
+   - IMPORTANT: Merge adjacent free blocks (coalescing)
+
+6. COALESCE FREE BLOCKS (10 marks):
+   ```c
+   void coalesce();
+   ```
+   - Scan memory list
+   - Merge any adjacent free blocks into one
+   - Update addresses and sizes correctly
+
+7. COMPACT MEMORY (10 marks):
+   ```c
+   void compact_memory();
+   ```
+   - Move all allocated blocks to the beginning
+   - Create one large free block at the end
+   - Update all addresses
+   - This eliminates external fragmentation
+
+
+PART 3: ADVANCED ALLOCATION STRATEGIES (20 marks)
+-------------------------------------------------
+
+8. WORST FIT ALLOCATION (10 marks):
+   ```c
+   int allocate_worst_fit(int process_id, char* name, int size);
+   ```
+   - Find LARGEST free block
+   - Theory: leaves larger remaining fragments that may be more useful
+
+9. NEXT FIT ALLOCATION (10 marks):
+   ```c
+   int allocate_next_fit(int process_id, char* name, int size);
+   ```
+   - Like first fit, but start searching from where last allocation ended
+   - Maintain a "last_allocated" pointer
+   - Wrap around to beginning if needed
+
+
+PART 4: ANALYSIS AND STATISTICS (20 marks)
+------------------------------------------
+
+10. FRAGMENTATION ANALYSIS (10 marks):
+    ```c
+    struct frag_stats {
+        int total_free;           // Total free bytes
+        int largest_free_block;   // Largest contiguous free
+        int num_free_blocks;      // Number of free fragments
+        float fragmentation_ratio; // (total_free - largest_free) / total_free
+    };
+
+    struct frag_stats analyze_fragmentation();
+    ```
+
+    Fragmentation ratio:
+    - 0.0 = no fragmentation (one free block)
+    - 1.0 = maximum fragmentation (all free space is tiny unusable pieces)
+
+11. ALLOCATION STRATEGY COMPARISON (10 marks):
+    ```c
+    void compare_strategies(int requests[], int num_requests);
+    ```
+
+    Given a sequence of allocation requests, simulate each strategy
+    and report:
+    - Number of successful allocations
+    - Average search time (blocks examined)
+    - Final fragmentation ratio
+    - Total wasted space (internal fragmentation from splits)
+
+
+SIMULATION SCENARIOS:
+---------------------
+Test your system with these scenarios:
+
+SCENARIO 1 - Basic Operations:
+```
+1. Initialize memory (1024 bytes)
+2. Allocate: P1 "Browser" 200 bytes (First Fit)
+3. Allocate: P2 "Editor" 300 bytes (First Fit)
+4. Allocate: P3 "Terminal" 100 bytes (First Fit)
+5. Display memory map
+6. Free P2
+7. Display memory map (should show free block in middle)
+8. Allocate: P4 "Player" 150 bytes (First Fit)
+9. Display memory map
+```
+
+SCENARIO 2 - Fragmentation Demo:
+```
+1. Initialize memory
+2. Allocate: P1 100 bytes, P2 100 bytes, P3 100 bytes, P4 100 bytes, P5 100 bytes
+3. Free P1, P3, P5 (creates fragmented free space)
+4. Try to allocate 250 bytes (should FAIL - fragmentation)
+5. Display memory map and fragmentation stats
+6. Compact memory
+7. Try to allocate 250 bytes again (should SUCCEED)
+8. Display final memory map
+```
+
+SCENARIO 3 - Strategy Comparison:
+```
+Request sequence: 100, 50, 200, 75, 150, 25, 100, 50
+
+Run with First Fit, Best Fit, Worst Fit
+For each, record:
+- Final memory layout
+- Which requests failed (if any)
+- Fragmentation ratio
+```
+
+
+HANDWRITTEN ANALYSIS REQUIRED:
+------------------------------
+Include these handwritten pages with your submission:
+
+1. ALGORITHM FLOWCHARTS:
+   - First Fit allocation
+   - Coalesce operation
+   - Compact memory operation
+
+2. SCENARIO TRACES:
+   - Draw the memory list after each step in Scenario 1
+   - Show pointer changes during coalescing
+
+3. COMPLEXITY ANALYSIS:
+   | Operation      | Time Complexity | Space Complexity |
+   |----------------|-----------------|------------------|
+   | First Fit      |                 |                  |
+   | Best Fit       |                 |                  |
+   | Worst Fit      |                 |                  |
+   | Next Fit       |                 |                  |
+   | Free           |                 |                  |
+   | Coalesce       |                 |                  |
+   | Compact        |                 |                  |
+
+4. STRATEGY COMPARISON ANALYSIS:
+   When would you use each allocation strategy?
+   Give real-world scenarios for each.
+
+
+VIVA QUESTIONS:
+---------------
+Be prepared to answer:
+1. What happens if you try to free memory that's already free?
+2. How does your coalesce handle three adjacent free blocks?
+3. Why is compaction expensive? When would you use it?
+4. Explain the difference between internal and external fragmentation.
+5. How would you implement "realloc" (resize an existing allocation)?
+6. What data structure changes would allow O(1) best-fit allocation?
+
+
+BONUS CHALLENGES (20 marks):
+----------------------------
+B1. MEMORY VISUALIZATION (5 marks):
+    Print a visual representation:
+    ```
+    [AAAA][    ][BBBBBB][  ][CCCC][          ]
+    ^P1   ^Free ^P2     ^F  ^P3   ^Free
+    ```
+
+B2. ALLOCATION HISTORY (5 marks):
+    Keep a log of all allocations/deallocations with timestamps.
+    ```c
+    void print_history();
+    ```
+
+B3. MEMORY LEAK DETECTION (5 marks):
+    Track if any process terminates without freeing memory.
+    ```c
+    void terminate_process(int process_id);  // Should auto-free
+    void detect_leaks();  // Report any allocated blocks without active process
+    ```
+
+B4. BUDDY SYSTEM (5 marks):
+    Implement buddy allocation where blocks are always power-of-2 sizes.
+    When freeing, merge "buddy" blocks (blocks that were split from same parent).
+
+
+SUBMISSION CHECKLIST:
+---------------------
+[ ] Source code file: RegNo_Assignment2_MemSim.c
+[ ] Handwritten analysis (scanned PDF or clear photos)
+[ ] Test output screenshots for all 3 scenarios
+[ ] README with compilation and usage instructions
+[ ] Strategy comparison results table
+
+GRADING:
+--------
+Part 1 (Basic Operations): 30 marks
+Part 2 (Deallocation/Compaction): 30 marks
+Part 3 (Advanced Strategies): 20 marks
+Part 4 (Analysis): 20 marks
+Handwritten Work: 15 marks (bonus)
+Bonus Challenges: 20 marks (extra credit)
+Viva: 15 marks (bonus)
+
+TOTAL: 100 marks + 50 bonus marks
+
+================================================================================
+WARNING: This assignment WILL be checked for plagiarism using code similarity
+tools. Students with similar code will BOTH receive zero marks and face
+disciplinary action. When in doubt, write your own code.
+================================================================================

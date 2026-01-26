@@ -1,0 +1,353 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 4: STACK - MAZE SOLVER AND BACKTRACKING
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+                         ACADEMIC HONESTY DECLARATION
+This assignment must be completed individually. You will demonstrate your
+solution LIVE and explain your algorithms. Identical or suspiciously similar
+code will result in zero marks for ALL parties involved.
+================================================================================
+
+PROJECT: MAZE SOLVER WITH VISUALIZATION
+=======================================
+
+OVERVIEW:
+---------
+Use stack-based backtracking to solve mazes and visualize the solution process.
+This project demonstrates how stacks enable systematic exploration of all
+possible paths.
+
+PART 1: MAZE REPRESENTATION (15 marks)
+--------------------------------------
+Design the maze and position tracking structures.
+
+```c
+#define MAX_SIZE 20
+
+struct position {
+    int row;
+    int col;
+    int direction;  // 0=North, 1=East, 2=South, 3=West, -1=unexplored
+};
+
+struct maze {
+    int grid[MAX_SIZE][MAX_SIZE];  // 0=path, 1=wall, 2=start, 3=end, 4=visited
+    int rows;
+    int cols;
+    struct position start;
+    struct position end;
+};
+
+// Stack for backtracking
+struct position_stack {
+    struct position items[MAX_SIZE * MAX_SIZE];
+    int top;
+};
+```
+
+Implement:
+1. `void init_maze(struct maze *m, int rows, int cols)` - Initialize empty maze
+2. `void load_maze_from_file(struct maze *m, char* filename)` - Load from text file
+3. `void display_maze(struct maze *m)` - Print maze with symbols
+4. `int is_valid_move(struct maze *m, int row, int col)` - Check if position is valid
+
+Maze file format:
+```
+8 8
+1 1 1 1 1 1 1 1
+1 2 0 0 0 0 0 1
+1 0 1 1 1 1 0 1
+1 0 0 0 0 1 0 1
+1 1 1 1 0 1 0 1
+1 0 0 0 0 0 0 1
+1 0 1 1 1 1 3 1
+1 1 1 1 1 1 1 1
+```
+(First line: rows cols, then grid where 2=start, 3=end)
+
+Display format:
+```
+########
+#S.....#
+#.####.#
+#....#.#
+####.#.#
+#......#
+#.####E#
+########
+```
+(# = wall, . = path, S = start, E = end, * = visited, @ = current)
+
+
+PART 2: STACK-BASED DFS MAZE SOLVER (25 marks)
+----------------------------------------------
+Implement depth-first search using explicit stack (no recursion!).
+
+```c
+int solve_maze_dfs(struct maze *m, struct position path[], int *path_length);
+```
+
+Algorithm:
+```
+1. Push start position onto stack
+2. While stack is not empty:
+   a. Peek at top position
+   b. If this is the end, SUCCESS - extract path
+   c. Try next untried direction (N, E, S, W):
+      - If valid move found, push new position, mark as visited
+      - Continue from step 2
+   d. If all directions tried, pop (backtrack)
+3. If stack empty, no solution exists
+```
+
+Direction priority: Try North, then East, then South, then West
+
+Output requirements:
+1. Return 1 if solved, 0 if no solution
+2. Fill path[] with the solution path
+3. Track statistics:
+   - Total positions explored
+   - Number of backtracks
+   - Path length
+
+
+PART 3: STEP-BY-STEP VISUALIZATION (20 marks)
+---------------------------------------------
+Show the solving process step by step.
+
+```c
+void solve_maze_visual(struct maze *m, int delay_ms);
+```
+
+After each step, display:
+1. Current maze state (with visited cells marked)
+2. Current stack contents
+3. Current position and direction being tried
+4. Statistics so far
+
+Example output for one step:
+```
+Step 15:
+########
+#S**...#
+#.*####.#
+#.*...#.#
+####.#.#
+#@.....#
+#.####E#
+########
+
+Stack (bottom to top):
+  (1,1) - all directions tried
+  (2,1) - tried N,E
+  (3,1) - tried N,E,S
+  (4,1) - tried N
+  (5,1) - trying E
+
+Current: (5,1) trying EAST
+Explored: 15 | Backtracks: 2 | Stack size: 5
+
+Press ENTER for next step...
+```
+
+
+PART 4: MULTIPLE SOLUTION FINDER (15 marks)
+-------------------------------------------
+Find ALL possible paths through the maze.
+
+```c
+int find_all_paths(struct maze *m, struct position all_paths[][MAX_SIZE*MAX_SIZE],
+                   int path_lengths[], int *num_paths, int max_paths);
+```
+
+This requires:
+1. When you find a solution, record it but DON'T stop
+2. Backtrack and continue searching
+3. Be careful not to revisit the same path
+4. Limit maximum paths to prevent infinite loops
+
+For each path found, record:
+- The complete path
+- Path length
+- Number of turns
+
+
+PART 5: PATH ANALYSIS (10 marks)
+--------------------------------
+Analyze the paths found.
+
+```c
+struct path_stats {
+    int length;
+    int turns;          // number of direction changes
+    int left_turns;
+    int right_turns;
+};
+
+void analyze_path(struct position path[], int length, struct path_stats *stats);
+void find_optimal_path(struct maze *m);  // Shortest path among all solutions
+```
+
+Report:
+1. Shortest path
+2. Path with fewest turns
+3. Comparison of all paths found
+
+
+PART 6: MAZE GENERATOR (15 marks)
+---------------------------------
+Generate random solvable mazes.
+
+```c
+void generate_maze(struct maze *m, int rows, int cols, float wall_density);
+```
+
+Requirements:
+1. Random placement of walls based on density (0.0 to 1.0)
+2. Guaranteed to have at least one solution
+3. Start at top-left area, end at bottom-right area
+
+Algorithm (Recursive Backtracking for generation):
+1. Start with all walls
+2. Pick a random cell, mark as path
+3. While unvisited cells remain:
+   a. From current cell, pick random unvisited neighbor
+   b. Remove wall between them
+   c. Move to neighbor, mark as path
+   d. If no unvisited neighbors, backtrack using stack
+4. Place start and end
+
+
+TEST MAZES:
+-----------
+Test your solver with these mazes:
+
+MAZE 1 - Simple (5x5):
+```
+1 1 1 1 1
+2 0 0 0 1
+1 1 1 0 1
+1 0 0 0 1
+1 0 1 1 1
+1 0 0 3 1
+1 1 1 1 1
+```
+
+MAZE 2 - Multiple Solutions (7x7):
+```
+1 1 1 1 1 1 1
+2 0 0 0 0 0 1
+1 0 1 1 1 0 1
+1 0 1 0 0 0 1
+1 0 1 0 1 1 1
+1 0 0 0 0 0 3
+1 1 1 1 1 1 1
+```
+
+MAZE 3 - No Solution (5x5):
+```
+1 1 1 1 1
+2 0 0 0 1
+1 1 1 1 1
+1 0 0 0 1
+1 0 0 3 1
+1 1 1 1 1
+```
+
+MAZE 4 - Complex (10x10):
+Create your own challenging maze with multiple dead ends.
+
+
+HANDWRITTEN ANALYSIS:
+---------------------
+Required handwritten work:
+
+1. DFS ALGORITHM TRACE:
+   - Draw Maze 1
+   - Show stack contents after each move
+   - Mark visited cells at each step
+   - Show backtracking clearly
+
+2. COMPLEXITY ANALYSIS:
+   | Operation        | Time Complexity | Space Complexity |
+   |------------------|-----------------|------------------|
+   | DFS Solve        |                 |                  |
+   | Find All Paths   |                 |                  |
+   | Generate Maze    |                 |                  |
+
+3. COMPARISON:
+   Compare stack-based DFS with recursive DFS:
+   - Memory usage
+   - Ease of implementation
+   - Ability to pause/resume
+   - Getting the path
+
+
+VIVA QUESTIONS:
+---------------
+Be prepared to answer:
+1. Why use a stack instead of recursion for this problem?
+2. How do you prevent infinite loops when finding all paths?
+3. What happens to your algorithm if the maze has cycles?
+4. How would you modify your solver to find the SHORTEST path?
+5. Explain the relationship between DFS and backtracking.
+6. How does direction priority affect the solution found?
+7. What's the worst-case space complexity of your solver?
+
+
+BONUS CHALLENGES (20 marks):
+----------------------------
+B1. ANIMATED VISUALIZATION (5 marks):
+    Use ANSI escape codes to create animated solving:
+    - Clear screen between steps
+    - Color code: walls, path, visited, current, solution
+
+B2. BFS COMPARISON (5 marks):
+    Implement BFS (using queue) and compare:
+    - Which finds shorter path?
+    - Which is faster?
+    - Memory usage comparison
+
+B3. A* PATHFINDING (5 marks):
+    Implement A* algorithm with Manhattan distance heuristic.
+    Compare solution quality with DFS.
+
+B4. 3D MAZE (5 marks):
+    Extend to 3D maze with up/down movements.
+    Visualize as multiple 2D layers.
+
+
+SUBMISSION REQUIREMENTS:
+------------------------
+[ ] Source code: RegNo_Assignment4_Maze.c
+[ ] At least 3 maze files (.txt)
+[ ] Handwritten analysis (scanned PDF)
+[ ] Screenshots of:
+    - Visual solving process (at least 5 steps)
+    - All paths found for Maze 2
+    - Generated maze example
+[ ] README with instructions
+
+GRADING:
+--------
+Part 1 (Maze Representation): 15 marks
+Part 2 (DFS Solver): 25 marks
+Part 3 (Visualization): 20 marks
+Part 4 (Multiple Solutions): 15 marks
+Part 5 (Path Analysis): 10 marks
+Part 6 (Maze Generator): 15 marks
+Handwritten Work: 10 marks (bonus)
+Bonus Challenges: 20 marks (extra credit)
+Viva: 15 marks (bonus)
+
+TOTAL: 100 marks + 45 bonus marks
+
+================================================================================

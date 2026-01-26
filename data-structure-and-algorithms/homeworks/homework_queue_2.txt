@@ -1,0 +1,235 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    HOMEWORK 6: ADVANCED QUEUE APPLICATIONS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+INSTRUCTIONS:
+- Implement solutions in C
+- This homework covers advanced queue types and applications
+- Include detailed algorithm analysis
+- Original work only - plagiarism detection will be used
+
+================================================================================
+
+QUESTION 1: Priority Queue - Task Scheduler                       [25 marks]
+--------------------------------------------------------------------------------
+Implement a priority queue for an operating system task scheduler.
+
+Each task contains:
+- Task ID (integer)
+- Task name (string, 30 characters)
+- Priority (1-10, where 10 is highest priority)
+- Execution time (integer, in milliseconds)
+- Arrival time (integer, represents time unit when task arrived)
+
+Implement using array with priority ordering:
+a) void add_task(name, priority, exec_time, arrival_time)
+b) void execute_highest_priority() - Remove and "execute" highest priority task
+c) void display_task_queue() - Show all tasks sorted by priority
+d) void increase_priority(task_id, amount) - Boost a task's priority
+e) int get_queue_length()
+f) void age_tasks() - Increase priority of waiting tasks to prevent starvation
+
+SCHEDULING RULES:
+- Higher priority tasks execute first
+- If priorities are equal, earlier arrival time wins (FIFO within priority)
+- Tasks waiting more than 5 time units get priority boost (aging)
+
+TEST SCENARIO:
+Time 0: Add "Virus Scan" (priority 3, exec=100)
+Time 1: Add "User Input" (priority 8, exec=10)
+Time 2: Add "Background Sync" (priority 2, exec=50)
+Time 3: Add "System Update" (priority 5, exec=200)
+Time 4: Execute highest (should be "User Input")
+Time 5: Display queue
+Time 6: Execute highest
+Time 7: Apply aging to remaining tasks
+Time 8: Display queue (priorities should have increased)
+
+HANDWRITTEN WORK:
+- Draw the priority queue array after Time 3
+- Show how elements are arranged by priority
+- Trace the aging mechanism at Time 7
+
+
+QUESTION 2: Deque (Double-Ended Queue) - Sliding Window Maximum   [25 marks]
+--------------------------------------------------------------------------------
+Implement a deque and use it to solve the sliding window maximum problem.
+
+PART A: Implement Deque (Double-Ended Queue)
+```c
+void insert_front(int value);
+void insert_rear(int value);
+int delete_front();
+int delete_rear();
+int peek_front();
+int peek_rear();
+int is_empty();
+void display_deque();
+```
+
+PART B: Sliding Window Maximum
+Given an array and window size k, find the maximum element in each window
+as it slides from left to right.
+
+Example:
+Array: [1, 3, -1, -3, 5, 3, 6, 7]
+Window size k = 3
+
+Windows and their maximums:
+[1, 3, -1] -> 3
+[3, -1, -3] -> 3
+[-1, -3, 5] -> 5
+[-3, 5, 3] -> 5
+[5, 3, 6] -> 6
+[3, 6, 7] -> 7
+
+Output: [3, 3, 5, 5, 6, 7]
+
+Algorithm using deque:
+- Deque stores indices of useful elements
+- Front of deque = index of current maximum
+- Remove indices outside current window
+- Remove indices of smaller elements from rear
+
+Implement:
+```c
+void sliding_window_max(int arr[], int n, int k, int result[]);
+```
+
+TEST CASES:
+1. Array: [8, 5, 10, 7, 9, 4, 15, 12, 90, 13], k=4
+2. Array: [1, 2, 3, 4, 5], k=2
+3. Array: [9, 8, 7, 6, 5, 4, 3, 2, 1], k=3
+
+HANDWRITTEN WORK:
+- Trace the deque state for Test Case 1
+- Show deque contents after processing each element
+
+
+QUESTION 3: Queue Using Two Stacks                                [20 marks]
+--------------------------------------------------------------------------------
+Implement a queue using only two stacks. This is a classic interview question.
+
+You have:
+- Stack1 (for enqueue operations)
+- Stack2 (for dequeue operations)
+
+Implement:
+```c
+void queue_enqueue(int value);
+int queue_dequeue();
+int queue_front();
+int queue_is_empty();
+```
+
+TWO APPROACHES - Implement BOTH:
+
+Approach 1: Costly Enqueue
+- Enqueue: O(n) - move all elements
+- Dequeue: O(1)
+
+Approach 2: Costly Dequeue
+- Enqueue: O(1)
+- Dequeue: O(n) amortized
+
+For each approach, show the stack states after these operations:
+enqueue(1), enqueue(2), enqueue(3), dequeue(), enqueue(4), dequeue(), dequeue()
+
+HANDWRITTEN WORK:
+- Draw both stacks for each approach after each operation
+- Calculate the total number of push/pop operations for the sequence
+- Which approach is better for frequent enqueue vs frequent dequeue?
+
+
+QUESTION 4: First Non-Repeating Character in Stream               [15 marks]
+--------------------------------------------------------------------------------
+Process a stream of characters and after each character, find the first
+non-repeating character so far. Print '#' if all characters repeat.
+
+Example:
+Stream: "aabcbcd"
+Output after each character:
+a -> 'a' (a appears once)
+a -> '#' (a appears twice, no non-repeating)
+b -> 'b' (b appears once, comes after a)
+c -> 'b' (b still first non-repeating)
+b -> 'c' (b now repeats, c is first non-repeating)
+c -> '#' (both b and c repeat)
+d -> 'd' (d is first non-repeating)
+
+Use:
+- Queue to maintain order of characters
+- Array of size 26 to count frequency
+
+Implement:
+```c
+void first_non_repeating_stream(char* stream);
+```
+
+TEST STREAMS:
+1. "aabcbcd" -> Output: a # b b c # d
+2. "aabc" -> Output: a # b b
+3. "abcd" -> Output: a a a a
+4. "aabbccdd" -> Output: a # b # c # d #
+
+HANDWRITTEN WORK:
+- Trace the queue and frequency array for test stream 1
+- Show state after each character is processed
+
+
+QUESTION 5: Interleave First and Second Half                      [15 marks]
+--------------------------------------------------------------------------------
+Given a queue of even length, interleave the first half with the second half.
+
+Example:
+Input:  [1, 2, 3, 4, 5, 6, 7, 8]
+Output: [1, 5, 2, 6, 3, 7, 4, 8]
+
+The pattern: [a1, a2, a3, a4, b1, b2, b3, b4] -> [a1, b1, a2, b2, a3, b3, a4, b4]
+
+Implement using a queue and a stack:
+```c
+void interleave_queue();
+```
+
+Algorithm hint:
+1. Push first half to stack
+2. Enqueue stack elements to queue (now they're at rear)
+3. Dequeue and enqueue half elements (original second half moves to rear)
+4. Push first half to stack again
+5. Interleave by alternating pop and dequeue
+
+TEST CASES:
+1. [10, 20, 30, 40, 50, 60] -> [10, 40, 20, 50, 30, 60]
+2. [1, 2, 3, 4] -> [1, 3, 2, 4]
+3. [11, 12, 13, 14, 15, 16, 17, 18] -> [11, 15, 12, 16, 13, 17, 14, 18]
+
+HANDWRITTEN WORK:
+- Trace the complete algorithm for test case 1
+- Draw queue and stack at each step
+- Show exactly how elements move between structures
+
+================================================================================
+SUBMISSION:
+[ ] Source code files with detailed comments
+[ ] Handwritten algorithm traces
+[ ] Test output screenshots
+[ ] Naming: RegNo_HW6_AdvQueue.c
+
+GRADING BREAKDOWN:
+- Q1 (Priority Queue): 25 marks
+- Q2 (Deque/Sliding Window): 25 marks
+- Q3 (Queue with Stacks): 20 marks
+- Q4 (Non-Repeating Char): 15 marks
+- Q5 (Interleave): 15 marks
+
+TOTAL: 100 marks
+================================================================================

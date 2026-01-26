@@ -1,0 +1,127 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    HOMEWORK 1: LINKED LIST BASICS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+INSTRUCTIONS:
+- Write your solutions in C programming language
+- Submit both source code (.c files) and handwritten analysis
+- Include comments explaining your logic
+- Test your code with the provided test cases
+- NO COPY-PASTE from internet or AI tools - write your own code
+
+================================================================================
+
+QUESTION 1: Student Registration System                           [20 marks]
+--------------------------------------------------------------------------------
+Design a singly linked list to store student records. Each node should contain:
+- Student registration number (string, 10 characters)
+- Student name (string, 50 characters)
+- Year of study (integer: 1, 2, 3, or 4)
+- CGPA (float: 0.0 to 4.0)
+
+Implement the following operations:
+a) Add a new student at the end of the list
+b) Display all students in a specific year of study
+c) Find and display the student with the highest CGPA
+d) Count total number of students in the list
+
+TEST YOUR CODE WITH:
+- Add 5 students with different years and CGPAs
+- Display all Year 2 students
+- Show the student with highest CGPA
+
+HANDWRITTEN ANALYSIS (attach separately):
+- Draw the linked list structure after adding 3 students
+- Trace through your "find highest CGPA" algorithm step by step
+
+
+QUESTION 2: Polynomial Representation                             [15 marks]
+--------------------------------------------------------------------------------
+Use a linked list to represent a polynomial. Each node contains:
+- Coefficient (integer)
+- Exponent (integer)
+- Pointer to next term
+
+Example: 3x^4 + 2x^2 + 5 is stored as:
+[3,4] -> [2,2] -> [5,0] -> NULL
+
+Implement:
+a) Function to create a polynomial by reading terms from user
+b) Function to display the polynomial in readable form (e.g., "3x^4 + 2x^2 + 5")
+c) Function to evaluate the polynomial for a given value of x
+
+TEST YOUR CODE WITH:
+- Polynomial: 2x^3 + 4x^2 - 3x + 7
+- Evaluate at x = 2 (expected result: 16 + 16 - 6 + 7 = 33)
+
+HANDWRITTEN ANALYSIS:
+- Draw the linked list for polynomial: 5x^4 - 2x^2 + 1
+
+
+QUESTION 3: Memory Analysis                                        [10 marks]
+--------------------------------------------------------------------------------
+Answer the following questions (handwritten):
+
+a) If each node in your student system uses:
+   - Registration number: 10 bytes
+   - Name: 50 bytes
+   - Year: 4 bytes
+   - CGPA: 4 bytes
+   - Next pointer: 8 bytes
+
+   Calculate the total memory used for 100 students.
+   Compare this to storing the same data in an array of structures.
+
+b) What happens if you try to access the "next" pointer of the last node
+   without checking if it's NULL? Explain with an example.
+
+c) In your student system, what is the time complexity (Big O) of:
+   - Adding a student at the end?
+   - Finding a student by registration number?
+   - Counting all students?
+
+
+QUESTION 4: Bug Fixing                                             [5 marks]
+--------------------------------------------------------------------------------
+The following code has bugs. Identify and fix them (rewrite correctly):
+
+```c
+void delete_first() {
+    head = head->next;
+}
+
+void insert_at_position(int data, int pos) {
+    struct node *nw = malloc(sizeof(struct node));
+    nw->data = data;
+    struct node *temp = head;
+    for(int i = 0; i < pos; i++) {
+        temp = temp->next;
+    }
+    nw->next = temp->next;
+    temp->next = nw;
+}
+```
+
+List at least 3 bugs and provide the corrected code.
+
+================================================================================
+SUBMISSION CHECKLIST:
+[ ] Source code file(s) with your name and reg. number in comments
+[ ] Handwritten analysis pages (scanned or photographed clearly)
+[ ] Test output screenshots
+[ ] All files named as: RegNo_HW1_LinkedList (e.g., SUZA2024001_HW1_LinkedList.c)
+
+GRADING CRITERIA:
+- Code correctness: 60%
+- Code style and comments: 15%
+- Handwritten analysis: 20%
+- Test cases coverage: 5%
+================================================================================

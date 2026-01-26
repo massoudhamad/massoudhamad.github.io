@@ -1,0 +1,234 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 1: LINKED LIST PROJECT
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+Late Submission Penalty: 10% per day (max 3 days)
+
+================================================================================
+                         IMPORTANT NOTICE
+This assignment requires original implementation. You must:
+- Write all code yourself without AI assistance
+- Be prepared to explain ANY line of code during viva
+- Demonstrate the program live during submission
+- Answer questions about algorithm choices and complexity
+================================================================================
+
+PROJECT: UNIVERSITY COURSE REGISTRATION SYSTEM
+==============================================
+
+OVERVIEW:
+---------
+Build a complete course registration system for SUZA using linked lists.
+The system manages students, courses, and enrollments with real constraints.
+
+PART 1: DATA STRUCTURES (20 marks)
+----------------------------------
+Design and implement the following linked list structures:
+
+1. STUDENT LIST (Singly Linked List):
+   ```
+   struct student {
+       char reg_number[15];      // e.g., "SUZA/BSC/2024/001"
+       char name[50];
+       char program[30];         // e.g., "BSc Computer Science"
+       int year_of_study;        // 1, 2, 3, or 4
+       float current_cgpa;
+       struct student *next;
+   };
+   ```
+
+2. COURSE LIST (Doubly Linked List):
+   ```
+   struct course {
+       char course_code[10];     // e.g., "CSC201"
+       char course_name[50];
+       int credits;
+       int max_capacity;
+       int current_enrollment;
+       char prerequisite[10];    // Course code or "NONE"
+       struct course *prev;
+       struct course *next;
+   };
+   ```
+
+3. ENROLLMENT LIST (Circular Linked List - per course):
+   ```
+   struct enrollment {
+       char student_reg[15];
+       char course_code[10];
+       int semester;             // 1 or 2
+       int academic_year;        // e.g., 2024
+       char grade[3];            // "A", "B+", "C", etc. or "IP" (in progress)
+       struct enrollment *next;
+   };
+   ```
+
+PART 2: CORE FUNCTIONALITY (40 marks)
+-------------------------------------
+Implement these features with FULL error handling:
+
+A. STUDENT MANAGEMENT:
+   1. add_student() - Add new student (validate reg number format)
+   2. remove_student() - Remove student (must unenroll from all courses first)
+   3. find_student(reg_number) - Search and return student info
+   4. update_student_cgpa(reg_number, new_cgpa)
+   5. display_students_by_year(year) - List all students in a year
+   6. display_students_by_cgpa_range(min, max) - Filter by CGPA
+
+B. COURSE MANAGEMENT:
+   7. add_course() - Add new course (check unique course code)
+   8. remove_course() - Only if no students enrolled
+   9. update_course_capacity(course_code, new_capacity)
+   10. find_course(course_code) - Return course details
+   11. display_all_courses() - Show all courses with enrollment status
+   12. display_available_courses() - Only courses with space
+
+C. ENROLLMENT OPERATIONS:
+   13. enroll_student(reg_number, course_code, semester, year)
+       CONSTRAINTS TO CHECK:
+       - Student exists
+       - Course exists
+       - Course has space (current < max)
+       - Student not already enrolled in this course
+       - Prerequisite satisfied (if any)
+       - Maximum 6 courses per semester per student
+
+   14. drop_course(reg_number, course_code)
+       - Decrease course enrollment count
+       - Keep record but mark as "DROPPED"
+
+   15. assign_grade(reg_number, course_code, grade)
+       - Validate grade format
+       - Update student CGPA automatically
+
+   16. display_student_courses(reg_number) - All courses for a student
+   17. display_course_roster(course_code) - All students in a course
+
+
+PART 3: ADVANCED QUERIES (25 marks)
+-----------------------------------
+Implement these complex operations:
+
+Q1. PREREQUISITE CHAIN (8 marks):
+    Given a course code, display the complete chain of prerequisites.
+    Example: CSC401 requires CSC301, which requires CSC201, which requires CSC101
+    Output: "CSC401 <- CSC301 <- CSC201 <- CSC101"
+
+Q2. ENROLLMENT STATISTICS (8 marks):
+    ```c
+    struct course_stats {
+        char course_code[10];
+        int enrolled;
+        int capacity;
+        float fill_rate;        // percentage
+        float avg_grade;        // of completed students
+    };
+
+    void generate_enrollment_report();
+    ```
+    Display a sorted report (by fill rate, descending).
+
+Q3. STUDENT ACADEMIC STANDING (9 marks):
+    Implement "academic standing" classification:
+    - "Dean's List": CGPA >= 3.5
+    - "Good Standing": CGPA >= 2.5
+    - "Probation": CGPA >= 2.0
+    - "Academic Warning": CGPA < 2.0
+
+    Function: void display_students_by_standing(char* standing);
+
+
+PART 4: SYSTEM FEATURES (15 marks)
+----------------------------------
+
+F1. DATA PERSISTENCE (5 marks):
+    Save all data to text files when program exits.
+    Load all data from files when program starts.
+    Files: students.txt, courses.txt, enrollments.txt
+
+F2. MENU SYSTEM (5 marks):
+    Create a comprehensive menu with sub-menus:
+    ```
+    ========== SUZA REGISTRATION SYSTEM ==========
+    1. Student Management ->
+       1.1 Add Student
+       1.2 Remove Student
+       1.3 Find Student
+       ...
+    2. Course Management ->
+       ...
+    3. Enrollment Operations ->
+       ...
+    4. Reports & Queries ->
+       ...
+    5. Save & Exit
+    ==============================================
+    ```
+
+F3. INPUT VALIDATION (5 marks):
+    - Registration number format: SUZA/XXX/YYYY/NNN
+    - Course code format: 3 letters + 3 digits (e.g., CSC201)
+    - CGPA: 0.0 to 4.0
+    - Year: 1 to 4
+    - Grade: A, A-, B+, B, B-, C+, C, C-, D, F, IP
+
+
+VIVA QUESTIONS (To be answered during demonstration):
+-----------------------------------------------------
+Be prepared to answer:
+1. Why did you choose singly/doubly/circular for each structure?
+2. Explain your enrollment constraint checking algorithm.
+3. What is the time complexity of your prerequisite chain function?
+4. How does your system handle concurrent enrollment attempts?
+5. Walk through what happens when a student is removed.
+6. How would you modify the system to support course sections?
+
+SAMPLE TEST DATA:
+-----------------
+Students:
+- SUZA/BSC/2024/001, Ali Hassan, BSc CS, Year 2, CGPA 3.2
+- SUZA/BSC/2024/002, Fatma Omar, BSc CS, Year 2, CGPA 3.8
+- SUZA/BSC/2023/001, John Makame, BSc CS, Year 3, CGPA 2.5
+
+Courses:
+- CSC101, Introduction to Computing, 3 credits, capacity 50, prereq: NONE
+- CSC201, Data Structures, 4 credits, capacity 40, prereq: CSC101
+- CSC301, Algorithms, 3 credits, capacity 35, prereq: CSC201
+
+Enrollments:
+- SUZA/BSC/2024/001 enrolled in CSC201, Semester 1, 2024, Grade: IP
+- SUZA/BSC/2024/002 enrolled in CSC201, Semester 1, 2024, Grade: IP
+
+
+SUBMISSION REQUIREMENTS:
+------------------------
+[ ] Single .c file with all code (well-organized with sections)
+[ ] Header comments with your name, reg number, date
+[ ] Comments explaining complex logic
+[ ] Sample data files (students.txt, courses.txt, enrollments.txt)
+[ ] README.txt explaining how to compile and run
+[ ] Screenshot of program running each major feature
+
+GRADING RUBRIC:
+---------------
+- Part 1 (Data Structures): 20 marks
+- Part 2 (Core Functionality): 40 marks
+- Part 3 (Advanced Queries): 25 marks
+- Part 4 (System Features): 15 marks
+- Code Quality (comments, organization): 10 marks (bonus)
+- Viva Performance: 10 marks (bonus)
+
+TOTAL: 100 marks + 20 bonus marks
+
+================================================================================
+ACADEMIC INTEGRITY:
+This is individual work. Discussion of concepts is allowed, but code sharing
+is strictly prohibited. You will be asked to explain your code during viva.
+Inability to explain your own code = automatic zero.
+================================================================================

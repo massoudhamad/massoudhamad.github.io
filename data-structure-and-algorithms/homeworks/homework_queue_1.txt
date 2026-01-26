@@ -1,0 +1,204 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    HOMEWORK 5: QUEUE FUNDAMENTALS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+INSTRUCTIONS:
+- Implement all solutions in C programming language
+- Use array-based queue unless specified otherwise
+- Submit both code and handwritten analysis
+- Code must be your original work - no copying from AI or internet
+
+================================================================================
+
+QUESTION 1: Hospital Emergency Room System                        [25 marks]
+--------------------------------------------------------------------------------
+Design a queue system for a hospital emergency room. Patients are served
+in the order they arrive (FIFO), but with special handling.
+
+Each patient record contains:
+- Patient ID (auto-generated, starting from 1001)
+- Patient name (string, 50 characters)
+- Age (integer)
+- Condition description (string, 100 characters)
+- Arrival time (store as integer: HHMM format, e.g., 1430 for 2:30 PM)
+
+Implement:
+a) void add_patient(name, age, condition, arrival_time)
+b) void serve_next_patient() - Remove from front and display who was served
+c) void display_waiting_list() - Show all waiting patients
+d) int waiting_count() - Return number of patients waiting
+e) float average_wait_time(current_time) - Calculate average wait time
+
+TEST SCENARIO:
+Add these patients (in order):
+1. "Ali Hassan", 45, "Chest pain", 0900
+2. "Fatma Omar", 23, "Broken arm", 0915
+3. "John Smith", 67, "Difficulty breathing", 0920
+4. "Mary Jane", 34, "High fever", 0935
+
+At time 0945:
+- Display waiting list
+- Calculate average wait time
+- Serve next patient
+- Display updated waiting list
+
+HANDWRITTEN WORK:
+- Draw the queue after all 4 patients are added
+- Show the queue state after serving 2 patients
+- Calculate average wait time manually at 0945
+
+
+QUESTION 2: Circular Queue for Printer Spooler                    [25 marks]
+--------------------------------------------------------------------------------
+Implement a circular queue for a print job spooler with fixed buffer size.
+
+Each print job contains:
+- Job ID (auto-generated)
+- Document name (string, 50 characters)
+- Number of pages (integer)
+- Priority (1=low, 2=medium, 3=high) - NOTE: This is just stored, not used for ordering
+
+Fixed buffer size: 5 jobs
+
+Implement:
+a) int add_job(doc_name, pages, priority) - Returns 1 if added, 0 if queue full
+b) void process_job() - Remove and "print" the front job
+c) void display_queue() - Show all pending jobs with positions
+d) int is_full() - Check if queue is full
+e) int is_empty() - Check if queue is empty
+f) int jobs_pending() - Return count of pending jobs
+
+CRITICAL: Implement CIRCULAR behavior:
+- When rear reaches end, wrap to beginning if space available
+- When front reaches end, wrap to beginning
+
+TEST SEQUENCE:
+1. Add jobs: "Report.pdf" (10 pages), "Essay.docx" (5 pages),
+   "Slides.pptx" (20 pages), "Invoice.pdf" (2 pages), "Manual.pdf" (50 pages)
+2. Queue should be full now - try adding "Extra.pdf" (should fail)
+3. Process 2 jobs
+4. Add "New1.pdf" (3 pages), "New2.pdf" (4 pages) - should succeed (circular!)
+5. Display queue showing circular arrangement
+6. Process all remaining jobs
+
+HANDWRITTEN WORK:
+- Draw the circular queue array after step 1
+- Show front and rear pointers
+- Draw after step 3 (show empty slots)
+- Draw after step 4 (show wrap-around)
+
+
+QUESTION 3: Generate Binary Numbers                                [15 marks]
+--------------------------------------------------------------------------------
+Use a queue to generate binary representations of numbers from 1 to N.
+
+Algorithm:
+1. Enqueue "1"
+2. Dequeue front, print it
+3. Enqueue front + "0"
+4. Enqueue front + "1"
+5. Repeat from step 2
+
+Implement:
+```c
+void generate_binary(int n);
+```
+
+TEST CASES:
+1. n = 5
+   Output: 1, 10, 11, 100, 101
+
+2. n = 10
+   Output: 1, 10, 11, 100, 101, 110, 111, 1000, 1001, 1010
+
+3. n = 16
+   Output: 1 through 10000 (all binary numbers)
+
+HANDWRITTEN WORK:
+- Trace the queue operations for n=5
+- Show the queue state after each dequeue/enqueue pair
+
+
+QUESTION 4: Queue Reversal Using Recursion                        [15 marks]
+--------------------------------------------------------------------------------
+Write a function to reverse a queue using ONLY recursion (no auxiliary stack).
+
+The idea:
+1. Dequeue the front element
+2. Recursively reverse the remaining queue
+3. Enqueue the dequeued element
+
+```c
+void reverse_queue_recursive();
+```
+
+Implement and test with these queues:
+1. [1, 2, 3, 4, 5] -> [5, 4, 3, 2, 1]
+2. [10, 20, 30] -> [30, 20, 10]
+3. [100] -> [100]
+
+HANDWRITTEN WORK:
+- Draw the recursion tree for reversing [1, 2, 3, 4, 5]
+- Show what happens at each recursive call
+- Show the queue state during unwinding
+
+
+QUESTION 5: Queue Analysis                                         [20 marks]
+--------------------------------------------------------------------------------
+Answer these questions (handwritten with diagrams):
+
+a) LINEAR QUEUE PROBLEM:
+   You have a linear queue with array size 5.
+   Operations: enqueue(1), enqueue(2), enqueue(3), dequeue(), dequeue(),
+               enqueue(4), enqueue(5), enqueue(6)
+
+   - Draw the array state after each operation
+   - Explain the "false overflow" problem that occurs
+   - How does circular queue solve this?
+
+b) COMPARISON TABLE:
+   | Feature              | Linear Queue | Circular Queue |
+   |----------------------|--------------|----------------|
+   | Memory utilization   |              |                |
+   | Implementation       |              |                |
+   | Overflow condition   |              |                |
+   | Empty condition      |              |                |
+   | Enqueue complexity   |              |                |
+   | Dequeue complexity   |              |                |
+
+c) IMPLEMENTATION CHOICES:
+   - When would you use array-based queue vs linked-list queue?
+   - What are the trade-offs of each approach?
+   - Give a real-world scenario for each.
+
+d) QUEUE IN REAL SYSTEMS:
+   Identify 3 real-world applications that use queues.
+   For each, explain:
+   - What data is being queued?
+   - Why FIFO is appropriate?
+   - What happens if queue overflows?
+
+================================================================================
+SUBMISSION CHECKLIST:
+[ ] All source code files with student info in comments
+[ ] Handwritten analysis with clear diagrams
+[ ] Test output screenshots
+[ ] File naming: RegNo_HW5_Queue.c
+
+GRADING:
+- Q1 (Hospital System): 25 marks
+- Q2 (Circular Queue): 25 marks
+- Q3 (Binary Numbers): 15 marks
+- Q4 (Queue Reversal): 15 marks
+- Q5 (Analysis): 20 marks
+
+TOTAL: 100 marks
+================================================================================

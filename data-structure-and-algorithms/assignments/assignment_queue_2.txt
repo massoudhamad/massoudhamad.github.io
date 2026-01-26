@@ -1,0 +1,369 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    ASSIGNMENT 6: QUEUE - BFS GRAPH APPLICATIONS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+                         PLAGIARISM WARNING
+Your code will be checked against all submissions and online sources.
+During viva, you must demonstrate deep understanding by:
+- Writing code modifications on the spot
+- Explaining time/space complexity
+- Tracing algorithms with new inputs provided by examiner
+================================================================================
+
+PROJECT: SOCIAL NETWORK ANALYZER USING BFS
+==========================================
+
+OVERVIEW:
+---------
+Build a social network analysis tool that uses Breadth-First Search (BFS)
+to discover relationships, find paths, and analyze network properties.
+This demonstrates how queues enable level-by-level graph exploration.
+
+PART 1: GRAPH REPRESENTATION (15 marks)
+---------------------------------------
+
+Implement the social network using adjacency list representation.
+
+```c
+#define MAX_USERS 100
+#define MAX_NAME 50
+
+struct friend_node {
+    int user_id;
+    struct friend_node *next;
+};
+
+struct user {
+    int id;
+    char name[MAX_NAME];
+    char location[30];
+    int age;
+    int friend_count;
+    struct friend_node *friends;  // Adjacency list
+};
+
+struct social_network {
+    struct user users[MAX_USERS];
+    int user_count;
+};
+```
+
+Implement:
+1. `void init_network(struct social_network *sn)`
+2. `int add_user(struct social_network *sn, char* name, char* location, int age)`
+3. `int add_friendship(struct social_network *sn, int user1, int user2)` - Bidirectional
+4. `void remove_friendship(struct social_network *sn, int user1, int user2)`
+5. `void display_user(struct social_network *sn, int user_id)`
+6. `void display_network(struct social_network *sn)` - All users and connections
+
+
+PART 2: BFS IMPLEMENTATION (20 marks)
+-------------------------------------
+
+Implement core BFS traversal.
+
+```c
+struct bfs_result {
+    int visited[MAX_USERS];
+    int parent[MAX_USERS];     // For path reconstruction
+    int distance[MAX_USERS];   // Distance from source
+    int visit_order[MAX_USERS];
+    int visit_count;
+};
+
+void bfs(struct social_network *sn, int start_user, struct bfs_result *result);
+```
+
+BFS Algorithm:
+```
+1. Create a queue
+2. Mark start_user as visited, distance = 0
+3. Enqueue start_user
+4. While queue not empty:
+   a. Dequeue user u
+   b. Record visit order
+   c. For each friend v of u:
+      - If not visited:
+        - Mark visited
+        - Set parent[v] = u
+        - Set distance[v] = distance[u] + 1
+        - Enqueue v
+```
+
+
+PART 3: DEGREES OF SEPARATION (20 marks)
+----------------------------------------
+
+7. SHORTEST PATH BETWEEN USERS (10 marks):
+   ```c
+   int find_connection_path(struct social_network *sn, int user1, int user2,
+                           int path[], int *path_length);
+   ```
+   - Return the shortest path (friend chain) between two users
+   - Return -1 if no connection exists
+   - Example: "Ali -> Fatma -> John" means Ali knows Fatma who knows John
+
+8. DEGREES OF SEPARATION (10 marks):
+   ```c
+   int degrees_of_separation(struct social_network *sn, int user1, int user2);
+   ```
+   - Return number of links between users
+   - Return -1 if not connected
+   - Example: Direct friends = 1, Friend of friend = 2
+
+
+PART 4: NETWORK ANALYSIS (25 marks)
+-----------------------------------
+
+9. FIND FRIENDS AT DISTANCE K (8 marks):
+   ```c
+   void friends_at_distance(struct social_network *sn, int user_id, int k,
+                           int result[], int *count);
+   ```
+   - Find all users exactly k connections away
+   - Example: Distance 1 = direct friends, Distance 2 = friends of friends
+
+10. MUTUAL FRIENDS (8 marks):
+    ```c
+    void find_mutual_friends(struct social_network *sn, int user1, int user2,
+                            int mutual[], int *count);
+    ```
+    - Find users who are friends with BOTH user1 and user2
+
+11. FRIEND RECOMMENDATIONS (9 marks):
+    ```c
+    struct recommendation {
+        int user_id;
+        int mutual_count;   // Number of mutual friends
+        int distance;       // Connection distance
+    };
+
+    void recommend_friends(struct social_network *sn, int user_id,
+                          struct recommendation recs[], int *count, int max_recs);
+    ```
+    Recommendation criteria:
+    - Must not already be friends
+    - Prioritize by: most mutual friends, then shortest distance
+    - Exclude users at distance > 3
+
+
+PART 5: ADVANCED NETWORK METRICS (20 marks)
+-------------------------------------------
+
+12. CONNECTED COMPONENTS (8 marks):
+    ```c
+    int find_connected_components(struct social_network *sn,
+                                  int component_ids[], int *num_components);
+    ```
+    - Identify isolated groups in the network
+    - Assign component ID to each user
+    - Return total number of components
+
+13. NETWORK DIAMETER (6 marks):
+    ```c
+    int network_diameter(struct social_network *sn);
+    ```
+    - The longest shortest path between any two users
+    - Measure of how "spread out" the network is
+
+14. INFLUENCE SCORE (6 marks):
+    ```c
+    float calculate_influence(struct social_network *sn, int user_id);
+    ```
+    Influence = (direct friends) + 0.5*(friends of friends) + 0.25*(3rd level)
+    Higher score = more influential in network
+
+
+TEST DATA:
+----------
+Create this social network:
+
+```
+Users:
+0: Ali, Zanzibar, 25
+1: Fatma, Dar es Salaam, 23
+2: John, Zanzibar, 28
+3: Mary, Arusha, 22
+4: Ahmed, Zanzibar, 30
+5: Sarah, Dar es Salaam, 26
+6: Tom, Mwanza, 24
+7: Lisa, Zanzibar, 21
+8: Bob, Arusha, 29
+9: Anna, Dar es Salaam, 27
+
+Friendships:
+Ali - Fatma, Ali - John, Ali - Ahmed
+Fatma - John, Fatma - Sarah
+John - Mary, John - Lisa
+Ahmed - Tom
+Sarah - Anna
+Mary - Bob
+Tom - Bob
+Lisa - Anna
+```
+
+Network visualization:
+```
+        Ali(0)
+       /  |  \
+   Fatma John Ahmed
+    / \   |  \   \
+ Sarah Lisa Mary  Tom
+   |    \   |    /
+  Anna   \  Bob-/
+          \/
+```
+
+
+TEST QUERIES:
+-------------
+Run these queries and document results:
+
+1. BFS from Ali - show visit order and distances
+2. Path from Ali to Bob (expected: Ali->John->Mary->Bob or similar)
+3. Degrees of separation: Ali to Anna
+4. Friends at distance 2 from Ali
+5. Mutual friends of Ali and John
+6. Friend recommendations for Ali
+7. Find all connected components
+8. Calculate network diameter
+9. Influence scores for all users
+
+
+EXPECTED OUTPUT FORMAT:
+-----------------------
+```
+============ SOCIAL NETWORK ANALYZER ============
+
+--- BFS Traversal from Ali ---
+Visit Order: Ali(0) -> Fatma(1) -> John(2) -> Ahmed(3) -> Sarah(4) ->
+             Lisa(5) -> Mary(6) -> Tom(7) -> Anna(8) -> Bob(9)
+
+Distance from Ali:
+  Level 0: Ali
+  Level 1: Fatma, John, Ahmed
+  Level 2: Sarah, Lisa, Mary, Tom
+  Level 3: Anna, Bob
+
+--- Connection Path: Ali to Bob ---
+Path: Ali -> John -> Mary -> Bob
+Degrees of Separation: 3
+
+--- Friends at Distance 2 from Ali ---
+Sarah, Lisa, Mary, Tom (4 users)
+
+--- Mutual Friends of Ali and John ---
+Fatma (1 user)
+
+--- Friend Recommendations for Ali ---
+1. Mary (2 mutual friends, distance 2)
+2. Sarah (1 mutual friend, distance 2)
+3. Lisa (1 mutual friend, distance 2)
+4. Tom (1 mutual friend, distance 2)
+
+--- Network Analysis ---
+Connected Components: 1 (all users connected)
+Network Diameter: 4
+Most Influential: John (score: 8.5)
+=============================================
+```
+
+
+HANDWRITTEN REQUIREMENTS:
+-------------------------
+1. GRAPH DRAWING:
+   - Draw the complete network as a graph
+   - Label nodes with user names
+   - Show adjacency list representation
+
+2. BFS TRACE:
+   - Trace BFS from Ali step by step
+   - Show queue contents after each dequeue
+   - Show distance and parent arrays
+
+3. PATH FINDING:
+   - Trace finding path from Ali to Bob
+   - Show backtracking using parent array
+
+4. COMPLEXITY ANALYSIS:
+   | Operation              | Time Complexity | Space Complexity |
+   |------------------------|-----------------|------------------|
+   | BFS                    |                 |                  |
+   | Find path              |                 |                  |
+   | Friends at distance k  |                 |                  |
+   | Mutual friends         |                 |                  |
+   | Connected components   |                 |                  |
+   | Network diameter       |                 |                  |
+
+   Express in terms of V (vertices/users) and E (edges/friendships)
+
+
+VIVA QUESTIONS:
+---------------
+1. Why is BFS better than DFS for finding shortest paths in unweighted graphs?
+2. How would you modify your code if friendships had "strength" values?
+3. What data structure changes would make mutual friends O(min(deg(u), deg(v)))?
+4. How would you detect "communities" (densely connected subgroups)?
+5. Explain how Facebook's "People You May Know" feature might work.
+6. What is the time complexity of finding network diameter? Can it be improved?
+
+
+BONUS CHALLENGES (25 marks):
+----------------------------
+B1. BIDIRECTIONAL BFS (7 marks):
+    Implement bidirectional BFS for faster path finding:
+    - Start BFS from both source and target
+    - Stop when they meet
+    - Compare performance with regular BFS
+
+B2. LOCATION-BASED ANALYSIS (6 marks):
+    ```c
+    void friends_in_location(struct social_network *sn, int user_id,
+                            char* location, int max_distance,
+                            int result[], int *count);
+    ```
+    Find friends (up to max_distance) who live in a specific location.
+
+B3. NETWORK VISUALIZATION (6 marks):
+    Create ASCII art visualization of the network showing connections.
+
+B4. SIX DEGREES OF SEPARATION (6 marks):
+    Verify the "six degrees of separation" theory:
+    - Find maximum separation between any two users
+    - Report percentage of pairs within 6 degrees
+    - Identify outliers (if any)
+
+
+SUBMISSION:
+-----------
+[ ] Source code: RegNo_Assignment6_BFS.c
+[ ] Test data file with network definition
+[ ] Handwritten analysis (scanned)
+[ ] Screenshots of all query results
+[ ] README with instructions
+
+GRADING:
+--------
+Part 1 (Graph Representation): 15 marks
+Part 2 (BFS Implementation): 20 marks
+Part 3 (Degrees of Separation): 20 marks
+Part 4 (Network Analysis): 25 marks
+Part 5 (Advanced Metrics): 20 marks
+Handwritten Analysis: 10 marks (bonus)
+Bonus Challenges: 25 marks (extra credit)
+Viva: 15 marks (bonus)
+
+TOTAL: 100 marks + 50 bonus marks
+
+================================================================================
+NOTE: This assignment bridges Data Structures with Graph Algorithms.
+Understanding BFS thoroughly will help in advanced courses and interviews.
+================================================================================

@@ -1,0 +1,226 @@
+================================================================================
+                    DATA STRUCTURES AND ALGORITHMS
+                    HOMEWORK 4: ADVANCED STACK APPLICATIONS
+                    State University of Zanzibar (SUZA)
+================================================================================
+
+STUDENT INFORMATION:
+-------------------
+Name: ________________________________    Reg. No: ____________________
+Date Assigned: _____________              Due Date: ___________________
+
+================================================================================
+INSTRUCTIONS:
+- All solutions must be implemented in C
+- Focus on algorithm efficiency and proper stack usage
+- Include detailed comments explaining your logic
+- Handwritten work must show step-by-step algorithm execution
+
+================================================================================
+
+QUESTION 1: Browser History Navigation                            [20 marks]
+--------------------------------------------------------------------------------
+Implement a browser history system using TWO stacks:
+- Back stack: pages you can go back to
+- Forward stack: pages you can go forward to
+
+Each page entry contains:
+- URL (string, 200 characters)
+- Title (string, 100 characters)
+- Timestamp (time when visited)
+
+Operations to implement:
+a) visit(url, title) - Visit a new page (clears forward stack)
+b) back() - Go to previous page
+c) forward() - Go to next page (if available)
+d) current() - Display current page info
+e) show_history() - Display full browsing history
+
+RULES:
+- Visiting a new page clears the forward stack
+- Cannot go back if back stack is empty
+- Cannot go forward if forward stack is empty
+
+TEST SCENARIO:
+1. Visit: google.com, facebook.com, youtube.com, github.com
+2. back() twice (should be at facebook.com)
+3. forward() once (should be at youtube.com)
+4. Visit: stackoverflow.com (forward stack should clear)
+5. back() (should be at youtube.com)
+6. forward() (should be at stackoverflow.com)
+
+HANDWRITTEN WORK:
+- Draw both stacks after step 1
+- Draw both stacks after step 2
+- Draw both stacks after step 4 (show forward stack was cleared)
+
+
+QUESTION 2: Stock Span Problem                                     [20 marks]
+--------------------------------------------------------------------------------
+The stock span problem: For each day, find the number of consecutive days
+just before (and including today) where the price was less than or equal to today's price.
+
+Example:
+Prices: [100, 80, 60, 70, 60, 75, 85]
+Spans:  [1,   1,  1,  2,  1,  4,  6]
+
+Explanation for day 7 (price=85): 85 >= 75 >= 60 >= 70 >= 60 >= 80, so span = 6
+
+Implement using a stack that stores indices:
+```c
+void calculate_spans(int prices[], int n, int spans[]);
+```
+
+Algorithm hint:
+- Use stack to store indices of days
+- Pop days with price <= current price
+- Span = current index - index at stack top (or current index + 1 if stack empty)
+
+TEST DATA:
+1. Prices: [10, 4, 5, 90, 120, 80]
+   Expected spans: [1, 1, 2, 4, 5, 1]
+
+2. Prices: [31, 27, 14, 21, 30, 22]
+   Expected spans: [1, 1, 1, 2, 4, 1]
+
+3. Prices: [100, 100, 100, 100]
+   Expected spans: [1, 2, 3, 4]
+
+HANDWRITTEN WORK:
+- Trace the algorithm for test case 1
+- Show stack state after processing each price
+
+
+QUESTION 3: Next Greater Element                                   [20 marks]
+--------------------------------------------------------------------------------
+For each element in an array, find the next greater element to its right.
+If no greater element exists, output -1.
+
+Example:
+Array: [4, 5, 2, 25, 7, 8]
+NGE:   [5, 25, 25, -1, 8, -1]
+
+Implement using a stack (process from right to left):
+```c
+void find_next_greater(int arr[], int n, int nge[]);
+```
+
+Algorithm hint:
+- Process array from right to left
+- Maintain stack of elements seen so far (that could be NGE for future elements)
+- Pop elements smaller than current element
+- Stack top (if exists) is the NGE
+
+TEST DATA:
+1. Array: [11, 13, 21, 3]
+   Expected NGE: [13, 21, -1, -1]
+
+2. Array: [1, 3, 2, 4]
+   Expected NGE: [3, 4, 4, -1]
+
+3. Array: [6, 8, 0, 1, 3]
+   Expected NGE: [8, -1, 1, 3, -1]
+
+4. Array: [5, 4, 3, 2, 1]
+   Expected NGE: [-1, -1, -1, -1, -1]
+
+BONUS: Modify to find "Next Greater Element in Circular Array"
+where the array wraps around.
+
+HANDWRITTEN WORK:
+- Trace algorithm for test case 2
+- Show stack after each element (right to left)
+
+
+QUESTION 4: Infix to Prefix Conversion                            [15 marks]
+--------------------------------------------------------------------------------
+Convert infix expressions to prefix notation using a stack.
+
+Algorithm:
+1. Reverse the infix expression
+2. Swap '(' with ')' and vice versa
+3. Apply infix to postfix algorithm
+4. Reverse the result
+
+Implement:
+```c
+void infix_to_prefix(char* infix, char* prefix);
+```
+
+TEST EXPRESSIONS:
+1. Infix: "A+B*C"        Prefix: "+A*BC"
+2. Infix: "(A+B)*C"      Prefix: "*+ABC"
+3. Infix: "A+B*C-D/E"    Prefix: "-+A*BC/DE"
+4. Infix: "((A+B)*(C-D))" Prefix: "*+AB-CD"
+5. Infix: "A*(B+C)/D"    Prefix: "/*A+BCD"
+
+HANDWRITTEN WORK:
+- Show complete step-by-step conversion for expression 4
+- Draw the stack at each stage
+
+
+QUESTION 5: Min Stack                                              [15 marks]
+--------------------------------------------------------------------------------
+Design a stack that supports push, pop, top, and retrieving the minimum
+element in O(1) time for ALL operations.
+
+Implement using auxiliary stack approach:
+```c
+void min_push(int value);
+int min_pop();
+int min_top();
+int get_min();  // Returns minimum element in O(1)
+```
+
+Idea: Maintain two stacks
+- Main stack: stores all elements
+- Min stack: stores minimum elements (push only when new min found)
+
+TEST SEQUENCE:
+1. push(5) - min should be 5
+2. push(3) - min should be 3
+3. push(7) - min should be 3
+4. push(2) - min should be 2
+5. pop() (removes 2) - min should be 3
+6. pop() (removes 7) - min should be 3
+7. push(1) - min should be 1
+
+Show the state of BOTH stacks after each operation.
+
+HANDWRITTEN WORK:
+- Draw both stacks after each operation in the test sequence
+- Explain why this approach gives O(1) for get_min()
+
+
+QUESTION 6: Theory Questions                                       [10 marks]
+--------------------------------------------------------------------------------
+Answer the following (handwritten):
+
+a) The Tower of Hanoi puzzle with n disks requires 2^n - 1 moves.
+   - Explain why recursion naturally uses a stack
+   - Draw the recursion stack for n=3
+
+b) Function call stack:
+   ```c
+   int factorial(int n) {
+       if (n <= 1) return 1;
+       return n * factorial(n-1);
+   }
+   ```
+   Draw the call stack when computing factorial(5).
+   Show the stack unwinding process.
+
+c) What is "stack overflow"? Give two scenarios where it can occur.
+
+d) Explain how the "stock span" and "next greater element" problems
+   are related. Can you solve one using the solution to the other?
+
+================================================================================
+SUBMISSION:
+[ ] All source code files (.c) properly commented
+[ ] Handwritten algorithm traces (clear and organized)
+[ ] Test output screenshots
+[ ] Naming: RegNo_HW4_AdvStack.c
+
+TOTAL: 100 marks
+================================================================================
