@@ -94,7 +94,7 @@ printf("Enter the item: ");
 scanf("%d",&item);
 nw=(struct node*)malloc(sizeof(struct node));
 nw->data=item;
-nw->next=head;
+nw->next=head;  
 head=nw;
 }
 void insert_end()
