@@ -1,0 +1,122 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 2: Operators & Expressions
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Master arithmetic, relational, and logical operators
+- Understand operator precedence and associativity
+- Work with type casting and mixed expressions
+- Solve real-world calculation problems
+
+================================================================================
+PART A: OPERATOR PRECEDENCE (From Course Materials)
+================================================================================
+
+1. State the order of evaluation of the operators in each statement and show
+   the value of x after each is performed:
+   a) x = 7 + 3 * 6 / 2 - 1
+   b) x = 2 % 2 + 2 * 2 - 2 / 2
+   c) x = (3 * 9 * (3 + (9 * 3 / (3))))
+
+   Write a C++ program to verify your answers.
+
+2. Write a program to input two integers x and y. Calculate and display the
+   quotient and remainder when x is divided by y.
+
+3. Sales Tax: Ask the user for purchase amount. Calculate:
+   - State sales tax (4%)
+   - County sales tax (2%)
+   - Total sales tax
+   - Total sale amount
+   Display all values.
+
+4. Tip, Tax, and Total: Ask for food charge. Calculate and display:
+   - 15% tip amount
+   - 7% sales tax amount
+   - Total bill
+
+5. Stock Transaction Program:
+   Joe bought 1,000 shares at $32.87/share (2% broker commission).
+   Joe sold 1,000 shares at $33.92/share (2% broker commission).
+   Calculate and display:
+   - Amount paid for stock
+   - Commission on purchase
+   - Amount received from sale
+   - Commission on sale
+   - Net profit or loss
+
+
+================================================================================
+PART B: TYPE CASTING & MIXED EXPRESSIONS
+================================================================================
+
+6. Integer Division vs Float Division
+   Write a program that demonstrates the difference between:
+   - 7 / 2 (integer division)
+   - 7.0 / 2 (float division)
+   - (float)7 / 2 (type casting)
+   - static_cast<float>(7) / 2 (C++ style cast)
+
+7. Temperature Table
+   Print a conversion table from Celsius to Fahrenheit for temperatures
+   0, 10, 20, 30, ..., 100 degrees Celsius.
+   Formula: F = (9.0/5.0) * C + 32
+   Output format:
+       Celsius    Fahrenheit
+       0          32.0
+       10         50.0
+       ...
+
+8. Compound Interest
+   A = P * (1 + r/n)^(nt)
+   Where: P=principal, r=annual rate, n=times compounded/year, t=years
+   Ask user for P, r, n, t and calculate final amount A.
+   Use pow() from <cmath>.
+
+
+================================================================================
+PART C: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+9. [Easy] Even or Odd Check
+   Read an integer and print whether it is even or odd using the % operator.
+   Do NOT use if-else — use the ternary operator: (n%2==0) ? "Even" : "Odd"
+   Test: 7 -> Odd, 12 -> Even
+
+10. [Easy] Absolute Value
+    Read a number and print its absolute value WITHOUT using abs().
+    Hint: if negative, multiply by -1.
+    Test: -5 -> 5, 3 -> 3, 0 -> 0
+
+11. [Easy] Check Divisibility
+    Read two numbers a and b. Check if a is divisible by b.
+    Print "Divisible" or "Not divisible".
+    Test: 15, 5 -> Divisible | 14, 3 -> Not divisible
+
+12. [Medium] Count Digits
+    Read a positive integer and count how many digits it has using only
+    arithmetic (divide by 10 repeatedly).
+    Test: 12345 -> 5 digits | 100 -> 3 digits | 7 -> 1 digit
+
+13. [Medium] Power Without pow()
+    Calculate x^n (x raised to power n) using only multiplication.
+    Read x and n (positive integer). Use a loop.
+    Test: 2^10 = 1024 | 3^5 = 243
+
+14. [HackerRank] Solve Me First
+    Read two integers. Print their sum. (Warm-up problem)
+    Link: hackerrank.com/challenges/solve-me-first
+
+15. [LeetCode 7 - Simplified] Reverse Integer
+    Read an integer and print it reversed.
+    Test: 123 -> 321 | -456 -> -654 | 1200 -> 21
+    Hint: Use % 10 to get last digit, / 10 to remove it.
+
+16. [LeetCode 9 - Simplified] Palindrome Number
+    Read an integer. Check if it reads the same forwards and backwards.
+    Test: 121 -> Palindrome | 123 -> Not palindrome | -121 -> Not palindrome
+    Hint: Reverse the number and compare.
+
+================================================================================

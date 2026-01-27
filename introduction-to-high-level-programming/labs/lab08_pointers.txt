@@ -1,0 +1,158 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 8: Pointers
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Understand pointer declaration, initialization, and dereferencing
+- Use pointers with arrays and functions
+- Dynamic memory allocation (new/delete)
+- Pointer arithmetic
+
+================================================================================
+PART A: POINTER BASICS
+================================================================================
+
+1. Pointer Declaration and Dereferencing:
+   Declare an integer variable x = 10. Declare a pointer p that points to x.
+   Display:
+   - Value of x
+   - Address of x (using &x)
+   - Value of p (address stored)
+   - Value pointed to by p (using *p)
+   - Address of p itself (using &p)
+
+2. Pointer Modification:
+   Using the pointer from Q1, change the value of x through the pointer.
+   Set *p = 20. Display x to verify it changed.
+
+3. Swap Using Pointers:
+   Write a function void swap(int *a, int *b) that swaps two values using
+   pointers (not references).
+   Test: a=5, b=10 -> After swap: a=10, b=5
+
+4. Multiple Pointers:
+   Declare three int variables and three pointers. Point each pointer to a
+   different variable. Use only the pointers to:
+   - Set values
+   - Print all values
+   - Calculate their sum
+
+
+================================================================================
+PART B: POINTERS AND ARRAYS
+================================================================================
+
+5. Array Traversal with Pointers:
+   Declare an array of 5 integers. Use a pointer to traverse and print
+   each element. Demonstrate both methods:
+   - *(arr + i)
+   - ptr++ in a loop
+
+6. Array Sum Using Pointer:
+   Write a function int arraySum(int *arr, int size) that uses pointer
+   arithmetic (not array indexing) to calculate the sum.
+
+7. Array Reverse Using Pointers:
+   Write a function void reverseArray(int *arr, int size) using two pointers
+   (one at start, one at end) to reverse the array in place.
+
+8. Find Max Using Pointer:
+   Write int* findMax(int *arr, int size) that returns a pointer to the
+   maximum element.
+
+
+================================================================================
+PART C: DYNAMIC MEMORY ALLOCATION
+================================================================================
+
+9. Dynamic Integer:
+   Allocate an integer dynamically using new. Assign a value, print it,
+   then delete it.
+   int *p = new int;
+   *p = 42;
+   cout << *p;
+   delete p;
+
+10. Dynamic Array:
+    Ask user for array size n. Allocate array dynamically.
+    Read n values, calculate sum and average, then delete the array.
+    int *arr = new int[n];
+    // ... use array ...
+    delete[] arr;
+
+11. Dynamic 2D Array:
+    Ask user for rows and columns. Allocate a 2D array dynamically.
+    Fill with values, display, then properly deallocate.
+    int **matrix = new int*[rows];
+    for (int i = 0; i < rows; i++)
+        matrix[i] = new int[cols];
+
+12. Resize Array:
+    Write a function that "resizes" a dynamic array:
+    int* resizeArray(int *old, int oldSize, int newSize);
+    Copy elements, allocate new array, delete old.
+    Test: [1,2,3] resize to 5 -> [1,2,3,0,0]
+
+
+================================================================================
+PART D: POINTERS AND STRINGS
+================================================================================
+
+13. String Length Using Pointer:
+    Write int myStrlen(const char *str) using pointer arithmetic.
+    Increment pointer until '\0' is found.
+
+14. String Copy Using Pointer:
+    Write void myStrcpy(char *dest, const char *src) using pointers.
+
+15. String Reverse Using Pointer:
+    Write void reverseStr(char *str) using two pointers.
+
+16. Count Character:
+    Write int countChar(const char *str, char c) that counts occurrences
+    of character c in string str using pointers.
+    Test: countChar("hello world", 'l') = 3
+
+
+================================================================================
+PART E: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+17. [Easy] Pointer Swap Without Temp
+    Swap two values using pointers and XOR (no temp variable).
+    *a ^= *b; *b ^= *a; *a ^= *b;
+
+18. [Easy] Dynamic Fibonacci
+    Dynamically allocate array of size n. Fill with Fibonacci numbers.
+    Print the array. Free memory.
+
+19. [Medium] Remove Duplicates from Sorted Array (In-Place)
+    Given a sorted array, remove duplicates in-place using pointers.
+    Return the new length.
+    Test: [1,1,2,2,3] -> [1,2,3], length=3
+    LeetCode 26
+
+20. [Medium] Merge Two Sorted Arrays In-Place
+    Given two sorted arrays, merge them using pointers.
+    First array has enough extra space.
+
+21. [Medium] Dynamic Matrix Multiplication
+    Read dimensions for two matrices. Dynamically allocate both matrices
+    and a result matrix. Multiply and display. Free all memory.
+
+22. [Medium] Pointer to Function
+    Create a calculator that uses function pointers:
+    int (*operation)(int, int);
+    Point to different functions (add, sub, mul, div) based on user choice.
+
+23. [Hard] Implement Your Own realloc
+    Write a function that simulates realloc:
+    int* myRealloc(int *ptr, int oldSize, int newSize);
+    Allocate new memory, copy data, free old, return new pointer.
+
+================================================================================
+NOTE: Always pair every 'new' with 'delete' and 'new[]' with 'delete[]'
+to prevent memory leaks!
+================================================================================

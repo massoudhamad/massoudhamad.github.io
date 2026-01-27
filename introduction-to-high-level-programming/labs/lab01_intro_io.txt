@@ -1,0 +1,143 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 1: Introduction, Output & Variables
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Set up development environment and compile first C++ program
+- Understand cout, endl, escape sequences
+- Declare variables of different types
+- Basic input/output with cin and cout
+
+================================================================================
+PART A: GETTING STARTED (From Course Materials)
+================================================================================
+
+1. Write a C++ program to print 'Hello' on screen and then print your name
+   on a separate line.
+   Expected Output:
+       Hello
+       Alexandra Abramov
+
+2. Write a C++ program to print the following strings:
+   Expected Output:
+       Tomorrow I'll learn C++ Data types.
+       This is a bad command: del c:\*.*
+
+3. Write a C++ program to declare one integer variable, one float variable,
+   and one string variable and assign 10, 12.5, and "C++ programming" to
+   them respectively. Then display their values on the screen.
+
+4. Write a program that will print your initials to standard output in letters
+   that are nine lines tall. Each big letter should be made up of *'s.
+   Example for "DJE":
+       ******        ************     *********
+       **    **            **         **
+       **     **           **         **
+       **      **          **         **
+       **      **          **         *********
+       **      **    **    **         **
+       **     **     **    **         **
+       **    **      **   **          **
+       ******         ****            *********
+
+5. Write programs to print EACH of the following star patterns:
+   Pattern A: 5x5 solid square of stars
+   Pattern B: 5x5 hollow square of stars
+   Pattern C: Inverted triangle of stars
+   Pattern D: Diamond of stars
+
+
+================================================================================
+PART B: INPUT, VARIABLES & ARITHMETIC (From Course Materials)
+================================================================================
+
+6. Write a program that displays:
+   - Your name
+   - Your address, with city, state, and ZIP
+   - Your telephone number
+   - Your college major
+
+7. Create a program that asks the user to enter their name and age. Display:
+   "Welcome [name] you are [age] years old"
+
+8. Write a program that asks for two float values and adds them together.
+   The result should be assigned to the first variable.
+   Example:
+       Enter value a: 12.5
+       The value of a before adding is 12.5.
+       Enter value b: 34.9
+       The value of a after adding is 47.4.
+
+9. Write a program that reads two integers and prints the results of adding,
+   subtracting, multiplying, and dividing them.
+
+10. Write a program that requests two numbers and prints the sum, product,
+    difference and quotient of the two numbers.
+
+
+================================================================================
+PART C: FORMULAS & CALCULATIONS (From Course Materials)
+================================================================================
+
+11. Sales Prediction: A company's annual profit is 23% of total sales. Ask
+    the user for projected total sales and display the profit.
+
+12. Land Calculation: One acre = 43,560 square feet. Ask user for total
+    square feet and calculate the number of acres.
+
+13. Total Purchase: A customer buys 5 items. Ask for each price, then display
+    subtotal, 6% sales tax, and total.
+
+14. Distance Traveled: Distance = Speed * Time. A car travels at 60 mph.
+    Display distance for 5, 8, and 12 hours.
+
+15. Miles-per-Gallon: MPG = Miles / Gallons. Ask user for miles driven and
+    gallons used, calculate and display MPG.
+
+16. Celsius to Fahrenheit: F = (9/5)*C + 32. Ask user for Celsius
+    temperature and display the Fahrenheit equivalent.
+
+17. Circle calculations: Read radius, print diameter, circumference, and area.
+    Use pi = 3.14159.
+
+18. Age in seconds: Ask for first name, last name, and age in years. Display:
+    "Welcome [first] [last]! You are ______ seconds old!"
+
+
+================================================================================
+PART D: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+19. [Easy] Swap Two Variables
+    Read two integers and swap their values WITHOUT using a third variable.
+    Hint: Use arithmetic operations (a = a + b, b = a - b, a = a - b).
+    Test: a=5, b=10 -> After swap: a=10, b=5
+
+20. [Easy] Last Digit
+    Read an integer and print its last digit.
+    Test: Input: 1234 -> Output: 4
+    Test: Input: 99   -> Output: 9
+
+21. [Easy] Digit Sum (2-digit number)
+    Read a 2-digit number and print the sum of its digits.
+    Test: Input: 47 -> Output: 11 (4+7)
+    Test: Input: 83 -> Output: 11 (8+3)
+
+22. [Easy] Reverse a 3-digit Number
+    Read a 3-digit number and print it reversed.
+    Test: Input: 123 -> Output: 321
+    Test: Input: 905 -> Output: 509
+
+23. [Medium] Time Conversion
+    Read a number of seconds and convert it to hours, minutes, and seconds.
+    Test: Input: 3661 -> Output: 1 hour, 1 minute, 1 second
+    Test: Input: 7384 -> Output: 2 hours, 3 minutes, 4 seconds
+
+24. [HackerRank] Simple Array Sum
+    Read N numbers and print their sum.
+    Input: 6 numbers: 1 2 3 4 10 11
+    Output: 31
+
+================================================================================

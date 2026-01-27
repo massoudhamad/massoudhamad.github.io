@@ -99,6 +99,9 @@
         }
         .badge-pdf { background: #dc3545; color: white; }
         .badge-cpp { background: #00599C; color: white; }
+        .badge-doc { background: #2b579a; color: white; }
+        .badge-ppt { background: #d24726; color: white; }
+        .badge-txt { background: #6c757d; color: white; }
         .footer {
             text-align: center;
             padding: 2rem;
@@ -132,71 +135,396 @@
             margin-top: 1rem;
             text-align: center;
         }
+        .topic-label {
+            margin-bottom: 1rem;
+            color: #555;
+            font-weight: 600;
+        }
+        .note-box {
+            background: #e8f4f8;
+            padding: 1rem;
+            border-radius: 4px;
+            margin-bottom: 1.5rem;
+            border-left: 4px solid #0891b2;
+            font-size: 0.9rem;
+        }
     </style>
 </head>
 <body>
     <nav>
-        <a href="../index.html">← Back to All Courses</a>
+        <a href="../index.html">&larr; Back to All Courses</a>
     </nav>
 
     <div class="hero">
         <h1>Introduction to High-Level Programming</h1>
         <h2>State University of Zanzibar (SUZA)</h2>
-        <p>BSc Computer Science - Undergraduate</p>
+        <p>BSc Computer Science - Undergraduate | Language: C++</p>
     </div>
 
     <div class="container">
 
+        <!-- LECTURES -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📚</span>
                 <h3>Lectures</h3>
             </div>
             <div class="section-content">
-                <p class="empty-message">Lectures coming soon...</p>
+                <table>
+                    <thead>
+                        <tr><th>Topic</th><th>Material</th><th>Format</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Control Flow (if, else, switch, loops)</td>
+                            <td><a href="Control_Flow.pdf">Control Flow</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Functions &amp; Procedures</td>
+                            <td><a href="Functions.pdf">Functions</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Arrays &amp; Strings</td>
+                            <td><a href="Array and String_lec04.pdf">Arrays &amp; Strings (Lecture 4)</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Strings (Advanced)</td>
+                            <td><a href="08-C++-Strings.pdf">C++ Strings</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pointers</td>
+                            <td><a href="Pointers_lec05.pdf">Pointers (Lecture 5)</a></td>
+                            <td><span class="badge badge-pdf">PDF</span></td>
+                        </tr>
+                        <tr>
+                            <td>Pointers (Slides)</td>
+                            <td><a href="pointers.ppt">Pointers Presentation</a></td>
+                            <td><span class="badge badge-ppt">PPT</span></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
 
+        <!-- REFERENCE BOOKS -->
         <div class="section">
             <div class="section-header">
-                <span class="section-icon">💡</span>
-                <h3>Code Examples</h3>
+                <span class="section-icon">📖</span>
+                <h3>Reference Materials</h3>
             </div>
             <div class="section-content">
-                <p class="empty-message">Code examples coming soon...</p>
+                <div class="card-grid">
+                    <a href="C++_Tony_Gaddis.pdf" class="card">
+                        <h4>Starting Out with C++</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Tony Gaddis - Comprehensive textbook</p>
+                    </a>
+                    <a href="C++.pdf" class="card">
+                        <h4>C++ Reference Guide</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Quick reference</p>
+                    </a>
+                    <a href="An Introduction to C++ Programming for First-time Programmers - C++ Programming Tutorial.pdf" class="card">
+                        <h4>C++ for First-time Programmers</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Beginner-friendly tutorial</p>
+                    </a>
+                    <a href="C101-PracticeProblems.pdf" class="card">
+                        <h4>C101 Practice Problems</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Extra practice problems</p>
+                    </a>
+                </div>
             </div>
         </div>
 
+        <!-- FLOWCHARTS & ALGORITHMS -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🔀</span>
+                <h3>Flowcharts &amp; Algorithms</h3>
+            </div>
+            <div class="section-content">
+                <div class="card-grid">
+                    <a href="Flowchart/Introduction_to_Flowcharting.pdf" class="card">
+                        <h4>Introduction to Flowcharting</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Fundamentals of flowchart design</p>
+                    </a>
+                    <a href="Flowchart/algorithmsandflowcharts2.pdf" class="card">
+                        <h4>Algorithms &amp; Flowcharts</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Algorithm design principles</p>
+                    </a>
+                    <a href="Flowchart/Algorithm and Flowchart Questions.pdf" class="card">
+                        <h4>Algorithm &amp; Flowchart Questions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Practice questions</p>
+                    </a>
+                    <a href="Flowchart/Flowchart Questions.pdf" class="card">
+                        <h4>Flowchart Questions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Additional practice</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- PRACTICAL LAB SESSIONS -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">🧪</span>
+                <h3>Practical Lab Sessions</h3>
+            </div>
+            <div class="section-content">
+                <div class="note-box">
+                    Each lab includes exercises from course materials, plus extra practice from
+                    <strong>LeetCode</strong> and <strong>HackerRank</strong> to build problem-solving skills.
+                    Problems are marked by difficulty: [Easy], [Medium], [Hard].
+                </div>
+                <table>
+                    <thead>
+                        <tr><th>Lab</th><th>Topic</th><th>Exercises</th><th>Link</th></tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Lab 1</td>
+                            <td>Introduction, Output &amp; Variables</td>
+                            <td>24 exercises - Hello World, patterns, I/O, calculations, digit manipulation</td>
+                            <td><a href="labs/lab01_intro_io.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 2</td>
+                            <td>Operators &amp; Expressions</td>
+                            <td>16 exercises - Precedence, type casting, formulas, reverse integer, palindrome number</td>
+                            <td><a href="labs/lab02_operators_expressions.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 3</td>
+                            <td>Control Flow (if, else, switch)</td>
+                            <td>20 exercises - Grades, BMI, leap year, calculator, Rock Paper Scissors, Roman numerals</td>
+                            <td><a href="labs/lab03_control_flow.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 4</td>
+                            <td>Loops (for, while, do-while)</td>
+                            <td>24 exercises - Patterns, Fibonacci, primes, Armstrong, Happy Number, Collatz</td>
+                            <td><a href="labs/lab04_loops.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 5</td>
+                            <td>Functions &amp; Procedures</td>
+                            <td>25 exercises - Pass by value/reference, overloading, recursion, Power of Two/Three</td>
+                            <td><a href="labs/lab05_functions.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 6</td>
+                            <td>Arrays</td>
+                            <td>24 exercises - Sorting, searching, Two Sum, rotate, move zeroes, hourglass sum</td>
+                            <td><a href="labs/lab06_arrays.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 7</td>
+                            <td>Strings</td>
+                            <td>24 exercises - Palindrome, anagram, Caesar cipher, compression, CamelCase</td>
+                            <td><a href="labs/lab07_strings.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 8</td>
+                            <td>Pointers</td>
+                            <td>23 exercises - Pointer arithmetic, dynamic memory, arrays, function pointers</td>
+                            <td><a href="labs/lab08_pointers.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 9</td>
+                            <td>File Handling</td>
+                            <td>19 exercises - Read/write files, CSV, phone book, bank transactions, log analyzer</td>
+                            <td><a href="labs/lab09_file_handling.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                        <tr>
+                            <td>Lab 10</td>
+                            <td>Problem Solving &amp; Recursion</td>
+                            <td>24 exercises - Recursion, Tower of Hanoi, merge sort, Tic-Tac-Toe, N-Queens</td>
+                            <td><a href="labs/lab10_problem_solving.txt"><span class="badge badge-txt">TXT</span></a></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <!-- EXISTING PRACTICAL SESSIONS -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">✏️</span>
-                <h3>Exercises</h3>
+                <h3>Practical Sessions (Previous)</h3>
             </div>
             <div class="section-content">
-                <p class="empty-message">Exercises coming soon...</p>
+                <div class="card-grid">
+                    <a href="Practical Sessions/Practical Sessions0.pdf" class="card">
+                        <h4>Practical Session 0</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Introduction &amp; output exercises</p>
+                    </a>
+                    <a href="Practical Sessions/Practical Session1.pdf" class="card">
+                        <h4>Practical Session 1</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Variables, I/O, arithmetic</p>
+                    </a>
+                    <a href="Practical Sessions/Practical Session2.pdf" class="card">
+                        <h4>Practical Session 2</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Control flow &amp; loops</p>
+                    </a>
+                    <a href="Practical Sessions/Practical Questions.pdf" class="card">
+                        <h4>Practical Questions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Mixed practice questions</p>
+                    </a>
+                </div>
             </div>
         </div>
 
+        <!-- PROGRAMMING EXERCISES -->
         <div class="section">
             <div class="section-header">
-                <span class="section-icon">📝</span>
-                <h3>Homeworks</h3>
+                <span class="section-icon">💡</span>
+                <h3>Programming Exercise Sheets</h3>
             </div>
             <div class="section-content">
-                <p class="empty-message">Homeworks coming soon...</p>
+                <div class="card-grid">
+                    <a href="Programming Exercises.pdf" class="card">
+                        <h4>Programming Exercises (I/O &amp; Process)</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Sales prediction, distance, temperature, stock transactions</p>
+                    </a>
+                    <a href="Programming Exercise Using decision structure.pdf" class="card">
+                        <h4>Decision Structure Exercises</h4>
+                        <p><span class="badge badge-pdf">PDF</span> If-else and switch problems</p>
+                    </a>
+                    <a href="Programming Exercises Functions.pdf" class="card">
+                        <h4>Functions Exercises</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Function design and implementation</p>
+                    </a>
+                    <a href="Extra Questions Functions.pdf" class="card">
+                        <h4>Extra Questions: Functions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Additional function practice</p>
+                    </a>
+                    <a href="Very simple exercises.docx" class="card">
+                        <h4>Very Simple Exercises</h4>
+                        <p><span class="badge badge-doc">DOCX</span> Beginner-level warm-up exercises</p>
+                    </a>
+                    <a href="2024/Recursion_Problems_C++.pdf" class="card">
+                        <h4>Recursion Problems</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Recursive function practice</p>
+                    </a>
+                    <a href="Week_1_Questions.pdf" class="card">
+                        <h4>Week 1 Questions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> First week exercises</p>
+                    </a>
+                    <a href="Week_2_Questions.pdf" class="card">
+                        <h4>Week 2 Questions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Second week exercises</p>
+                    </a>
+                </div>
             </div>
         </div>
 
+        <!-- QUESTION BANKS -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📋</span>
-                <h3>Assignments</h3>
+                <h3>Question Banks &amp; Solutions</h3>
             </div>
             <div class="section-content">
-                <p class="empty-message">Assignments coming soon...</p>
+                <div class="card-grid">
+                    <a href="Questions/Programming Exercises_1.pdf" class="card">
+                        <h4>Programming Exercises Collection</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Comprehensive exercise set</p>
+                    </a>
+                    <a href="Questions/MIT6_096IAP11_assn01.pdf" class="card">
+                        <h4>MIT Assignment 1</h4>
+                        <p><span class="badge badge-pdf">PDF</span> MIT C++ course exercises</p>
+                    </a>
+                    <a href="Questions/MIT6_096IAP11_sol01.pdf" class="card">
+                        <h4>MIT Assignment 1 - Solutions</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Solutions for MIT exercises</p>
+                    </a>
+                    <a href="797ebff419fa2cc3a10af2c5f19be961_MIT6_096IAP11_assn02.pdf" class="card">
+                        <h4>MIT Assignment 2</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Advanced MIT exercises</p>
+                    </a>
+                    <a href="Questions/sample101midterm.pdf" class="card">
+                        <h4>Sample Midterm</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Practice midterm exam</p>
+                    </a>
+                    <a href="Questions/samplefinalkey.pdf" class="card">
+                        <h4>Sample Final Exam (With Key)</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Practice final with answers</p>
+                    </a>
+                </div>
             </div>
         </div>
 
+        <!-- ASSIGNMENTS & PROJECTS -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📝</span>
+                <h3>Assignments &amp; Projects</h3>
+            </div>
+            <div class="section-content">
+                <div class="card-grid">
+                    <a href="Assignments/Assignment1.docx" class="card">
+                        <h4>Assignment 1</h4>
+                        <p><span class="badge badge-doc">DOCX</span> Programming assignment</p>
+                    </a>
+                    <a href="final_project_cpp-1.pdf" class="card">
+                        <h4>Final Project</h4>
+                        <p><span class="badge badge-pdf">PDF</span> End of semester project</p>
+                    </a>
+                    <a href="Hackathon Question.pdf" class="card">
+                        <h4>Hackathon Challenge</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Coding competition questions</p>
+                    </a>
+                    <a href="2024/functions_mid_night_coders.pdf" class="card">
+                        <h4>Midnight Coders Challenge</h4>
+                        <p><span class="badge badge-pdf">PDF</span> Functions coding challenge</p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- TESTS & EXAMS -->
+        <div class="section">
+            <div class="section-header">
+                <span class="section-icon">📄</span>
+                <h3>Tests &amp; Exams</h3>
+            </div>
+            <div class="section-content">
+                <h4 class="topic-label">2024</h4>
+                <div class="card-grid" style="margin-bottom: 1.5rem;">
+                    <a href="2024/Midterm Test.pdf" class="card">
+                        <h4>Midterm Test 2024</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                    <a href="2024/PTest1.pdf" class="card">
+                        <h4>Practical Test 1</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                    <a href="2024/Practical Test 3.pdf" class="card">
+                        <h4>Practical Test 3</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                </div>
+                <h4 class="topic-label">Previous Years</h4>
+                <div class="card-grid">
+                    <a href="Practical Test 2022.pdf" class="card">
+                        <h4>Practical Test 2022</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                    <a href="Practical Test 2-Functions.pdf" class="card">
+                        <h4>Practical Test 2: Functions</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                    <a href="Midterm Test/Midterm Test C++ .pdf" class="card">
+                        <h4>Midterm Test C++</h4>
+                        <p><span class="badge badge-pdf">PDF</span></p>
+                    </a>
+                </div>
+            </div>
+        </div>
+
+        <!-- COURSE TOPICS -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">📖</span>
@@ -204,21 +532,23 @@
             </div>
             <div class="section-content">
                 <ul style="list-style: none; columns: 2; column-gap: 2rem;">
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Introduction to Programming</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Variables and Data Types</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Input and Output Operations</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Operators and Expressions</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Control Flow (if, else, switch)</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Loops (for, while, do-while)</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Functions and Procedures</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Arrays and Strings</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Pointers (C++)</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ File Handling</li>
-                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">▸ Problem Solving Techniques</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Introduction to Programming</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Variables and Data Types</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Input and Output Operations</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Operators and Expressions</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Control Flow (if, else, switch)</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Loops (for, while, do-while)</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Functions and Procedures</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Arrays and Strings</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Pointers (C++)</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; File Handling</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Recursion</li>
+                    <li style="padding: 0.5rem 0; border-bottom: 1px solid #eee;">&#9656; Problem Solving Techniques</li>
                 </ul>
             </div>
         </div>
 
+        <!-- GETTING STARTED -->
         <div class="section">
             <div class="section-header">
                 <span class="section-icon">💻</span>
@@ -228,6 +558,12 @@
                 <h4>Compile and Run C++ Programs</h4>
                 <pre style="background:#f8f9fa; padding:1rem; border-radius:4px; overflow-x:auto; margin:1rem 0;"><code>g++ hello.cpp -o hello
 ./hello</code></pre>
+                <h4 style="margin-top:1rem;">Online Practice Platforms</h4>
+                <ul style="list-style: none; padding: 0.5rem 0;">
+                    <li style="padding: 0.3rem 0;">&#9656; <a href="https://leetcode.com/problemset/" target="_blank">LeetCode</a> - Algorithm problems sorted by difficulty</li>
+                    <li style="padding: 0.3rem 0;">&#9656; <a href="https://www.hackerrank.com/domains/cpp" target="_blank">HackerRank C++</a> - C++ specific challenges</li>
+                    <li style="padding: 0.3rem 0;">&#9656; <a href="https://www.onlinegdb.com/online_c++_compiler" target="_blank">OnlineGDB</a> - Online C++ compiler (no installation needed)</li>
+                </ul>
             </div>
         </div>
     </div>

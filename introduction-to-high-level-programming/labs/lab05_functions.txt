@@ -1,0 +1,147 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 5: Functions & Procedures
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Define and call functions with parameters and return values
+- Understand pass by value vs pass by reference
+- Use function prototypes
+- Apply functions to organize code
+
+================================================================================
+PART A: BASIC FUNCTIONS (From Course Materials)
+================================================================================
+
+1. Write a function that takes two integers and returns their sum.
+   int add(int a, int b);
+   Test: add(3, 5) = 8 | add(-2, 7) = 5
+
+2. Write a function that takes an integer and returns true if it's even.
+   bool isEven(int n);
+   Test: isEven(4) = true | isEven(7) = false
+
+3. Write a function that takes a float radius and returns the area of a circle.
+   float circleArea(float radius);
+   Test: circleArea(5) = 78.5398
+
+4. Write a function that takes three quiz scores and returns the average.
+   float average(float q1, float q2, float q3);
+
+5. Write a void function that takes an integer n and prints a line of n stars.
+   void printStars(int n);
+   Test: printStars(5) prints "*****"
+
+6. Write a function that calculates and returns the factorial of n.
+   long long factorial(int n);
+   Test: factorial(5) = 120 | factorial(0) = 1
+
+
+================================================================================
+PART B: PASS BY REFERENCE
+================================================================================
+
+7. Swap Function:
+   Write a function that swaps two integers using pass by reference.
+   void swap(int &a, int &b);
+   Demonstrate it works by printing before and after swap.
+
+8. Min and Max:
+   Write a function that takes an array of integers and its size, and returns
+   the minimum and maximum using reference parameters.
+   void findMinMax(int arr[], int size, int &min, int &max);
+
+9. Grade Calculator Function:
+   Write a function that takes three scores (by value) and returns the grade
+   (by reference) and average (by reference).
+   void calculateGrade(int q, int m, int f, float &avg, char &grade);
+
+
+================================================================================
+PART C: FUNCTION OVERLOADING & DEFAULT PARAMETERS
+================================================================================
+
+10. Overloaded Area Functions:
+    Write three overloaded functions named "area":
+    - float area(float radius);           // Circle
+    - float area(float length, float width);  // Rectangle
+    - float area(float base, float height, bool isTriangle);  // Triangle
+
+11. Power Function with Default:
+    Write a function with default exponent of 2:
+    double power(double base, int exp = 2);
+    Test: power(3) = 9 | power(2, 10) = 1024
+
+12. Temperature Converter:
+    Write two overloaded functions:
+    float convert(float celsius);          // Celsius to Fahrenheit
+    float convert(float temp, char from);  // 'C' or 'F' conversion
+
+
+================================================================================
+PART D: FUNCTIONS WITH LOOPS
+================================================================================
+
+13. Prime Check Function:
+    bool isPrime(int n);
+    Use this in main() to print all primes from 1 to 100.
+
+14. GCD Function (Recursive):
+    int gcd(int a, int b);
+    Use Euclid's algorithm: gcd(a, b) = gcd(b, a % b), base case: gcd(a, 0) = a
+    Test: gcd(48, 18) = 6 | gcd(100, 75) = 25
+
+15. Fibonacci Function (Recursive):
+    int fibonacci(int n);
+    Return the nth Fibonacci number.
+    Test: fibonacci(0)=0, fibonacci(1)=1, fibonacci(10)=55
+
+16. Menu-Driven Calculator:
+    Create a calculator with functions for add, subtract, multiply, divide.
+    Use a menu loop. Each operation should be its own function.
+
+
+================================================================================
+PART E: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+17. [Easy] Absolute Value Function
+    Write int myAbs(int n) that returns absolute value without using abs().
+
+18. [Easy] Max of Three
+    Write int maxOfThree(int a, int b, int c) using only comparisons.
+    Test: maxOfThree(3, 7, 5) = 7
+
+19. [Easy] Count Vowels
+    Write int countVowels(string str) that counts vowels in a string.
+    Test: "Hello World" -> 3
+
+20. [Medium] Power (Recursive)
+    Write double myPow(double x, int n) using recursion.
+    Handle negative exponents: x^(-n) = 1 / x^n
+    Test: myPow(2, 10) = 1024 | myPow(2, -2) = 0.25
+
+21. [Medium] Digital Root
+    Repeatedly sum digits until a single digit remains.
+    Write int digitalRoot(int n);
+    Test: 9875 -> 9+8+7+5=29 -> 2+9=11 -> 1+1=2, return 2
+
+22. [Medium] Check Palindrome String
+    Write bool isPalindrome(string str);
+    Test: "madam" -> true | "hello" -> false | "racecar" -> true
+
+23. [HackerRank] Mini-Max Sum
+    Given five positive integers, find the min and max sums of exactly four.
+    Link: hackerrank.com/challenges/mini-max-sum
+    Test: [1,2,3,4,5] -> Min sum: 10, Max sum: 14
+
+24. [LeetCode 231] Power of Two
+    Write bool isPowerOfTwo(int n);
+    Test: 16 -> true | 18 -> false | 1 -> true | 0 -> false
+
+25. [LeetCode 326] Power of Three
+    Write bool isPowerOfThree(int n);
+    Test: 27 -> true | 45 -> false | 1 -> true
+
+================================================================================

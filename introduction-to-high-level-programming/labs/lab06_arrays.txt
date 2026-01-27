@@ -1,0 +1,142 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 6: Arrays
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Declare and initialize arrays
+- Access and modify array elements
+- Pass arrays to functions
+- Solve problems using single and multi-dimensional arrays
+
+================================================================================
+PART A: BASIC ARRAY OPERATIONS
+================================================================================
+
+1. Array Input/Output:
+   Declare an array of 10 integers. Read values from user and display them.
+
+2. Sum and Average:
+   Read 10 numbers into an array. Calculate and display the sum and average.
+
+3. Find Maximum and Minimum:
+   Read N numbers into an array. Find and display the largest and smallest
+   values and their positions (indices).
+   Test: [3, 7, 1, 9, 4] -> Max: 9 at index 3, Min: 1 at index 2
+
+4. Count Occurrences:
+   Read N numbers into an array. Ask user for a value to search.
+   Count and display how many times it appears.
+   Test: [1, 3, 5, 3, 7, 3] search for 3 -> Count: 3
+
+5. Reverse Array:
+   Read N numbers into an array. Reverse the array in-place (no second array).
+   Display before and after.
+   Test: [1, 2, 3, 4, 5] -> [5, 4, 3, 2, 1]
+
+
+================================================================================
+PART B: SEARCHING & SORTING
+================================================================================
+
+6. Linear Search:
+   Write a function int linearSearch(int arr[], int size, int key);
+   Returns index if found, -1 if not found.
+   Test: [10, 20, 30, 40, 50], key=30 -> Found at index 2
+
+7. Bubble Sort:
+   Write a function void bubbleSort(int arr[], int size);
+   Sort array in ascending order. Display array after each pass.
+   Test: [64, 34, 25, 12, 22, 11, 90]
+
+8. Selection Sort:
+   Write a function void selectionSort(int arr[], int size);
+   Test with same array as above.
+
+9. Binary Search (on sorted array):
+   Write a function int binarySearch(int arr[], int size, int key);
+   First sort the array, then search.
+   Test: [2, 5, 8, 12, 16, 23, 38, 56, 72, 91], key=23
+
+
+================================================================================
+PART C: ARRAY PROBLEMS
+================================================================================
+
+10. Remove Duplicates:
+    Read N numbers. Display only unique values (remove duplicates).
+    Test: [1, 2, 2, 3, 4, 4, 5] -> [1, 2, 3, 4, 5]
+
+11. Merge Two Sorted Arrays:
+    Read two sorted arrays. Merge them into a single sorted array.
+    Test: [1, 3, 5] + [2, 4, 6] -> [1, 2, 3, 4, 5, 6]
+
+12. Student Grades Table (2D Array):
+    Create a 5x3 array for 5 students and 3 subjects.
+    Calculate and display:
+    - Each student's average
+    - Each subject's average
+    - Highest score overall
+
+13. Matrix Addition:
+    Read two 3x3 matrices. Display their sum.
+
+14. Matrix Multiplication:
+    Read two matrices (MxN and NxP). Calculate and display their product.
+
+
+================================================================================
+PART D: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+15. [Easy] Running Sum
+    Given array nums, return array where result[i] = sum of nums[0..i].
+    Test: [1,2,3,4] -> [1,3,6,10]
+    LeetCode 1480
+
+16. [Easy] Contains Duplicate
+    Check if any value appears at least twice in the array.
+    Test: [1,2,3,1] -> true | [1,2,3,4] -> false
+    LeetCode 217
+
+17. [Easy] Single Number
+    Every element appears twice except one. Find it.
+    Test: [2,2,1] -> 1 | [4,1,2,1,2] -> 4
+    Hint: XOR all elements. LeetCode 136
+
+18. [Easy] Move Zeroes
+    Move all 0's to the end while maintaining relative order of non-zero.
+    Test: [0,1,0,3,12] -> [1,3,12,0,0]
+    LeetCode 283
+
+19. [Easy] Plus One
+    Given a number represented as array of digits, add one.
+    Test: [1,2,3] -> [1,2,4] | [9,9,9] -> [1,0,0,0]
+    LeetCode 66
+
+20. [Medium] Two Sum
+    Find two numbers in array that add to target. Return their indices.
+    Test: [2,7,11,15] target=9 -> [0,1] (because 2+7=9)
+    LeetCode 1
+
+21. [Medium] Rotate Array
+    Rotate array to the right by k steps.
+    Test: [1,2,3,4,5,6,7] k=3 -> [5,6,7,1,2,3,4]
+    LeetCode 189
+
+22. [Medium] Missing Number
+    Array contains n distinct numbers from 0 to n. Find the missing one.
+    Test: [3,0,1] -> 2 | [0,1] -> 2
+    Hint: Sum formula n*(n+1)/2. LeetCode 268
+
+23. [HackerRank] Arrays - Left Rotation
+    Rotate array left by d positions.
+    Link: hackerrank.com/challenges/ctci-array-left-rotation
+    Test: [1,2,3,4,5] d=2 -> [3,4,5,1,2]
+
+24. [HackerRank] 2D Array - DS (Hourglass Sum)
+    Find the maximum hourglass sum in a 6x6 2D array.
+    Link: hackerrank.com/challenges/2d-array
+
+================================================================================

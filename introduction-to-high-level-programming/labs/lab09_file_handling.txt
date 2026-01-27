@@ -1,0 +1,152 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 9: File Handling
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Read from and write to text files
+- Use ifstream, ofstream, and fstream
+- Handle file errors and end-of-file
+- Process data stored in files
+
+================================================================================
+PART A: BASIC FILE I/O
+================================================================================
+
+1. Write to File:
+   Create a program that writes the following to a file called "output.txt":
+   - Your name
+   - Your registration number
+   - Today's date
+   - A message: "I am learning file handling in C++!"
+
+2. Read from File:
+   Write a program that reads "output.txt" (from Q1) and displays its
+   contents on screen, line by line.
+
+3. Append to File:
+   Write a program that appends three additional lines to "output.txt"
+   without erasing existing content. Use ios::app mode.
+
+4. Copy File:
+   Write a program that reads from "source.txt" and creates an exact
+   copy called "backup.txt". Display number of lines copied.
+
+5. File Existence Check:
+   Before opening a file, check if it exists. Display appropriate
+   error message if file cannot be opened.
+   if (!infile.is_open()) { cerr << "Error: cannot open file"; }
+
+
+================================================================================
+PART B: DATA PROCESSING WITH FILES
+================================================================================
+
+6. Student Records:
+   Create a file "students.txt" with the following format:
+   Name RegNo Score1 Score2 Score3
+   Write a program that:
+   a) Reads the file
+   b) Calculates average for each student
+   c) Writes results to "results.txt" with format:
+      Name RegNo Average Grade
+
+7. Number Statistics:
+   Create a file with 20 random integers (one per line).
+   Write a program that reads the file and calculates:
+   - Count of numbers
+   - Sum
+   - Average
+   - Maximum and minimum
+   - Count of even and odd numbers
+
+8. Word Frequency:
+   Read a text file. Count the frequency of each word.
+   Display top 5 most frequent words.
+
+9. Line Counter:
+   Write a program that counts:
+   - Total lines
+   - Blank lines
+   - Non-blank lines
+   - Total words
+   - Total characters
+
+
+================================================================================
+PART C: STRUCTURED FILE OPERATIONS
+================================================================================
+
+10. Phone Book (File-based):
+    Create a simple phone book that stores contacts in a file.
+    Operations:
+    a) Add contact (name, phone number)
+    b) Search by name
+    c) Display all contacts
+    d) Delete a contact (rewrite file without that contact)
+
+11. Quiz Score Manager:
+    Store quiz scores in a CSV file: Name,Q1,Q2,Q3,Q4,Q5
+    Implement:
+    a) Add student scores
+    b) View all scores (formatted table)
+    c) Calculate class average per quiz
+    d) Find student with highest total
+
+12. Transaction Log:
+    Simulate a bank account with file-based transaction log.
+    File format per line: TYPE AMOUNT BALANCE DATE
+    Operations:
+    a) Deposit (append to file)
+    b) Withdraw (check balance first, append to file)
+    c) View transaction history
+    d) Calculate current balance from file
+
+
+================================================================================
+PART D: EXTRA PRACTICE
+================================================================================
+
+13. [Easy] Count Characters in File
+    Read a file and count: letters, digits, spaces, and special characters.
+
+14. [Easy] Uppercase Converter
+    Read a text file, convert all text to uppercase, write to new file.
+
+15. [Medium] File Merge
+    Given two sorted files (one number per line), merge them into a
+    third sorted file.
+    file1.txt: 1 3 5 7 9
+    file2.txt: 2 4 6 8 10
+    merged.txt: 1 2 3 4 5 6 7 8 9 10
+
+16. [Medium] Search and Replace in File
+    Read a file, replace all occurrences of a word with another word,
+    write the result to a new file.
+
+17. [Medium] CSV Parser
+    Read a CSV file with student data:
+    Name,Age,GPA
+    Ali,20,3.5
+    Fatma,21,3.8
+    Parse each field and display in a formatted table.
+
+18. [Medium] Inventory System
+    File stores: ItemID, ItemName, Quantity, Price
+    Implement: Add item, update quantity, calculate total value,
+    generate report to file.
+
+19. [Hard] Log File Analyzer
+    Read a log file with entries:
+    [TIMESTAMP] [LEVEL] Message
+    Count entries per level (INFO, WARNING, ERROR).
+    Display all ERROR entries.
+
+================================================================================
+TIPS:
+- Always close files after use (or use RAII with local scope)
+- Check file.is_open() before operations
+- Use file.eof() or file.good() for reading loops
+- Prefer: while (getline(file, line)) over while (!file.eof())
+================================================================================

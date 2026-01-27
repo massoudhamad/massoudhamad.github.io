@@ -1,0 +1,153 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 7: Strings
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Work with C-style strings (char arrays) and C++ strings
+- Use string library functions
+- Manipulate characters and strings
+- Solve text processing problems
+
+================================================================================
+PART A: BASIC STRING OPERATIONS
+================================================================================
+
+1. String Input:
+   Read a full name (with spaces) using getline(). Display it.
+   Display the length of the string.
+
+2. String Concatenation:
+   Read first name and last name separately. Concatenate them with a space
+   and display: "Full name: [first] [last]"
+
+3. String Comparison:
+   Read two strings. Compare them and display whether they are equal,
+   or which one comes first alphabetically.
+
+4. Character Counter:
+   Read a string. Count and display:
+   - Total characters (including spaces)
+   - Letters (uppercase + lowercase)
+   - Digits
+   - Spaces
+   - Special characters
+   Test: "Hello World! 123" -> Letters: 10, Digits: 3, Spaces: 2, Special: 1
+
+5. Case Conversion:
+   Read a string. Display it in:
+   - All uppercase
+   - All lowercase
+   - Toggle case (swap upper/lower)
+   Test: "Hello World" -> "HELLO WORLD", "hello world", "hELLO wORLD"
+
+
+================================================================================
+PART B: STRING MANIPULATION
+================================================================================
+
+6. Reverse a String:
+   Read a string and display it reversed.
+   Test: "Hello" -> "olleH"
+
+7. Palindrome Check:
+   Read a string. Check if it's a palindrome (ignore case and spaces).
+   Test: "madam" -> Palindrome
+   Test: "Race Car" -> Palindrome (ignoring case and spaces)
+   Test: "hello" -> Not palindrome
+
+8. Word Counter:
+   Read a sentence. Count the number of words.
+   Test: "Hello World How Are You" -> 5 words
+
+9. Find and Replace:
+   Read a sentence, a word to find, and a word to replace it with.
+   Display the modified sentence.
+   Test: "I love cats" find "cats" replace "dogs" -> "I love dogs"
+
+10. Substring Extraction:
+    Read a string, start position, and length. Extract and display the
+    substring.
+    Test: "Hello World", start=6, length=5 -> "World"
+
+11. Remove Vowels:
+    Read a string. Display it with all vowels removed.
+    Test: "Hello World" -> "Hll Wrld"
+
+12. Capitalize First Letter of Each Word:
+    Read a sentence. Capitalize the first letter of every word.
+    Test: "hello world from suza" -> "Hello World From Suza"
+
+
+================================================================================
+PART C: C-STYLE STRINGS (char arrays)
+================================================================================
+
+13. String Copy:
+    Implement your own string copy function (without using strcpy).
+    void myStrcpy(char dest[], const char src[]);
+
+14. String Length:
+    Implement your own string length function (without using strlen).
+    int myStrlen(const char str[]);
+
+15. String Compare:
+    Implement your own string compare function (without using strcmp).
+    int myStrcmp(const char s1[], const char s2[]);
+    Return 0 if equal, negative if s1 < s2, positive if s1 > s2.
+
+
+================================================================================
+PART D: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+16. [Easy] Count Vowels and Consonants
+    Read a string. Count vowels and consonants separately.
+    Test: "Hello World" -> Vowels: 3, Consonants: 7
+
+17. [Easy] Check Anagram
+    Read two strings. Check if they are anagrams (same letters, different order).
+    Test: "listen" and "silent" -> Anagram
+    Test: "hello" and "world" -> Not anagram
+
+18. [Easy] First Non-Repeating Character
+    Find the first character that doesn't repeat in a string.
+    Test: "aabbcdd" -> 'c'
+    Test: "aabb" -> No non-repeating character
+    LeetCode 387
+
+19. [Easy] Valid Palindrome
+    Check if string is palindrome, considering only alphanumeric characters
+    and ignoring case.
+    Test: "A man, a plan, a canal: Panama" -> true
+    LeetCode 125
+
+20. [Medium] Longest Common Prefix
+    Find the longest common prefix among an array of strings.
+    Test: ["flower","flow","flight"] -> "fl"
+    Test: ["dog","racecar","car"] -> "" (no common prefix)
+    LeetCode 14
+
+21. [Medium] Compress String
+    Implement basic string compression using counts of repeated characters.
+    Test: "aabcccccaaa" -> "a2b1c5a3"
+    If compressed isn't shorter, return original.
+
+22. [Medium] Caesar Cipher
+    Encrypt a string by shifting each letter by k positions.
+    Test: "Hello" k=3 -> "Khoor"
+    Test: "xyz" k=2 -> "zab" (wrap around)
+    HackerRank: hackerrank.com/challenges/caesar-cipher-1
+
+23. [HackerRank] CamelCase
+    Count the number of words in a camelCase string.
+    Link: hackerrank.com/challenges/camelcase
+    Test: "saveChangesInTheEditor" -> 5
+
+24. [HackerRank] Strong Password
+    Check password strength: min 6 chars, must have uppercase, lowercase,
+    digit, special character. Return characters needed to make it strong.
+    Link: hackerrank.com/challenges/strong-password
+
+================================================================================

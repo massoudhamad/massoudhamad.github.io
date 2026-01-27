@@ -1,0 +1,147 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 3: Control Flow (if, else, switch)
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Use if, else if, and else statements
+- Implement switch-case structures
+- Handle input validation and edge cases
+- Solve decision-based problems
+
+================================================================================
+PART A: IF-ELSE STATEMENTS (From Course Materials)
+================================================================================
+
+1. Write a program that reads three numbers and prints the largest number.
+
+2. Student Grade Calculator:
+   Read three scores (quiz, mid-term, final). Calculate average and assign:
+   - Average >= 90% -> Grade A
+   - Average >= 70% and < 90% -> Grade B
+   - Average >= 50% and < 70% -> Grade C
+   - Average < 50% -> Grade F
+   Display the grade.
+
+3. Quiz Grade (Switch):
+   A professor gives 5-point quizzes: 5=A, 4=B, 3=C, 2=D, 1=F, 0=F.
+   Read a quiz score and use a switch statement to display the grade.
+
+
+================================================================================
+PART B: DECISION STRUCTURES (From Course Materials)
+================================================================================
+
+4. Body Mass Index (BMI) Calculator:
+   BMI = weight(kg) / height(m)^2
+   Read weight and height, calculate BMI, and classify:
+   - BMI < 18.5: Underweight
+   - 18.5 <= BMI < 25: Normal weight
+   - 25 <= BMI < 30: Overweight
+   - BMI >= 30: Obese
+
+5. Leap Year Checker:
+   A year is a leap year if:
+   - Divisible by 4 AND not divisible by 100, OR
+   - Divisible by 400
+   Test: 2024 (leap), 1900 (not leap), 2000 (leap), 2023 (not leap)
+
+6. Simple Calculator:
+   Read two numbers and an operator (+, -, *, /).
+   Use switch to perform the operation.
+   Handle division by zero.
+
+7. Triangle Type Checker:
+   Read three sides. First check if they form a valid triangle
+   (sum of any two sides > third side), then classify:
+   - Equilateral (all sides equal)
+   - Isosceles (two sides equal)
+   - Scalene (no sides equal)
+
+8. Electricity Bill Calculator:
+   Read units consumed. Calculate bill:
+   - First 100 units: TZS 50 per unit
+   - Next 200 units: TZS 75 per unit
+   - Above 300 units: TZS 100 per unit
+   Add 15% surcharge to total.
+
+
+================================================================================
+PART C: NESTED DECISIONS & COMPLEX CONDITIONS
+================================================================================
+
+9. Ticket Price System:
+   A cinema charges based on age and day:
+   - Children (< 12): TZS 5,000
+   - Teens (12-17): TZS 8,000
+   - Adults (18-59): TZS 12,000
+   - Seniors (60+): TZS 6,000
+   - Weekend surcharge: +20% for all
+   Read age and day (weekday/weekend), display price.
+
+10. Login System:
+    Set a username = "admin" and password = "suza2024".
+    Ask user to input username and password.
+    Give 3 attempts. Display appropriate messages:
+    - "Login successful!"
+    - "Invalid username or password. X attempts remaining."
+    - "Account locked!"
+
+11. Quadratic Equation Solver:
+    Read a, b, c for ax^2 + bx + c = 0.
+    Calculate discriminant = b^2 - 4ac.
+    - If discriminant > 0: two real roots
+    - If discriminant == 0: one real root
+    - If discriminant < 0: no real roots
+    Display the roots using the quadratic formula.
+
+
+================================================================================
+PART D: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+12. [Easy] Positive, Negative, or Zero
+    Read a number. Print "Positive", "Negative", or "Zero".
+
+13. [Easy] Vowel or Consonant
+    Read a character. Print if it's a vowel or consonant.
+    Handle both uppercase and lowercase.
+    Test: 'a' -> Vowel | 'B' -> Consonant | 'E' -> Vowel
+
+14. [Easy] Minimum of Three
+    Read three numbers and print the minimum WITHOUT using min().
+
+15. [Medium] Day of Week
+    Read a number 1-7. Print the day name using switch.
+    Handle invalid input (not 1-7).
+
+16. [Medium] Grade Boundaries
+    Read a score (0-100) and print the letter grade:
+    A+ (97-100), A (93-96), A- (90-92),
+    B+ (87-89), B (83-86), B- (80-82),
+    C+ (77-79), C (73-76), C- (70-72),
+    D (60-69), F (0-59)
+
+17. [Medium] Rock Paper Scissors
+    Two players each enter R, P, or S.
+    Determine the winner using if-else logic.
+    Test: R vs S -> Player 1 wins | P vs P -> Tie
+
+18. [HackerRank] Comparing the Triplets
+    Alice and Bob each have 3 scores. For each position, the one with the
+    higher score gets 1 point. Print Alice's and Bob's total points.
+    Link: hackerrank.com/challenges/compare-the-triplets
+    Test: Alice=[5,6,7] Bob=[3,6,10] -> Output: 1 1
+
+19. [LeetCode 1342] Number of Steps to Reduce a Number to Zero
+    Given a number, if even divide by 2, if odd subtract 1. Count steps.
+    Test: 14 -> 6 steps (14->7->6->3->2->1->0)
+
+20. [LeetCode 13 - Simplified] Roman to Integer
+    Read a Roman numeral string (I, V, X, L, C, D, M) and convert to integer.
+    I=1, V=5, X=10, L=50, C=100, D=500, M=1000
+    Rule: If smaller value before larger, subtract (IV=4, IX=9).
+    Test: "XIV" -> 14 | "IX" -> 9 | "MCMXCIV" -> 1994
+
+================================================================================

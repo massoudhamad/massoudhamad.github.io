@@ -1,0 +1,172 @@
+================================================================================
+         INTRODUCTION TO HIGH-LEVEL PROGRAMMING (C++)
+         PRACTICAL LAB SESSION 10: Problem Solving & Recursion
+         State University of Zanzibar (SUZA)
+================================================================================
+
+OBJECTIVES:
+- Apply all programming concepts to solve complex problems
+- Understand and implement recursive algorithms
+- Practice competitive programming style problems
+- Develop algorithmic thinking
+
+================================================================================
+PART A: RECURSION (From Course Materials)
+================================================================================
+
+1. Factorial (Recursive):
+   int factorial(int n);
+   Base case: factorial(0) = 1
+   Recursive: factorial(n) = n * factorial(n-1)
+   Test: factorial(5) = 120
+
+2. Fibonacci (Recursive):
+   int fibonacci(int n);
+   Base cases: fib(0)=0, fib(1)=1
+   Recursive: fib(n) = fib(n-1) + fib(n-2)
+   Test: fibonacci(10) = 55
+
+3. Sum of Array (Recursive):
+   int arraySum(int arr[], int n);
+   Base case: n==0 returns 0
+   Recursive: arr[n-1] + arraySum(arr, n-1)
+
+4. Power (Recursive):
+   double power(double base, int exp);
+   Base case: exp==0 returns 1
+   Recursive: base * power(base, exp-1)
+
+5. Print Digits (Recursive):
+   void printDigits(int n);
+   Print each digit of n on a separate line (left to right).
+   Test: printDigits(1234) prints 1, 2, 3, 4
+
+6. String Reverse (Recursive):
+   string reverseStr(string s);
+   Base case: empty or single char string
+   Recursive: last char + reverseStr(remaining)
+
+7. Count Digits (Recursive):
+   int countDigits(int n);
+   Test: countDigits(12345) = 5
+
+8. Binary Representation (Recursive):
+   void printBinary(int n);
+   Print binary representation of n.
+   Test: printBinary(10) prints "1010"
+
+
+================================================================================
+PART B: ALGORITHM PRACTICE
+================================================================================
+
+9. Tower of Hanoi:
+   void hanoi(int n, char from, char to, char aux);
+   Display moves for n disks.
+   Test: n=3 should show 7 moves.
+
+10. Binary Search (Recursive):
+    int binarySearch(int arr[], int low, int high, int key);
+    Test: [2,5,8,12,16,23,38,56,72,91] key=23 -> index 5
+
+11. Merge Sort:
+    Implement merge sort to sort an array.
+    void mergeSort(int arr[], int left, int right);
+    void merge(int arr[], int left, int mid, int right);
+
+12. Generate Permutations:
+    Print all permutations of a string.
+    Test: "ABC" -> ABC, ACB, BAC, BCA, CAB, CBA
+
+
+================================================================================
+PART C: MIXED PRACTICE PROBLEMS
+================================================================================
+
+13. Student Management System:
+    Combine arrays, functions, and file I/O to create a system that:
+    - Stores student records in arrays (name, reg, scores)
+    - Functions: addStudent, searchStudent, sortByScore, displayAll
+    - Save/load from file
+    - Menu-driven interface
+
+14. Calendar Generator:
+    Given a month and year, print a calendar.
+    You need to determine:
+    - Number of days in the month
+    - Day of the week for the 1st (use Zeller's formula)
+    Output format:
+        January 2026
+    Su Mo Tu We Th Fr Sa
+                 1  2  3
+     4  5  6  7  8  9 10
+    11 12 13 14 15 16 17
+    ...
+
+15. Tic-Tac-Toe Game:
+    Implement a two-player tic-tac-toe game:
+    - 3x3 board using 2D array
+    - Display board after each move
+    - Check for win (rows, columns, diagonals)
+    - Check for draw
+    - Validate moves (cell not already taken)
+
+16. Simple Encryption/Decryption:
+    Implement a program that:
+    a) Encrypts a message using a shift cipher (Caesar)
+    b) Decrypts the encrypted message back
+    c) Saves encrypted message to file
+    d) Reads from file and decrypts
+
+
+================================================================================
+PART D: EXTRA PRACTICE (LeetCode / HackerRank Style)
+================================================================================
+
+17. [Easy] Climbing Stairs (LeetCode 70)
+    You can climb 1 or 2 steps. How many distinct ways to climb n steps?
+    Test: n=2 -> 2 ways | n=3 -> 3 ways | n=5 -> 8 ways
+    Hint: This is Fibonacci!
+
+18. [Easy] Valid Parentheses (LeetCode 20)
+    Check if string of brackets (){}[] is valid.
+    Test: "()" -> true | "()[]{}" -> true | "(]" -> false
+    Hint: Use a stack (array with top pointer).
+
+19. [Medium] Pascal's Triangle (LeetCode 118)
+    Generate first n rows of Pascal's triangle.
+    Test n=5:
+    [1]
+    [1,1]
+    [1,2,1]
+    [1,3,3,1]
+    [1,4,6,4,1]
+
+20. [Medium] Maximum Subarray Sum (Kadane's Algorithm) (LeetCode 53)
+    Find contiguous subarray with largest sum.
+    Test: [-2,1,-3,4,-1,2,1,-5,4] -> 6 (subarray [4,-1,2,1])
+
+21. [Medium] Spiral Matrix Print (LeetCode 54)
+    Print elements of a matrix in spiral order.
+    Test: [[1,2,3],[4,5,6],[7,8,9]] -> 1 2 3 6 9 8 7 4 5
+
+22. [HackerRank] Recursive Digit Sum
+    Super digit: sum digits recursively until single digit.
+    Link: hackerrank.com/challenges/recursive-digit-sum
+    Test: "9875" -> 9+8+7+5=29 -> 2+9=11 -> 1+1=2
+
+23. [HackerRank] Balanced Brackets
+    Determine if a string of brackets is balanced.
+    Link: hackerrank.com/challenges/balanced-brackets
+    Test: "{[()]}" -> YES | "{[(])}" -> NO
+
+24. [Hard] N-Queens Problem
+    Place N queens on an NxN chessboard so no two attack each other.
+    Use recursion (backtracking).
+    Test n=4: Display all valid arrangements.
+
+================================================================================
+CONGRATULATIONS! You have completed all 10 Practical Lab Sessions.
+These exercises cover the entire C++ fundamentals curriculum and prepare
+you for Data Structures and Algorithms in the next semester.
+================================================================================
